@@ -756,6 +756,7 @@ Partial Class Form1
         '
         'unitP4
         '
+        Me.unitP4.BackColor = System.Drawing.Color.Blue
         Me.unitP4.Location = New System.Drawing.Point(332, 360)
         Me.unitP4.Name = "unitP4"
         Me.unitP4.Size = New System.Drawing.Size(51, 48)
@@ -796,6 +797,7 @@ Partial Class Form1
         '
         'unitP6
         '
+        Me.unitP6.BackColor = System.Drawing.Color.Blue
         Me.unitP6.Location = New System.Drawing.Point(599, 360)
         Me.unitP6.Name = "unitP6"
         Me.unitP6.Size = New System.Drawing.Size(51, 48)
@@ -804,6 +806,7 @@ Partial Class Form1
         '
         'unitE4
         '
+        Me.unitE4.BackColor = System.Drawing.Color.Blue
         Me.unitE4.Location = New System.Drawing.Point(332, 101)
         Me.unitE4.Name = "unitE4"
         Me.unitE4.Size = New System.Drawing.Size(51, 48)
@@ -820,6 +823,7 @@ Partial Class Form1
         '
         'unitE6
         '
+        Me.unitE6.BackColor = System.Drawing.Color.Blue
         Me.unitE6.Location = New System.Drawing.Point(599, 101)
         Me.unitE6.Name = "unitE6"
         Me.unitE6.Size = New System.Drawing.Size(51, 48)

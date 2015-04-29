@@ -13,6 +13,7 @@ Public Class clsUnitMage
     Public Sub unitInitialize(ByVal unitNumber As Integer, ByVal cUnitTeam As String, ByVal assignedArea As String)
         unitSetTeam(cUnitTeam)
         unitAssignedPicBox = assignedArea
+        unitID = unitNumber
         unitHealth = 5
         unitStrength = 3
         unitRange = 3

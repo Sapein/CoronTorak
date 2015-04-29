@@ -9,8 +9,12 @@ Public Class clsUnitArcher
 
     End Sub
 
-    Public Sub unitInitialize(ByVal unitNumber As Integer, ByVal cUnitTeam As String)
+    Public Sub unitInitialize(ByVal unitNumber As Integer, ByVal cUnitTeam As String, ByVal assignedArea As String)
         unitSetTeam(cUnitTeam)
+        unitAssignedPicBox = assignedArea
+        unitHealth = 7
+        unitStrength = 5
+        unitRange = 2
     End Sub
 
     Public Sub unitTileLocation()

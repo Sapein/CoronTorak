@@ -6,6 +6,7 @@ Public Class clsUnit
     Public unitLocX As String
     Public unitLoxY As String
     Public unitAssignedPicBox As String
+    Public unitID As Integer
 
     Public Function checkDefendingUnitType(ByVal defUnitX As Integer, ByVal defUnitY As Integer)
         Return Nothing
