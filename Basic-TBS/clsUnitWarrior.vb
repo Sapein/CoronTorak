@@ -11,9 +11,9 @@ Public Class clsUnitWarrior
     Public Sub unitInitialize(ByVal unitNumber As Integer, ByVal cUnitTeam As String, ByVal assignedArea As String)
         unitSetTeam(cUnitTeam)
         unitAssignedPicBox = assignedArea
-        unitHealth = 5
-        unitStrength = 3
-        unitRange = 3
+        unitHealth = 10
+        unitStrength = 6
+        unitRange = 1
     End Sub
 
     Public Sub unitTileLocation()
