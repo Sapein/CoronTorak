@@ -3,8 +3,8 @@ Public Class clsUnit
     Public unitStrength As Integer
     Public unitRange As Integer
     Public unitTeam As String
-    Public unitLocX As String
-    Public unitLoxY As String
+    Public unitLocX As Integer
+    Public unitLocY As Integer
     Public unitAssignedPicBox As String
     Public unitID As Integer
 
