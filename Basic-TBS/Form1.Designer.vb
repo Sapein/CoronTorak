@@ -604,20 +604,20 @@ Partial Class Form1
         'lblEnemy
         '
         Me.lblEnemy.AutoSize = True
-        Me.lblEnemy.Location = New System.Drawing.Point(843, 25)
+        Me.lblEnemy.Location = New System.Drawing.Point(840, 25)
         Me.lblEnemy.Name = "lblEnemy"
-        Me.lblEnemy.Size = New System.Drawing.Size(39, 13)
+        Me.lblEnemy.Size = New System.Drawing.Size(45, 13)
         Me.lblEnemy.TabIndex = 49
-        Me.lblEnemy.Text = "Enemy"
+        Me.lblEnemy.Text = "Player 2"
         '
         'lblPlayer
         '
         Me.lblPlayer.AutoSize = True
-        Me.lblPlayer.Location = New System.Drawing.Point(102, 25)
+        Me.lblPlayer.Location = New System.Drawing.Point(98, 25)
         Me.lblPlayer.Name = "lblPlayer"
-        Me.lblPlayer.Size = New System.Drawing.Size(36, 13)
+        Me.lblPlayer.Size = New System.Drawing.Size(45, 13)
         Me.lblPlayer.TabIndex = 50
-        Me.lblPlayer.Text = "Player"
+        Me.lblPlayer.Text = "Player 1"
         '
         'eUnit1
         '
@@ -781,7 +781,7 @@ Partial Class Form1
         '
         'unitP3
         '
-        Me.unitP3.Location = New System.Drawing.Point(531, 425)
+        Me.unitP3.Location = New System.Drawing.Point(530, 425)
         Me.unitP3.Name = "unitP3"
         Me.unitP3.Size = New System.Drawing.Size(51, 48)
         Me.unitP3.TabIndex = 69
@@ -798,7 +798,7 @@ Partial Class Form1
         'unitP6
         '
         Me.unitP6.BackColor = System.Drawing.Color.Blue
-        Me.unitP6.Location = New System.Drawing.Point(599, 360)
+        Me.unitP6.Location = New System.Drawing.Point(596, 360)
         Me.unitP6.Name = "unitP6"
         Me.unitP6.Size = New System.Drawing.Size(51, 48)
         Me.unitP6.TabIndex = 71
