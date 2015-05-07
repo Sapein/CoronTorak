@@ -8,8 +8,15 @@ Public Class clsUnit
     Public unitAssignedPicBox As String
     Public unitID As Integer
 
-    Public Function checkDefendingUnitType(ByVal defUnitX As Integer, ByVal defUnitY As Integer)
-        Return Nothing
+    Public Function checkDefendingUnitType()
+        Dim defendingUnit = Form1.getDefendingUnit()
+        If Form1.unitList(defendingUnit).ToString = "Basic_TBS.clsUnitWarrior" Then
+            Return "warrior"
+        ElseIf Form1.unitList(defendingUnit).ToString = "Basic_TBS.clsUnitArcher" Then
+            Return "archer"
+        Else
+            Return "mage"
+        End If
     End Function
 
     Public Sub destoryUnit(ByVal unitLocX As Integer, ByVal unitLocY As Integer)

@@ -1,8 +1,8 @@
 Public Class Form1
-    Dim selectedUnit As Integer = -1 'Uses the UnitID for the unit As Defined upon initialization.
+    Private selectedUnit As Integer = -1 'Uses the UnitID for the unit As Defined upon initialization.
     Dim chrPlayerTurn As Char = "P" 'Character is either P for player 1, and C for player 2
     Dim boolAttacking As Boolean
-    Dim defUnit As Integer = -1 'Uses the Initialization-Definied Unit ID
+    Public defUnit As Integer = -1 'Uses the Initialization-Definied Unit ID
 
 
     'Player Units
@@ -22,11 +22,11 @@ Public Class Form1
     Dim archer2Computer = New clsUnitArcher
 
 
-    Dim unitList As List(Of clsUnit) = New List(Of clsUnit)
+    Public unitList As List(Of clsUnit) = New List(Of clsUnit)
     Dim usedUnitList As List(Of clsUnit) = New List(Of clsUnit)
 
     Dim usedUnitListBackup As List(Of Object) = New List(Of Object)
-    Dim unitListBackup As List(Of clsUnit) = New List(Of clsUnit)
+    Dim unitListBackup As List(Of Object) = New List(Of Object)
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
@@ -102,7 +102,7 @@ Public Class Form1
             mage1Player.unitLocX = unitP4.Location.X
             mage1Player.unitLocY = unitP4.Location.Y
             errorCodeCheck = checkUnitLocation(selectedUnit)
-            If errorCodeCheck = 7 Or 8 Then
+            If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP4.Left = unitFirstX
                 Me.unitP4.Top = unitFirstY
                 mage1Player.unitLocX = unitP4.Location.X
@@ -242,7 +242,7 @@ Public Class Form1
             mage1Computer.unitLocX = unitE4.Location.X
             mage1Computer.unitLocY = unitE4.Location.Y
             errorCodeCheck = checkUnitLocation(selectedUnit)
-            If errorCodeCheck = 7 Or 8 Then
+            If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE4.Left = unitFirstX
                 Me.unitE4.Top = unitFirstY
                 mage1Computer.unitLocX = unitE4.Location.X
@@ -576,7 +576,7 @@ Public Class Form1
         Dim healthOfDefending As Integer
         Dim rangeOfAttacking As Integer
         Dim errorCodeCheck As Integer
-
+        Dim unitBuff As Integer
         If boolDryRun = True Then
             Dim i As Integer
             selectedUnit = selectedUnit - 1
@@ -596,6 +596,15 @@ Public Class Form1
         ElseIf errorCodeCheck = 4 Or 5 Then
             Return 0
         End If
+
+        errorCodeCheck = unitListBackup(selectedUnit).unitAttack()
+        If errorCodeCheck = 0 Then
+
+        ElseIf errorCodeCheck = 9 Or errorCodeCheck = 10 Then
+            Return 0
+        End If
+
+        unitBuff = unitListBackup(selectedUnit).unitGetBuffs()
         If (defUnit = -1 And selectedUnit = -1) Or (defUnit = -1 Or selectedUnit = -1) Then
             MessageBox.Show("ERROR: NO ATTACKING OR DEFNDING UNIT!", "ERROR: INVALID TARGET(S)")
             Return 6 'Error Code: Invalid Target(s)
@@ -607,12 +616,13 @@ Public Class Form1
             attackStat = unitList(selectedUnit).unitStrength
             healthOfDefending = unitList(defUnit).unitHealth
             rangeOfAttacking = unitList(selectedUnit).unitRange
-            healthOfDefending = healthOfDefending - attackStat
+            healthOfDefending = (healthOfDefending - attackStat) - unitBuff
 
             unitList(defUnit).unitHealth = healthOfDefending
+
             MessageBox.Show("Unit " & unitList(selectedUnit).unitID & " - " & unitList(selectedUnit).unitTeam _
             & " attacked " & unitList(defUnit).unitID & " - " & unitList(defUnit).unitTeam & "! The defending unit's health" _
-            & " is " & healthOfDefending & " / " & unitList(defUnit).unitHealth)
+            & " is " & unitList(defUnit).unitHealth)
             selectedUnit = selectedUnit + 1 : defUnit = defUnit + 1
 
             DisplayUnitStats()
@@ -658,8 +668,10 @@ Public Class Form1
                 Return 2
             End If
             If boolAttacking = True Then
+                defUnit = defUnit - 1
                 If unitList(defUnit).unitTeam = "Computer" Then
                     Attacking()
+                    defUnit = defUnit + 1
                 Else
                     defUnit = -1
                     MessageBox.Show("ERROR! PLEASE CHOOSE A NON-TEAMED UNIT!", "ERROR: ATTACKING TEAM-MATE")
@@ -744,28 +756,34 @@ Public Class Form1
         selectedUnit = -1
     End Sub
 
-    Private Function checkUnitDistanceX()
+    Public Function checkUnitDistanceX()
         Dim OutputX As Integer
         Dim attackingUnitLocation_X As Integer = unitList(selectedUnit).unitLocX
         Dim defendingUnitLocation_X As Integer = unitList(defUnit).unitLocX
 
         OutputX = attackingUnitLocation_X - defendingUnitLocation_X
-        Return 0
+
+        If OutputX < 0 Then
+            OutputX = -1 * (OutputX)
+        End If
+        Return OutputX
     End Function
 
-    Private Function checkUnitDistanceY()
+    Public Function checkUnitDistanceY()
         Dim OutputY As Integer
         Dim attackingUnitLocation_Y As Integer = unitList(selectedUnit).unitLocY
         Dim defendingUnitLocation_Y As Integer = unitList(defUnit).unitLocY
 
         OutputY = attackingUnitLocation_Y - defendingUnitLocation_Y
-        Return 0
+        If OutputY < 0 Then
+            OutputY = -1 * (OutputY)
+        End If
+        Return OutputY
     End Function
 
 
     Private Function checkUnitLocation(ByVal unitA As Integer)
         Dim i As Integer
-
         unitA = unitA - 1
         While i < unitList.Count
             If unitList(unitA).unitLocX = unitList(i).unitLocX And unitList(unitA).unitLocY = unitList(i).unitLocY Then
@@ -778,7 +796,6 @@ Public Class Form1
             End If
             i += 1
         End While
-        MessageBox.Show(unitList(unitA).unitLocX)
         If unitList(unitA).unitLocX <= 208 Then ' Or unitList(unitA).unitLocX <= 723 Then
             Return 8 'Error Code 8: Unit Passed Map Bounds
         End If
@@ -787,5 +804,21 @@ Public Class Form1
             Return 8 'Error Code 8: Unit Passed Map Bounds
         End If
         Return 0
+    End Function
+
+    Public Function getSelectedUnit()
+        Return selectedUnit
+    End Function
+
+    Public Function getDefendingUnit()
+        Return defUnit
+    End Function
+
+    Public Function getDistance()
+        Dim distance As Integer
+        distance = Math.Sqrt((unitList(selectedUnit).unitLocX - unitList(defUnit).unitLocX) ^ 2 + _
+        (unitList(selectedUnit).unitLocY - unitList(defUnit).unitLocY) ^ 2)
+        MessageBox.Show(distance)
+        Return distance
     End Function
 End Class
