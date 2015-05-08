@@ -68,6 +68,26 @@ Public Class Form1
     Private Sub btnMove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMove.Click
         Dim errorCodeCheck As Integer
         CheckTurn()
+
+        errorCodeCheck = checkUnitUsed()
+        If errorCodeCheck = 5 Then
+            Exit Sub
+        End If
+
+        errorCodeCheck = moveUnit(selectedUnit)
+        If errorCodeCheck = 0 Then
+
+        ElseIf errorCodeCheck = 11 Or errorCodeCheck = 12 Or errorCodeCheck = 13 Then
+            Exit Sub
+        End If
+
+        errorCodeCheck = opponentUnitMove(selectedUnit)
+        If errorCodeCheck = 0 Then
+
+        ElseIf errorCodeCheck = 11 Or errorCodeCheck = 12 Or errorCodeCheck = 13 Then
+            Exit Sub
+        End If
+
         selectedUnit = selectedUnit - 1
         errorCodeCheck = useUnit(selectedUnit)
         If errorCodeCheck = 0 Then
@@ -76,12 +96,11 @@ Public Class Form1
             selectedUnit = selectedUnit + 1
             Exit Sub
         End If
-        moveUnit(selectedUnit)
-        opponentUnitMove(selectedUnit)
+
         checkTurnEnd()
     End Sub
 
-    Public Sub moveUnit(ByVal unitID)
+    Public Function moveUnit(ByVal unitID)
         Dim moveDirection As String
         Dim errorCodeCheck As Integer
         Dim unitFirstX As Integer
@@ -89,7 +108,7 @@ Public Class Form1
         If unitID = mage1Player.unitID Then
             unitFirstY = Me.unitP4.Top
             unitFirstX = Me.unitP4.Left
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
+            moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
             If LCase(moveDirection) = "up" Then
                 Me.unitP4.Top = Me.unitP4.Top - 65
             ElseIf LCase(moveDirection) = "down" Then
@@ -98,6 +117,10 @@ Public Class Form1
                 Me.unitP4.Left = Me.unitP4.Left - 66
             ElseIf LCase(moveDirection) = "right" Then
                 Me.unitP4.Left = Me.unitP4.Left + 66
+            ElseIf LCase(moveDirection) = "pass" Then
+                Return 0
+            Else
+                Return 13
             End If
             mage1Player.unitLocX = unitP4.Location.X
             mage1Player.unitLocY = unitP4.Location.Y
@@ -107,11 +130,13 @@ Public Class Form1
                 Me.unitP4.Top = unitFirstY
                 mage1Player.unitLocX = unitP4.Location.X
                 mage1Player.unitLocY = unitP4.Location.Y
+                Return 11 'Error Code 11: Unable to Move (General Error Code)
             End If
+            Return 0
         ElseIf unitID = mage2Player.unitID Then
             unitFirstY = Me.unitP6.Top
             unitFirstX = Me.unitP6.Left
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
+            moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
             If LCase(moveDirection) = "up" Then
                 Me.unitP6.Top = Me.unitP6.Top - 65
             ElseIf LCase(moveDirection) = "down" Then
@@ -120,6 +145,10 @@ Public Class Form1
                 Me.unitP6.Left = Me.unitP6.Left - 66
             ElseIf LCase(moveDirection) = "right" Then
                 Me.unitP6.Left = Me.unitP6.Left + 66
+            ElseIf LCase(moveDirection) = "pass" Then
+                Return 0
+            Else
+                Return 13
             End If
             mage2Player.unitLocX = unitP6.Location.X
             mage2Player.unitLocY = unitP6.Location.Y
@@ -129,11 +158,13 @@ Public Class Form1
                 Me.unitP6.Top = unitFirstY
                 mage2Player.unitLocX = unitP6.Location.X
                 mage2Player.unitLocY = unitP6.Location.Y
+                Return 11
             End If
+            Return 0
         ElseIf unitID = warrior1Player.unitID Then
             unitFirstY = Me.unitP5.Top
             unitFirstX = Me.unitP5.Left
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
+            moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
             If LCase(moveDirection) = "up" Then
                 Me.unitP5.Top = Me.unitP5.Top - 65
             ElseIf LCase(moveDirection) = "down" Then
@@ -142,6 +173,10 @@ Public Class Form1
                 Me.unitP5.Left = Me.unitP5.Left - 66
             ElseIf LCase(moveDirection) = "right" Then
                 Me.unitP5.Left = Me.unitP5.Left + 66
+            ElseIf LCase(moveDirection) = "pass" Then
+                Return 0
+            Else
+                Return 13 'Error Code 13: No movement selected
             End If
             warrior1Player.unitLocX = unitP5.Location.X
             warrior1Player.unitLocY = unitP5.Location.Y
@@ -151,11 +186,13 @@ Public Class Form1
                 Me.unitP5.Top = unitFirstY
                 warrior1Player.unitLocX = unitP5.Location.X
                 warrior1Player.unitLocY = unitP5.Location.Y
+                Return 11
             End If
+            Return 0
         ElseIf unitID = warrior2Player.unitID Then
             unitFirstY = Me.unitP2.Top
             unitFirstX = Me.unitP2.Left
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
+            moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
             If LCase(moveDirection) = "up" Then
                 Me.unitP2.Top = Me.unitP2.Top - 65
             ElseIf LCase(moveDirection) = "down" Then
@@ -164,6 +201,10 @@ Public Class Form1
                 Me.unitP2.Left = Me.unitP2.Left - 66
             ElseIf LCase(moveDirection) = "right" Then
                 Me.unitP2.Left = Me.unitP2.Left + 66
+            ElseIf LCase(moveDirection) = "pass" Then
+                Return 0
+            Else
+                Return 13
             End If
             warrior2Player.unitLocX = unitP2.Location.X
             warrior2Player.unitLocY = unitP2.Location.Y
@@ -173,11 +214,13 @@ Public Class Form1
                 Me.unitP2.Top = unitFirstY
                 warrior2Player.unitLocX = unitP2.Location.X
                 warrior2Player.unitLocY = unitP2.Location.Y
+                Return 11
             End If
+            Return 0
         ElseIf unitID = archer1Player.unitID Then
             unitFirstY = Me.unitP1.Top
             unitFirstX = Me.unitP1.Left
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
+            moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
             If LCase(moveDirection) = "up" Then
                 Me.unitP1.Top = Me.unitP1.Top - 65
             ElseIf LCase(moveDirection) = "down" Then
@@ -186,6 +229,10 @@ Public Class Form1
                 Me.unitP1.Left = Me.unitP1.Left - 66
             ElseIf LCase(moveDirection) = "right" Then
                 Me.unitP1.Left = Me.unitP1.Left + 66
+            ElseIf LCase(moveDirection) = "pass" Then
+                Return 0
+            Else
+                Return 13
             End If
             archer1Player.unitLocX = unitP1.Location.X
             archer1Player.unitLocY = unitP1.Location.Y
@@ -195,11 +242,13 @@ Public Class Form1
                 Me.unitP1.Top = unitFirstY
                 archer1Player.unitLocX = unitP1.Location.X
                 archer1Player.unitLocY = unitP1.Location.Y
+                Return 11
             End If
+            Return 0
         ElseIf unitID = archer2Player.unitID Then
             unitFirstY = Me.unitP3.Top
             unitFirstX = Me.unitP3.Left
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
+            moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
             If LCase(moveDirection) = "up" Then
                 Me.unitP3.Top = Me.unitP3.Top - 65
             ElseIf LCase(moveDirection) = "down" Then
@@ -208,6 +257,10 @@ Public Class Form1
                 Me.unitP3.Left = Me.unitP3.Left - 66
             ElseIf LCase(moveDirection) = "right" Then
                 Me.unitP3.Left = Me.unitP3.Left + 66
+            ElseIf LCase(moveDirection) = "pass" Then
+                Return 0
+            Else
+                Return 13
             End If
             archer2Player.unitLocX = unitP3.Location.X
             archer2Player.unitLocY = unitP3.Location.Y
@@ -217,11 +270,14 @@ Public Class Form1
                 Me.unitP3.Top = unitFirstY
                 archer2Player.unitLocX = unitP3.Location.X
                 archer2Player.unitLocY = unitP3.Location.Y
+                Return 11
             End If
+            Return 0
         End If
-    End Sub
+        Return 12 'Error Code: Unknown Error/Generic Error
+    End Function
 
-    Public Sub opponentUnitMove(ByVal unitID)
+    Public Function opponentUnitMove(ByVal unitID)
         Dim moveDirection As String
         Dim errorCodeCheck As Integer
         Dim unitFirstX As Integer
@@ -229,7 +285,7 @@ Public Class Form1
         If unitID = mage1Computer.unitID Then
             unitFirstY = Me.unitE4.Top
             unitFirstX = Me.unitE4.Left
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
+            moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
             If LCase(moveDirection) = "up" Then
                 Me.unitE4.Top = Me.unitE4.Top - 65
             ElseIf LCase(moveDirection) = "down" Then
@@ -238,6 +294,10 @@ Public Class Form1
                 Me.unitE4.Left = Me.unitE4.Left - 66
             ElseIf LCase(moveDirection) = "right" Then
                 Me.unitE4.Left = Me.unitE4.Left + 66
+            ElseIf LCase(moveDirection) = "pass" Then
+                Return 0
+            Else
+                Return 13
             End If
             mage1Computer.unitLocX = unitE4.Location.X
             mage1Computer.unitLocY = unitE4.Location.Y
@@ -247,11 +307,13 @@ Public Class Form1
                 Me.unitE4.Top = unitFirstY
                 mage1Computer.unitLocX = unitE4.Location.X
                 mage1Computer.unitLocY = unitE4.Location.Y
+                Return 11
             End If
+            Return 0
         ElseIf unitID = mage2Computer.unitID Then
             unitFirstY = Me.unitE6.Top
             unitFirstX = Me.unitE6.Left
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
+            moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
             If LCase(moveDirection) = "up" Then
                 Me.unitE6.Top = Me.unitE6.Top - 65
             ElseIf LCase(moveDirection) = "down" Then
@@ -260,6 +322,10 @@ Public Class Form1
                 Me.unitE6.Left = Me.unitE6.Left - 66
             ElseIf LCase(moveDirection) = "right" Then
                 Me.unitE6.Left = Me.unitE6.Left + 66
+            ElseIf LCase(moveDirection) = "pass" Then
+                Return 0
+            Else
+                Return 13
             End If
             mage2Computer.unitLocX = unitE6.Location.X
             mage2Computer.unitLocY = unitE6.Location.Y
@@ -269,11 +335,13 @@ Public Class Form1
                 Me.unitE6.Top = unitFirstY
                 mage2Computer.unitLocX = unitE6.Location.X
                 mage2Computer.unitLocY = unitE6.Location.Y
+                Return 11
             End If
+            Return 0
         ElseIf unitID = warrior1Computer.unitID Then
             unitFirstY = Me.unitE5.Top
             unitFirstX = Me.unitE5.Left
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
+            moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
             If LCase(moveDirection) = "up" Then
                 Me.unitE5.Top = Me.unitE5.Top - 65
             ElseIf LCase(moveDirection) = "down" Then
@@ -282,6 +350,10 @@ Public Class Form1
                 Me.unitE5.Left = Me.unitE5.Left - 66
             ElseIf LCase(moveDirection) = "right" Then
                 Me.unitE5.Left = Me.unitE5.Left + 66
+            ElseIf LCase(moveDirection) = "pass" Then
+                Return 0
+            Else
+                Return 13
             End If
             warrior1Computer.unitLocX = unitE5.Location.X
             warrior1Computer.unitLocY = unitE5.Location.Y
@@ -291,11 +363,13 @@ Public Class Form1
                 Me.unitE5.Top = unitFirstY
                 warrior1Computer.unitLocX = unitE5.Location.X
                 warrior1Computer.unitLocY = unitE5.Location.Y
+                Return 11
             End If
+            Return 0
         ElseIf unitID = warrior2Computer.unitID Then
             unitFirstY = Me.unitE2.Top
             unitFirstX = Me.unitE2.Left
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
+            moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
             If LCase(moveDirection) = "up" Then
                 Me.unitE2.Top = Me.unitE2.Top - 65
             ElseIf LCase(moveDirection) = "down" Then
@@ -304,6 +378,10 @@ Public Class Form1
                 Me.unitE2.Left = Me.unitE2.Left - 66
             ElseIf LCase(moveDirection) = "right" Then
                 Me.unitE2.Left = Me.unitE2.Left + 66
+            ElseIf LCase(moveDirection) = "pass" Then
+                Return 0
+            Else
+                Return 13
             End If
             warrior2Computer.unitLocX = unitE2.Location.X
             warrior2Computer.unitLocY = unitE2.Location.Y
@@ -313,11 +391,13 @@ Public Class Form1
                 Me.unitE2.Top = unitFirstY
                 warrior2Computer.unitLocX = unitE2.Location.X
                 warrior2Computer.unitLocY = unitE2.Location.Y
+                Return 11
             End If
+            Return 0
         ElseIf unitID = archer1Computer.unitID Then
             unitFirstY = Me.unitE1.Top
             unitFirstX = Me.unitE1.Left
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
+            moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
             If LCase(moveDirection) = "up" Then
                 Me.unitE1.Top = Me.unitE1.Top - 65
             ElseIf LCase(moveDirection) = "down" Then
@@ -326,6 +406,10 @@ Public Class Form1
                 Me.unitE1.Left = Me.unitE1.Left - 66
             ElseIf LCase(moveDirection) = "right" Then
                 Me.unitE1.Left = Me.unitE1.Left + 66
+            ElseIf LCase(moveDirection) = "pass" Then
+                Return 0
+            Else
+                Return 13
             End If
             archer1Computer.unitLocX = unitE1.Location.X
             archer1Computer.unitLocY = unitE1.Location.Y
@@ -335,11 +419,13 @@ Public Class Form1
                 Me.unitE1.Top = unitFirstY
                 archer1Computer.unitLocX = unitE1.Location.X
                 archer1Computer.unitLocY = unitE1.Location.Y
+                Return 11
             End If
+            Return 0
         ElseIf unitID = archer2Computer.unitID Then
             unitFirstY = Me.unitE3.Top
             unitFirstX = Me.unitE3.Left
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
+            moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
             If LCase(moveDirection) = "up" Then
                 Me.unitE3.Top = Me.unitE3.Top - 65
             ElseIf LCase(moveDirection) = "down" Then
@@ -348,6 +434,10 @@ Public Class Form1
                 Me.unitE3.Left = Me.unitE3.Left - 66
             ElseIf LCase(moveDirection) = "right" Then
                 Me.unitE3.Left = Me.unitE3.Left + 66
+            ElseIf LCase(moveDirection) = "pass" Then
+                Return 0
+            Else
+                Return 13
             End If
             archer2Computer.unitLocX = unitE3.Location.X
             archer2Computer.unitLocY = unitE3.Location.Y
@@ -357,9 +447,12 @@ Public Class Form1
                 Me.unitE3.Top = unitFirstY
                 archer2Computer.unitLocX = unitE3.Location.X
                 archer2Computer.unitLocY = unitE3.Location.Y
+                Return 11
             End If
+            Return 0
         End If
-    End Sub
+        Return 12
+    End Function
 
     Public Sub opponentUnitMove_OLD(ByVal unitID)
         Dim moveDirection As String
@@ -578,18 +671,17 @@ Public Class Form1
         Dim errorCodeCheck As Integer
         Dim unitBuff As Integer
         If boolDryRun = True Then
-            Dim i As Integer
-            selectedUnit = selectedUnit - 1
-            While i < usedUnitList.Count
-                If unitList(selectedUnit).unitID = usedUnitList(i).unitID Then
-                    MessageBox.Show("ERROR: UNIT ALREADY USED!", "ERROR: USED UNIT")
-                    Return 5
-                End If
-                i += 1
-            End While
-            selectedUnit = selectedUnit + 1
+            Return checkUnitUsed()
+        End If
+        errorCodeCheck = unitList(selectedUnit).unitAttack()
+        If errorCodeCheck = 0 Then
+
+        ElseIf errorCodeCheck = 9 Or errorCodeCheck = 10 Then
+            boolAttacking = False
             Return 0
         End If
+
+        unitBuff = unitListBackup(selectedUnit).unitGetBuffs()
 
         errorCodeCheck = useUnit(selectedUnit)
         If errorCodeCheck = 0 Then
@@ -597,14 +689,6 @@ Public Class Form1
             Return 0
         End If
 
-        errorCodeCheck = unitListBackup(selectedUnit).unitAttack()
-        If errorCodeCheck = 0 Then
-
-        ElseIf errorCodeCheck = 9 Or errorCodeCheck = 10 Then
-            Return 0
-        End If
-
-        unitBuff = unitListBackup(selectedUnit).unitGetBuffs()
         If (defUnit = -1 And selectedUnit = -1) Or (defUnit = -1 Or selectedUnit = -1) Then
             MessageBox.Show("ERROR: NO ATTACKING OR DEFNDING UNIT!", "ERROR: INVALID TARGET(S)")
             Return 6 'Error Code: Invalid Target(s)
@@ -790,7 +874,6 @@ Public Class Form1
                 If unitList(unitA).unitID = unitList(i).unitID Then
 
                 Else
-                    MessageBox.Show("TEST")
                     Return 7 'Error Code 7: Unit Occupying Space
                 End If
             End If
@@ -818,7 +901,20 @@ Public Class Form1
         Dim distance As Integer
         distance = Math.Sqrt((unitList(selectedUnit).unitLocX - unitList(defUnit).unitLocX) ^ 2 + _
         (unitList(selectedUnit).unitLocY - unitList(defUnit).unitLocY) ^ 2)
-        MessageBox.Show(distance)
         Return distance
+    End Function
+
+    Public Function checkUnitUsed()
+        Dim i As Integer
+        selectedUnit = selectedUnit - 1
+        While i < usedUnitList.Count
+            If unitList(selectedUnit).unitID = usedUnitList(i).unitID Then
+                MessageBox.Show("ERROR: UNIT ALREADY USED!", "ERROR: USED UNIT")
+                Return 5 'Error Code: Unit Used
+            End If
+            i += 1
+        End While
+        selectedUnit = selectedUnit + 1
+        Return 0
     End Function
 End Class

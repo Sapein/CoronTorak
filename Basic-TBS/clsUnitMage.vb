@@ -18,20 +18,6 @@ Public Class clsUnitMage
         End If
     End Function
 
-    Public Function unitAttack()
-        Dim Distance As Integer
-        Distance = Form1.getDistance()
-        If Distance > unitRange Then
-            MessageBox.Show("UNIT OUT OF RANGE!")
-            Return 9 'Error Code - 9: Unit out of Range
-        ElseIf Distance <= unitRange Then
-            Return 0 'Error Code - 0: Successful 
-        Else
-            Return 10 'Error Code - 10: Distance Calculation Error!
-        End If
-        Return 0
-    End Function
-
     Public Sub unitInitialize(ByVal unitNumber As Integer, ByVal cUnitTeam As String, ByVal assignedArea As String, ByVal LocationX As Integer, ByVal LocationY As Integer)
         unitSetTeam(cUnitTeam)
         unitAssignedPicBox = assignedArea

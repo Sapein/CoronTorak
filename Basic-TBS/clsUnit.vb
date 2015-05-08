@@ -19,6 +19,20 @@ Public Class clsUnit
         End If
     End Function
 
+    Public Function unitAttack()
+        Dim Distance As Integer
+        Distance = Form1.getDistance()
+        If Distance > unitRange Then
+            MessageBox.Show("UNIT OUT OF RANGE!")
+            Return 9 'Error Code - 9: Unit out of Range
+        ElseIf Distance <= unitRange Then
+            Return 0 'Error Code - 0: Successful 
+        Else
+            Return 10 'Error Code - 10: Distance Calculation Error!
+        End If
+        Return 0
+    End Function
+
     Public Sub destoryUnit(ByVal unitLocX As Integer, ByVal unitLocY As Integer)
 
     End Sub
