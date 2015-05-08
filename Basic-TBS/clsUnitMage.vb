@@ -23,7 +23,7 @@ Public Class clsUnitMage
         unitAssignedPicBox = assignedArea
         unitID = unitNumber
         unitHealth = 5
-        unitStrength = 3
+        unitStrength = 65 '3
         unitRange = 210
         unitLocX = LocationX
         unitLocY = LocationY

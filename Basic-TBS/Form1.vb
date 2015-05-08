@@ -693,7 +693,6 @@ Public Class Form1
             MessageBox.Show("ERROR: NO ATTACKING OR DEFNDING UNIT!", "ERROR: INVALID TARGET(S)")
             Return 6 'Error Code: Invalid Target(s)
         Else
-            defUnit = defUnit - 1
             If selectedUnit = -1 Then
                 Return 0
             End If
@@ -707,7 +706,7 @@ Public Class Form1
             MessageBox.Show("Unit " & unitList(selectedUnit).unitID & " - " & unitList(selectedUnit).unitTeam _
             & " attacked " & unitList(defUnit).unitID & " - " & unitList(defUnit).unitTeam & "! The defending unit's health" _
             & " is " & unitList(defUnit).unitHealth)
-            selectedUnit = selectedUnit + 1 : defUnit = defUnit + 1
+            selectedUnit = selectedUnit + 1
 
             DisplayUnitStats()
         End If
@@ -732,6 +731,56 @@ Public Class Form1
         eUnit4.Text = "Warrior 2 - HP: " & warrior2Computer.unitHealth & AttackDisplay & warrior2Computer.unitStrength
         eUnit5.Text = "Archer 1 - HP: " & archer1Computer.unitHealth & AttackDisplay & archer1Computer.unitStrength
         eUnit6.Text = "Archer 2 - HP: " & archer2Computer.unitHealth & AttackDisplay & archer2Computer.unitStrength
+
+        If mage1Player.unitHealth <= 0 Then
+            unit1.Text = "Mage 1 - DEAD"
+            unitList(selectedUnit).destoryUnit()
+        End If
+        If mage2Player.unitHealth <= 0 Then
+            unit2.Text = "Mage 2 - DEAD"
+            unitList(selectedUnit).destoryUnit()
+        End If
+        If warrior1Player.unitHealth <= 0 Then
+            unit3.Text = "Warrior 1 - DEAD"
+            unitList(selectedUnit).destoryUnit()
+        End If
+        If warrior2Player.unitHealth <= 0 Then
+            unit4.Text = "Warrior 2 - DEAD"
+            unitList(selectedUnit).destoryUnit()
+        End If
+        If archer1Player.unitHealth <= 0 Then
+            unit5.Text = "Archer 1 - DEAD"
+            unitList(selectedUnit).destoryUnit()
+        End If
+        If archer2Player.unitHealth <= 0 Then
+            unit6.Text = "Archer 2 - DEAD"
+            unitList(selectedUnit).destoryUnit()
+        End If
+
+        If mage1Computer.unitHealth <= 0 Then
+            eUnit1.Text = "Mage 1 - DEAD"
+            unitList(selectedUnit).destoryUnit()
+        End If
+        If mage2Computer.unitHealth <= 0 Then
+            eUnit2.Text = "Mage 2 - DEAD"
+            unitList(selectedUnit).destoryUnit()
+        End If
+        If warrior1Computer.unitHealth <= 0 Then
+            eUnit3.Text = "Warrior 1 - DEAD"
+            unitList(selectedUnit).destoryUnit()
+        End If
+        If warrior2Computer.unitHealth <= 0 Then
+            eUnit4.Text = "Warrior 2 - DEAD"
+            unitList(selectedUnit).destoryUnit()
+        End If
+        If archer1Computer.unitHealth <= 0 Then
+            eUnit5.Text = "Archer 1 - DEAD"
+            unitList(selectedUnit).destoryUnit()
+        End If
+        If archer2Computer.unitHealth <= 0 Then
+            eUnit6.Text = "Archer 2 - DEAD"
+            unitList(selectedUnit).destoryUnit()
+        End If
     End Sub
 
     Private Function CheckTurn()

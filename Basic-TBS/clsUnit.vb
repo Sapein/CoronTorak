@@ -33,8 +33,17 @@ Public Class clsUnit
         Return 0
     End Function
 
-    Public Sub destoryUnit(ByVal unitLocX As Integer, ByVal unitLocY As Integer)
+    Public Sub destoryUnit()
+        Dim destroyedUnit As Integer
+        destroyedUnit = Form1.getDefendingUnit()
+        Dim con As Control
 
+        For controlIndex As Integer = Form1.Controls.Count - 1 To 0 Step -1
+            con = Form1.Controls(controlIndex)
+            If con.Name = Form1.unitList(destroyedUnit).unitAssignedPicBox Then
+                Form1.Controls.Remove(con)
+            End If
+        Next
     End Sub
 
     Public Sub updateUnit()
