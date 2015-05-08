@@ -19,9 +19,11 @@ Public Class clsUnit
         End If
     End Function
 
-    Public Function unitAttack()
+    Public Function unitAttack(ByVal unit1 As Object, ByVal unit2 As Object)
         Dim Distance As Integer
-        Distance = Form1.getDistance()
+        Distance = Distance = Math.Sqrt((unit1.unitLocX - unit2.unitLocX) ^ 2 + _
+        (unit1.unitLocY - unit2.unitLocY) ^ 2)
+
         If Distance > unitRange Then
             MessageBox.Show("UNIT OUT OF RANGE!")
             Return 9 'Error Code - 9: Unit out of Range

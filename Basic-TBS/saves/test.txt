@@ -1,0 +1,12 @@
+﻿1 5 332 360 Player
+2 5 596 360 Player
+3 10 464 360 Player
+4 10 464 425 Player
+5 7 398 425 Player
+6 7 530 425 Player
+7 5 331 176 Computer
+8 5 599 101 Computer
+9 10 464 101 Computer
+10 10 464 36 Computer
+11 7 398 36 Computer
+12 7 531 36 Computer

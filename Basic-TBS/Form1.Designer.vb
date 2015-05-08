@@ -807,7 +807,7 @@ Partial Class Form1
         'unitE4
         '
         Me.unitE4.BackColor = System.Drawing.Color.Blue
-        Me.unitE4.Location = New System.Drawing.Point(331, 176)
+        Me.unitE4.Location = New System.Drawing.Point(332, 101)
         Me.unitE4.Name = "unitE4"
         Me.unitE4.Size = New System.Drawing.Size(51, 48)
         Me.unitE4.TabIndex = 72

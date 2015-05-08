@@ -23,11 +23,6 @@ Partial Class Menu
         Me.btnLoad = New System.Windows.Forms.Button
         Me.btnConnect = New System.Windows.Forms.Button
         Me.btnExit = New System.Windows.Forms.Button
-        Me.OdbcSelectCommand1 = New System.Data.Odbc.OdbcCommand
-        Me.OdbcInsertCommand1 = New System.Data.Odbc.OdbcCommand
-        Me.OdbcUpdateCommand1 = New System.Data.Odbc.OdbcCommand
-        Me.OdbcDeleteCommand1 = New System.Data.Odbc.OdbcCommand
-        Me.OdbcDataAdapter1 = New System.Data.Odbc.OdbcDataAdapter
         Me.SuspendLayout()
         '
         'btnNew
@@ -41,7 +36,6 @@ Partial Class Menu
         '
         'btnLoad
         '
-        Me.btnLoad.Enabled = False
         Me.btnLoad.Location = New System.Drawing.Point(146, 103)
         Me.btnLoad.Name = "btnLoad"
         Me.btnLoad.Size = New System.Drawing.Size(75, 23)
@@ -68,13 +62,6 @@ Partial Class Menu
         Me.btnExit.Text = "Exit"
         Me.btnExit.UseVisualStyleBackColor = True
         '
-        'OdbcDataAdapter1
-        '
-        Me.OdbcDataAdapter1.DeleteCommand = Me.OdbcDeleteCommand1
-        Me.OdbcDataAdapter1.InsertCommand = Me.OdbcInsertCommand1
-        Me.OdbcDataAdapter1.SelectCommand = Me.OdbcSelectCommand1
-        Me.OdbcDataAdapter1.UpdateCommand = Me.OdbcUpdateCommand1
-        '
         'Menu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -93,9 +80,4 @@ Partial Class Menu
     Friend WithEvents btnLoad As System.Windows.Forms.Button
     Friend WithEvents btnConnect As System.Windows.Forms.Button
     Friend WithEvents btnExit As System.Windows.Forms.Button
-    Friend WithEvents OdbcSelectCommand1 As System.Data.Odbc.OdbcCommand
-    Friend WithEvents OdbcInsertCommand1 As System.Data.Odbc.OdbcCommand
-    Friend WithEvents OdbcUpdateCommand1 As System.Data.Odbc.OdbcCommand
-    Friend WithEvents OdbcDeleteCommand1 As System.Data.Odbc.OdbcCommand
-    Friend WithEvents OdbcDataAdapter1 As System.Data.Odbc.OdbcDataAdapter
 End Class

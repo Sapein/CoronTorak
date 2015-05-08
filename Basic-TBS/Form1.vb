@@ -2,11 +2,12 @@ Public Class Form1
     Private selectedUnit As Integer = -1 'Uses the UnitID for the unit As Defined upon initialization.
     Dim chrPlayerTurn As Char = "P" 'Character is either P for player 1, and C for player 2
     Dim boolAttacking As Boolean
+    Private FN = 1
     Public defUnit As Integer = -1 'Uses the Initialization-Definied Unit ID
 
 
     'Player Units
-    Dim mage1Player = New clsUnitMage
+    Public mage1Player = New clsUnitMage
     Dim mage2Player = New clsUnitMage
     Dim warrior1Player = New clsUnitWarrior
     Dim warrior2Player = New clsUnitWarrior
@@ -673,14 +674,19 @@ Public Class Form1
         If boolDryRun = True Then
             Return checkUnitUsed()
         End If
-        errorCodeCheck = unitList(selectedUnit).unitAttack()
+        
+        If (defUnit = -1 And selectedUnit = -1) Or (defUnit = -1 Or selectedUnit = -1) Then
+            MessageBox.Show("ERROR: NO ATTACKING OR DEFNDING UNIT!", "ERROR: INVALID TARGET(S)")
+            Return 6 'Error Code: Invalid Target(s)
+        End If
+        errorCodeCheck = unitList(selectedUnit).unitAttack(unitList(selectedUnit), unitList(defUnit))
         If errorCodeCheck = 0 Then
 
         ElseIf errorCodeCheck = 9 Or errorCodeCheck = 10 Then
             boolAttacking = False
             Return 0
         End If
-
+        MessageBox.Show(selectedUnit)
         unitBuff = unitListBackup(selectedUnit).unitGetBuffs()
 
         errorCodeCheck = useUnit(selectedUnit)
@@ -689,27 +695,22 @@ Public Class Form1
             Return 0
         End If
 
-        If (defUnit = -1 And selectedUnit = -1) Or (defUnit = -1 Or selectedUnit = -1) Then
-            MessageBox.Show("ERROR: NO ATTACKING OR DEFNDING UNIT!", "ERROR: INVALID TARGET(S)")
-            Return 6 'Error Code: Invalid Target(s)
-        Else
-            If selectedUnit = -1 Then
-                Return 0
-            End If
-            attackStat = unitList(selectedUnit).unitStrength
-            healthOfDefending = unitList(defUnit).unitHealth
-            rangeOfAttacking = unitList(selectedUnit).unitRange
-            healthOfDefending = (healthOfDefending - attackStat) - unitBuff
-
-            unitList(defUnit).unitHealth = healthOfDefending
-
-            MessageBox.Show("Unit " & unitList(selectedUnit).unitID & " - " & unitList(selectedUnit).unitTeam _
-            & " attacked " & unitList(defUnit).unitID & " - " & unitList(defUnit).unitTeam & "! The defending unit's health" _
-            & " is " & unitList(defUnit).unitHealth)
-            selectedUnit = selectedUnit + 1
-
-            DisplayUnitStats()
+        If selectedUnit = -1 Then
+            Return 0
         End If
+        attackStat = unitList(selectedUnit).unitStrength
+        healthOfDefending = unitList(defUnit).unitHealth
+        rangeOfAttacking = unitList(selectedUnit).unitRange
+        healthOfDefending = (healthOfDefending - attackStat) - unitBuff
+
+        unitList(defUnit).unitHealth = healthOfDefending
+
+        MessageBox.Show("Unit " & unitList(selectedUnit).unitID & " - " & unitList(selectedUnit).unitTeam _
+        & " attacked " & unitList(defUnit).unitID & " - " & unitList(defUnit).unitTeam & "! The defending unit's health" _
+        & " is " & unitList(defUnit).unitHealth)
+        selectedUnit = selectedUnit + 1
+
+        DisplayUnitStats()
         boolAttacking = False
         checkTurnEnd()
         Return 0
@@ -948,6 +949,7 @@ Public Class Form1
 
     Public Function getDistance()
         Dim distance As Integer
+        MessageBox.Show(defUnit)
         distance = Math.Sqrt((unitList(selectedUnit).unitLocX - unitList(defUnit).unitLocX) ^ 2 + _
         (unitList(selectedUnit).unitLocY - unitList(defUnit).unitLocY) ^ 2)
         Return distance
@@ -966,4 +968,8 @@ Public Class Form1
         selectedUnit = selectedUnit + 1
         Return 0
     End Function
+
+    Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+
+    End Sub
 End Class
