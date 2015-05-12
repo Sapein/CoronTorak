@@ -1,10 +1,10 @@
 Public Class Form1
-    Private selectedUnit As Integer = -1 'Uses the UnitID for the unit As Defined upon initialization.
-    Dim chrPlayerTurn As Char = "P" 'Character is either P for player 1, and C for player 2
+    Private selectedUnit As Integer 'Uses the UnitID for the unit As Defined upon initialization.
+    Private defUnit As Integer 'Uses the Initialization-Definied Unit ID
+    Private chrPlayerTurn As Char = "P" 'Character is either P for player 1, and C for player 2
     Dim boolAttacking As Boolean
+    Public loadGame As Char = "N" 'Character is either N for No-Load and L for Load
     Private FN = 1
-    Public defUnit As Integer = -1 'Uses the Initialization-Definied Unit ID
-
 
     'Player Units
     Public mage1Player = New clsUnitMage
@@ -27,10 +27,11 @@ Public Class Form1
     Dim usedUnitList As List(Of clsUnit) = New List(Of clsUnit)
 
     Dim usedUnitListBackup As List(Of Object) = New List(Of Object)
-    Dim unitListBackup As List(Of Object) = New List(Of Object)
+    Private unitListBackup As List(Of Object) = New List(Of Object)
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
+        selectedUnit = -1
+        defUnit = -1
         mage1Player.unitInitialize(1, "Player", "unitP4", unitP4.Location.X, unitP4.Location.Y)
         mage2Player.unitInitialize(2, "Player", "unitP6", unitP6.Location.X, unitP6.Location.Y)
         warrior1Player.unitInitialize(3, "Player", "unitP5", unitP5.Location.X, unitP5.Location.Y)
@@ -46,8 +47,6 @@ Public Class Form1
         archer1Computer.unitInitialize(11, "Computer", "unitE1", unitE1.Location.X, unitE1.Location.Y)
         archer2Computer.unitInitialize(12, "Computer", "unitE3", unitE3.Location.X, unitE3.Location.Y)
 
-        DisplayUnitStats()
-
         unitList.Add(mage1Player)
         unitList.Add(mage2Player)
         unitList.Add(warrior1Player)
@@ -61,9 +60,16 @@ Public Class Form1
         unitList.Add(archer1Computer)
         unitList.Add(archer2Computer)
 
+
         For Each listItem As Object In unitList
             unitListBackup.Add(listItem)
         Next listItem
+
+        If loadGame = "L" Then
+            loadSave()
+        End If
+
+        DisplayUnitStats()
     End Sub
 
     Private Sub btnMove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMove.Click
@@ -106,6 +112,9 @@ Public Class Form1
         Dim errorCodeCheck As Integer
         Dim unitFirstX As Integer
         Dim unitFirstY As Integer
+        If chrPlayerTurn = "C" Then
+            Return 0
+        End If
         If unitID = mage1Player.unitID Then
             unitFirstY = Me.unitP4.Top
             unitFirstX = Me.unitP4.Left
@@ -283,6 +292,9 @@ Public Class Form1
         Dim errorCodeCheck As Integer
         Dim unitFirstX As Integer
         Dim unitFirstY As Integer
+        If chrPlayerTurn = "P" Then
+            Return 0
+        End If
         If unitID = mage1Computer.unitID Then
             unitFirstY = Me.unitE4.Top
             unitFirstX = Me.unitE4.Left
@@ -455,89 +467,6 @@ Public Class Form1
         Return 12
     End Function
 
-    Public Sub opponentUnitMove_OLD(ByVal unitID)
-        Dim moveDirection As String
-        If unitID = mage1Computer.unitID Then
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
-            If LCase(moveDirection) = "up" Then
-                Me.unitE4.Top = Me.unitE4.Top - 65
-            ElseIf LCase(moveDirection) = "down" Then
-                Me.unitE4.Top = Me.unitE4.Top + 65
-            ElseIf LCase(moveDirection) = "left" Then
-                Me.unitE4.Left = Me.unitE4.Left - 66
-            ElseIf LCase(moveDirection) = "right" Then
-                Me.unitE4.Left = Me.unitE4.Left + 66
-            End If
-            mage1Computer.unitLocX = unitE4.Location.X
-            mage1Computer.unitLocY = unitE4.Location.Y
-        ElseIf unitID = mage2Computer.unitID Then
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
-            If LCase(moveDirection) = "up" Then
-                Me.unitE6.Top = Me.unitE6.Top - 65
-            ElseIf LCase(moveDirection) = "down" Then
-                Me.unitE6.Top = Me.unitE6.Top + 65
-            ElseIf LCase(moveDirection) = "left" Then
-                Me.unitE6.Left = Me.unitE6.Left - 66
-            ElseIf LCase(moveDirection) = "right" Then
-                Me.unitE6.Left = Me.unitE6.Left + 66
-            End If
-            mage2Computer.unitLocX = unitE6.Location.X
-            mage2Computer.unitLocY = unitE6.Location.Y
-        ElseIf unitID = warrior1Computer.unitID Then
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
-            If LCase(moveDirection) = "up" Then
-                Me.unitE5.Top = Me.unitE5.Top - 65
-            ElseIf LCase(moveDirection) = "down" Then
-                Me.unitE5.Top = Me.unitE5.Top + 65
-            ElseIf LCase(moveDirection) = "left" Then
-                Me.unitE5.Left = Me.unitE5.Left - 66
-            ElseIf LCase(moveDirection) = "right" Then
-                Me.unitE5.Left = Me.unitE5.Left + 66
-            End If
-            warrior1Computer.unitLocX = unitE5.Location.X
-            warrior1Computer.unitLocY = unitE5.Location.Y
-        ElseIf unitID = warrior2Computer.unitID Then
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
-            If LCase(moveDirection) = "up" Then
-                Me.unitE2.Top = Me.unitE2.Top - 65
-            ElseIf LCase(moveDirection) = "down" Then
-                Me.unitE2.Top = Me.unitE2.Top + 65
-            ElseIf LCase(moveDirection) = "left" Then
-                Me.unitE2.Left = Me.unitE2.Left - 66
-            ElseIf LCase(moveDirection) = "right" Then
-                Me.unitE2.Left = Me.unitE2.Left + 66
-            End If
-            warrior2Computer.unitLocX = unitE2.Location.X
-            warrior2Computer.unitLocY = unitE2.Location.Y
-        ElseIf unitID = archer1Computer.unitID Then
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
-            If LCase(moveDirection) = "up" Then
-                Me.unitE1.Top = Me.unitE1.Top - 65
-            ElseIf LCase(moveDirection) = "down" Then
-                Me.unitE1.Top = Me.unitE1.Top + 65
-            ElseIf LCase(moveDirection) = "left" Then
-                Me.unitE1.Left = Me.unitE1.Left - 66
-            ElseIf LCase(moveDirection) = "right" Then
-                Me.unitE1.Left = Me.unitE1.Left + 66
-            End If
-            archer1Computer.unitLocX = unitE1.Location.X
-            archer1Computer.unitLocY = unitE1.Location.Y
-        ElseIf unitID = archer2Computer.unitID Then
-            moveDirection = InputBox("Please enter a direction: Up, Down, Left, or Right", "Basic-TBS: Movement")
-            If LCase(moveDirection) = "up" Then
-                Me.unitE3.Top = Me.unitE3.Top - 65
-            ElseIf LCase(moveDirection) = "down" Then
-                Me.unitE3.Top = Me.unitE3.Top + 65
-            ElseIf LCase(moveDirection) = "left" Then
-                Me.unitE3.Left = Me.unitE3.Left - 66
-            ElseIf LCase(moveDirection) = "right" Then
-                Me.unitE3.Left = Me.unitE3.Left + 66
-            End If
-            archer2Computer.unitLocX = unitE3.Location.X
-            archer2Computer.unitLocY = unitE3.Location.Y
-        End If
-    End Sub
-
     Private Sub unitP4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles unitP4.Click
         If boolAttacking = False Then
             selectedUnit = mage1Player.unitID
@@ -596,6 +525,7 @@ Public Class Form1
     Private Sub unitE4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles unitE4.Click
         If boolAttacking = False Then
             selectedUnit = mage1Computer.unitID
+            MessageBox.Show(selectedUnit)
         ElseIf boolAttacking = True Then
             defUnit = mage1Computer.unitID
             CheckTurn()
@@ -649,6 +579,7 @@ Public Class Form1
 
     Private Sub btnAttack_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttack.Click
         Dim errorCodeCheck As Integer
+        MessageBox.Show(selectedUnit)
         errorCodeCheck = CheckTurn()
         If errorCodeCheck = 0 Then
             errorCodeCheck = 0
@@ -687,8 +618,8 @@ Public Class Form1
             Return 0
         End If
         MessageBox.Show(selectedUnit)
-        unitBuff = unitListBackup(selectedUnit).unitGetBuffs()
-
+        MessageBox.Show(defUnit)
+        unitBuff = unitListBackup(selectedUnit).unitGetBuffs(selectedUnit, defUnit, unitList)
         errorCodeCheck = useUnit(selectedUnit)
         If errorCodeCheck = 0 Then
         ElseIf errorCodeCheck = 4 Or 5 Then
@@ -716,7 +647,7 @@ Public Class Form1
         Return 0
     End Function
 
-    Private Sub DisplayUnitStats()
+    Public Sub DisplayUnitStats()
         Const AttackDisplay As String = " - Atk: "
 
         unit1.Text = "Mage 1 - HP: " & mage1Player.unitHealth & " - Atk: " & mage1Player.unitStrength
@@ -732,59 +663,59 @@ Public Class Form1
         eUnit4.Text = "Warrior 2 - HP: " & warrior2Computer.unitHealth & AttackDisplay & warrior2Computer.unitStrength
         eUnit5.Text = "Archer 1 - HP: " & archer1Computer.unitHealth & AttackDisplay & archer1Computer.unitStrength
         eUnit6.Text = "Archer 2 - HP: " & archer2Computer.unitHealth & AttackDisplay & archer2Computer.unitStrength
-
         If mage1Player.unitHealth <= 0 Then
             unit1.Text = "Mage 1 - DEAD"
-            unitList(selectedUnit).destoryUnit()
+            Me.Controls.Remove(unitP4)
         End If
         If mage2Player.unitHealth <= 0 Then
             unit2.Text = "Mage 2 - DEAD"
-            unitList(selectedUnit).destoryUnit()
+            Me.Controls.Remove(unitP6)
         End If
         If warrior1Player.unitHealth <= 0 Then
             unit3.Text = "Warrior 1 - DEAD"
-            unitList(selectedUnit).destoryUnit()
+            Me.Controls.Remove(unitP5)
         End If
         If warrior2Player.unitHealth <= 0 Then
             unit4.Text = "Warrior 2 - DEAD"
-            unitList(selectedUnit).destoryUnit()
+            Me.Controls.Remove(unitP2)
         End If
         If archer1Player.unitHealth <= 0 Then
             unit5.Text = "Archer 1 - DEAD"
-            unitList(selectedUnit).destoryUnit()
+            Me.Controls.Remove(unitP1)
         End If
         If archer2Player.unitHealth <= 0 Then
             unit6.Text = "Archer 2 - DEAD"
-            unitList(selectedUnit).destoryUnit()
+            Me.Controls.Remove(unitP3)
         End If
 
         If mage1Computer.unitHealth <= 0 Then
             eUnit1.Text = "Mage 1 - DEAD"
-            unitList(selectedUnit).destoryUnit()
+            Me.Controls.Remove(unitE4)
         End If
         If mage2Computer.unitHealth <= 0 Then
             eUnit2.Text = "Mage 2 - DEAD"
-            unitList(selectedUnit).destoryUnit()
+            Me.Controls.Remove(unitE6)
         End If
         If warrior1Computer.unitHealth <= 0 Then
             eUnit3.Text = "Warrior 1 - DEAD"
-            unitList(selectedUnit).destoryUnit()
+            Me.Controls.Remove(unitE5)
         End If
         If warrior2Computer.unitHealth <= 0 Then
             eUnit4.Text = "Warrior 2 - DEAD"
-            unitList(selectedUnit).destoryUnit()
+            Me.Controls.Remove(unitE2)
         End If
         If archer1Computer.unitHealth <= 0 Then
             eUnit5.Text = "Archer 1 - DEAD"
-            unitList(selectedUnit).destoryUnit()
+            Me.Controls.Remove(unitE1)
         End If
         If archer2Computer.unitHealth <= 0 Then
             eUnit6.Text = "Archer 2 - DEAD"
-            unitList(selectedUnit).destoryUnit()
+            Me.Controls.Remove(unitE3)
         End If
     End Sub
 
     Private Function CheckTurn()
+        MessageBox.Show(selectedUnit)
         'NOTE: This returns an "ERROR LEVEL". I took the concept from C. Because there are 3 "errors" possible
         'There are 4 error Codes: 0 - Success: No Error encountered; 1 - INVALID UNIT: Attacking unit on wrong team; 
         '2 - INVALID UNIT: No Unit selected; 3 - Attacking Teamed Unit: Defending Unit on wrong team.
@@ -842,7 +773,6 @@ Public Class Form1
 
     Private Function useUnit(ByVal unit As Integer)
         Dim i As Integer = 0
-        'unit = unit - 1
         If unit <= -1 Then
             Return 4 'Error Code 4: unit value is negative
         End If
@@ -871,7 +801,7 @@ Public Class Form1
                 If i = 6 Then
                     MessageBox.Show("The turn of Player 1 is over, begin Player 2.", "Turn Over")
                     usedUnitList.Clear()
-                    chrPlayerTurn = "P"
+                    chrPlayerTurn = "C"
                     Exit Sub
                 End If
             End If
@@ -939,14 +869,6 @@ Public Class Form1
         Return 0
     End Function
 
-    Public Function getSelectedUnit()
-        Return selectedUnit
-    End Function
-
-    Public Function getDefendingUnit()
-        Return defUnit
-    End Function
-
     Public Function getDistance()
         Dim distance As Integer
         MessageBox.Show(defUnit)
@@ -958,6 +880,9 @@ Public Class Form1
     Public Function checkUnitUsed()
         Dim i As Integer
         selectedUnit = selectedUnit - 1
+        If i > usedUnitList.Count Or i < 0 Then
+            Return 0
+        End If
         While i < usedUnitList.Count
             If unitList(selectedUnit).unitID = usedUnitList(i).unitID Then
                 MessageBox.Show("ERROR: UNIT ALREADY USED!", "ERROR: USED UNIT")
@@ -970,6 +895,84 @@ Public Class Form1
     End Function
 
     Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+        Dim file As System.IO.StreamWriter
+        Dim i As Integer = 0
+        file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "../../../saves/CoronTorak-Save.txt", False)
+        MessageBox.Show(chrPlayerTurn)
+        If chrPlayerTurn = "P" Then
+            file.WriteLine("Turn1")
+            MessageBox.Show("TEST")
+        ElseIf chrPlayerTurn = "C" Then
+            file.WriteLine("Turn2")
+            MessageBox.Show("NORSE!")
+        End If
+        'file.WriteLine(chrPlayerTurn)
+        While i < unitList.Count
+            file.WriteLine(unitList(i).unitID & " " & unitList(i).unitTeam & " " & unitList(i).unitAssignedPicBox _
+            & " " & unitList(i).unitLocX & " " & unitList(i).unitLocY & " " & unitList(i).unitHealth)
+            i += 1
+        End While
+        file.Close()
 
+    End Sub
+    Public Sub loadSave()
+        Dim t As Integer = 0
+        Dim i As Integer = 0
+        Dim TX As Integer = 0
+        MessageBox.Show("ET")
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt")
+            MyReader.TextFieldType = FileIO.FieldType.Delimited
+            MyReader.SetDelimiters(" ")
+            Dim currentRow As String()
+            While Not MyReader.EndOfData
+                Try
+                    currentRow = MyReader.ReadFields()
+                    Dim currentField As String
+                    Dim x As Integer = 0
+                    Dim unitStuff As List(Of Object) = New List(Of Object)
+                    For Each currentField In currentRow
+                        If currentField = "Turn1" Then
+                            chrPlayerTurn = "P"
+                        ElseIf currentField = "Turn2" Then
+                            chrPlayerTurn = "C"
+                        Else
+                            unitStuff.Add(currentField)
+                            x += 1
+                        End If
+                        If x = 6 Then
+                            unitList(i).unitID = unitStuff(0)
+                            unitList(i).unitAssignedPicBox = unitStuff(2)
+                            unitList(i).unitLocX = unitStuff(3)
+                            unitList(i).unitLocY = unitStuff(4)
+                            unitList(i).unitHealth = unitStuff(5)
+                            t = 0
+                            While t < Me.Controls.Count
+                                TX = 0
+                                If Me.Controls(t).Name.Contains("unitE") Or Me.Controls(t).Name.Contains("unitP") Then
+                                    While TX < unitList.Count
+                                        If Me.Controls(t).Name.Equals(unitList(TX).unitAssignedPicBox) Then
+                                            Me.Controls(t).Location = New Point(unitList(TX).unitLocX, unitList(TX).unitLocY)
+                                        End If
+                                        TX += 1
+                                    End While
+                                End If
+                                t += 1
+                            End While
+                            unitStuff.Clear()
+                            i += 1
+                        End If
+                    Next
+                Catch ex As Microsoft.VisualBasic.FileIO.MalformedLineException
+                End Try
+            End While
+        End Using
+    End Sub
+
+    Public Sub isOver()
+        If mage1Player.unitHealth = 0 And mage2Player.unitHealth = 0 And warrior1Player.unitHealth = 0 And warrior2Player.unitHealth = 0 And archer1Player.unitHealth = 0 And archer2Player.unitHealth = 0 Then
+            MessageBox.Show("Game over")
+        ElseIf mage1Computer.unitHealth = 0 And mage2Computer.unitHealth = 0 And warrior1Computer.unitHealth = 0 And warrior2Computer.unitHealth = 0 And archer1Computer.unitHealth = 0 And archer2Computer.unitHealth = 0 Then
+            MessageBox.Show("You Win!")
+        End If
     End Sub
 End Class

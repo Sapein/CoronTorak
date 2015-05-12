@@ -8,11 +8,11 @@ Public Class clsUnit
     Public unitAssignedPicBox As String
     Public unitID As Integer
 
-    Public Function checkDefendingUnitType()
-        Dim defendingUnit = Form1.getDefendingUnit()
-        If Form1.unitList(defendingUnit).ToString = "Basic_TBS.clsUnitWarrior" Then
+    Public Function checkDefendingUnitType(ByVal defUnit, ByRef unitList)
+        Dim defendingUnit = defUnit
+        If unitList(defendingUnit).ToString = "Basic_TBS.clsUnitWarrior" Then
             Return "warrior"
-        ElseIf Form1.unitList(defendingUnit).ToString = "Basic_TBS.clsUnitArcher" Then
+        ElseIf unitList(defendingUnit).ToString = "Basic_TBS.clsUnitArcher" Then
             Return "archer"
         Else
             Return "mage"
@@ -21,7 +21,7 @@ Public Class clsUnit
 
     Public Function unitAttack(ByVal unit1 As Object, ByVal unit2 As Object)
         Dim Distance As Integer
-        Distance = Distance = Math.Sqrt((unit1.unitLocX - unit2.unitLocX) ^ 2 + _
+        Distance = Math.Sqrt((unit1.unitLocX - unit2.unitLocX) ^ 2 + _
         (unit1.unitLocY - unit2.unitLocY) ^ 2)
 
         If Distance > unitRange Then
@@ -34,25 +34,4 @@ Public Class clsUnit
         End If
         Return 0
     End Function
-
-    Public Sub destoryUnit()
-        Dim destroyedUnit As Integer
-        destroyedUnit = Form1.getDefendingUnit()
-        Dim con As Control
-
-        For controlIndex As Integer = Form1.Controls.Count - 1 To 0 Step -1
-            con = Form1.Controls(controlIndex)
-            If con.Name = Form1.unitList(destroyedUnit).unitAssignedPicBox Then
-                Form1.Controls.Remove(con)
-            End If
-        Next
-    End Sub
-
-    Public Sub updateUnit()
-
-    End Sub
-
-    Public Sub unitGetLocation()
-
-    End Sub
 End Class

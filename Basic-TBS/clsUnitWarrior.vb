@@ -1,11 +1,9 @@
 Public Class clsUnitWarrior
     Inherits clsUnit
     Public unitID_old
-    Public Function unitGetBuffs()
+    Public Function unitGetBuffs(ByVal attackingUnit, ByVal defUnit, ByRef unitList)
         Dim defUnitType As String
-        Dim attackingUnit As Integer
-        attackingUnit = Form1.getSelectedUnit()
-        defUnitType = checkDefendingUnitType()
+        defUnitType = checkDefendingUnitType(defUnit, unitList)
 
         If defUnitType = "archer" Then
             Return 2
@@ -16,20 +14,16 @@ Public Class clsUnitWarrior
         End If
     End Function
 
-    Public Sub unitInitialize(ByVal unitNumber As Integer, ByVal cUnitTeam As String, ByVal assignedArea As String, ByVal LocationX As Integer, ByVal LocationY As Integer)
+    Public Sub unitInitialize(ByVal unitNumber As Integer, ByVal cUnitTeam As String, ByVal assignedArea As String, ByVal LocationX As Integer, ByVal LocationY As Integer, Optional ByVal unitHP As Integer = 10)
         unitSetTeam(cUnitTeam)
         unitAssignedPicBox = assignedArea
-        unitHealth = 10
+        unitHealth = unitHP
         unitStrength = 6
         unitRange = 70
         unitLocX = LocationX
         unitLocY = LocationY
         unitID = unitNumber
         unitID_old = unitID
-    End Sub
-
-    Public Sub unitTileLocation()
-
     End Sub
 
     Public Sub unitSetTeam(ByVal sUnitTeam As String)
