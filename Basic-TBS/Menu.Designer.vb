@@ -22,6 +22,7 @@ Partial Class MenuS
         Me.btnNew = New System.Windows.Forms.Button
         Me.btnLoad = New System.Windows.Forms.Button
         Me.btnExit = New System.Windows.Forms.Button
+        Me.btnAbout = New System.Windows.Forms.Button
         Me.SuspendLayout()
         '
         'btnNew
@@ -35,7 +36,7 @@ Partial Class MenuS
         '
         'btnLoad
         '
-        Me.btnLoad.Location = New System.Drawing.Point(189, 111)
+        Me.btnLoad.Location = New System.Drawing.Point(142, 111)
         Me.btnLoad.Name = "btnLoad"
         Me.btnLoad.Size = New System.Drawing.Size(97, 37)
         Me.btnLoad.TabIndex = 1
@@ -51,11 +52,21 @@ Partial Class MenuS
         Me.btnExit.Text = "Exit"
         Me.btnExit.UseVisualStyleBackColor = True
         '
+        'btnAbout
+        '
+        Me.btnAbout.Location = New System.Drawing.Point(257, 111)
+        Me.btnAbout.Name = "btnAbout"
+        Me.btnAbout.Size = New System.Drawing.Size(97, 37)
+        Me.btnAbout.TabIndex = 4
+        Me.btnAbout.Text = "About Us"
+        Me.btnAbout.UseVisualStyleBackColor = True
+        '
         'MenuS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(486, 160)
+        Me.Controls.Add(Me.btnAbout)
         Me.Controls.Add(Me.btnExit)
         Me.Controls.Add(Me.btnLoad)
         Me.Controls.Add(Me.btnNew)
@@ -67,4 +78,5 @@ Partial Class MenuS
     Friend WithEvents btnNew As System.Windows.Forms.Button
     Friend WithEvents btnLoad As System.Windows.Forms.Button
     Friend WithEvents btnExit As System.Windows.Forms.Button
+    Friend WithEvents btnAbout As System.Windows.Forms.Button
 End Class

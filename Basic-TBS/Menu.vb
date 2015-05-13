@@ -15,4 +15,8 @@ Public Class MenuS
         Form1.Show()
         Me.Close()
     End Sub
+
+    Private Sub btnAbout_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAbout.Click
+
+    End Sub
 End Class
