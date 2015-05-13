@@ -23,7 +23,7 @@ Public Class clsUnit
         Dim Distance As Integer
         Distance = Math.Sqrt((unit1.unitLocX - unit2.unitLocX) ^ 2 + _
         (unit1.unitLocY - unit2.unitLocY) ^ 2)
-
+        MessageBox.Show(unit2.unitID)
         If Distance > unitRange Then
             MessageBox.Show("UNIT OUT OF RANGE!")
             Return 9 'Error Code - 9: Unit out of Range

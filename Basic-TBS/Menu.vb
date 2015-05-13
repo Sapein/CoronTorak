@@ -13,5 +13,6 @@ Public Class MenuS
     Private Sub btnLoad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLoad.Click
         Form1.loadGame = "L"
         Form1.Show()
+        Me.Close()
     End Sub
 End Class

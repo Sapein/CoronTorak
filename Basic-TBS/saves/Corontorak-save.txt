@@ -1,14 +1,13 @@
-﻿P
-1 5 332 295 Player
-2 5 596 360 Player
-3 10 464 360 Player
-4 10 464 425 Player
-5 7 398 425 Player
-6 7 530 425 Player
-7 5 332 101 Computer
-8 5 599 101 Computer
-9 10 464 101 Computer
-10 10 464 36 Computer
-11 7 398 36 Computer
-12 7 531 36 Computer
-
+﻿Turn1
+1 Player unitP4 332 295 5 True
+2 Player unitP6 596 360 5 False
+3 Player unitP5 464 295 10 True
+4 Player unitP2 464 360 10 True
+5 Player unitP1 398 360 7 True
+6 Player unitP3 530 360 7 True
+7 Computer unitE4 332 101 5 False
+8 Computer unitE6 599 101 5 False
+9 Computer unitE5 464 101 10 False
+10 Computer unitE2 464 36 10 False
+11 Computer unitE1 398 36 7 False
+12 Computer unitE3 531 36 7 False

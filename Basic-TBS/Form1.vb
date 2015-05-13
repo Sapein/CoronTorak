@@ -76,7 +76,7 @@ Public Class Form1
         Dim errorCodeCheck As Integer
         CheckTurn()
 
-        errorCodeCheck = checkUnitUsed()
+        errorCodeCheck = checkUnitUsed(selectedUnit)
         If errorCodeCheck = 5 Then
             Exit Sub
         End If
@@ -112,6 +112,7 @@ Public Class Form1
         Dim errorCodeCheck As Integer
         Dim unitFirstX As Integer
         Dim unitFirstY As Integer
+        isOver()
         If chrPlayerTurn = "C" Then
             Return 0
         End If
@@ -292,6 +293,7 @@ Public Class Form1
         Dim errorCodeCheck As Integer
         Dim unitFirstX As Integer
         Dim unitFirstY As Integer
+        isOver()
         If chrPlayerTurn = "P" Then
             Return 0
         End If
@@ -525,7 +527,6 @@ Public Class Form1
     Private Sub unitE4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles unitE4.Click
         If boolAttacking = False Then
             selectedUnit = mage1Computer.unitID
-            MessageBox.Show(selectedUnit)
         ElseIf boolAttacking = True Then
             defUnit = mage1Computer.unitID
             CheckTurn()
@@ -579,7 +580,7 @@ Public Class Form1
 
     Private Sub btnAttack_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttack.Click
         Dim errorCodeCheck As Integer
-        MessageBox.Show(selectedUnit)
+        MessageBox.Show(selectedUnit) 'RM
         errorCodeCheck = CheckTurn()
         If errorCodeCheck = 0 Then
             errorCodeCheck = 0
@@ -603,13 +604,15 @@ Public Class Form1
         Dim errorCodeCheck As Integer
         Dim unitBuff As Integer
         If boolDryRun = True Then
-            Return checkUnitUsed()
+            Return checkUnitUsed(selectedUnit)
         End If
         
         If (defUnit = -1 And selectedUnit = -1) Or (defUnit = -1 Or selectedUnit = -1) Then
             MessageBox.Show("ERROR: NO ATTACKING OR DEFNDING UNIT!", "ERROR: INVALID TARGET(S)")
             Return 6 'Error Code: Invalid Target(s)
         End If
+        defUnit = defUnit - 1
+        MessageBox.Show(unitList(defUnit).unitID)
         errorCodeCheck = unitList(selectedUnit).unitAttack(unitList(selectedUnit), unitList(defUnit))
         If errorCodeCheck = 0 Then
 
@@ -617,8 +620,6 @@ Public Class Form1
             boolAttacking = False
             Return 0
         End If
-        MessageBox.Show(selectedUnit)
-        MessageBox.Show(defUnit)
         unitBuff = unitListBackup(selectedUnit).unitGetBuffs(selectedUnit, defUnit, unitList)
         errorCodeCheck = useUnit(selectedUnit)
         If errorCodeCheck = 0 Then
@@ -644,6 +645,7 @@ Public Class Form1
         DisplayUnitStats()
         boolAttacking = False
         checkTurnEnd()
+        isOver()
         Return 0
     End Function
 
@@ -712,10 +714,11 @@ Public Class Form1
             eUnit6.Text = "Archer 2 - DEAD"
             Me.Controls.Remove(unitE3)
         End If
+        isOver()
     End Sub
 
     Private Function CheckTurn()
-        MessageBox.Show(selectedUnit)
+        isOver()
         'NOTE: This returns an "ERROR LEVEL". I took the concept from C. Because there are 3 "errors" possible
         'There are 4 error Codes: 0 - Success: No Error encountered; 1 - INVALID UNIT: Attacking unit on wrong team; 
         '2 - INVALID UNIT: No Unit selected; 3 - Attacking Teamed Unit: Defending Unit on wrong team.
@@ -733,7 +736,6 @@ Public Class Form1
                 Return 2
             End If
             If boolAttacking = True Then
-                defUnit = defUnit - 1
                 If unitList(defUnit).unitTeam = "Computer" Then
                     Attacking()
                     defUnit = defUnit + 1
@@ -806,7 +808,7 @@ Public Class Form1
                 End If
             End If
             If chrPlayerTurn = "C" Then
-                If usedUnitList(i).unitID = usedUnitList(i).unitID = 7 Or usedUnitList(i).unitID = 8 Or usedUnitList(i).unitID = 9 Or usedUnitList(i).unitID = 10 Or usedUnitList(i).unitID = 11 Or usedUnitList(i).unitID = 12 Then
+                If usedUnitList(i).unitID = 7 Or usedUnitList(i).unitID = 8 Or usedUnitList(i).unitID = 9 Or usedUnitList(i).unitID = 10 Or usedUnitList(i).unitID = 11 Or usedUnitList(i).unitID = 12 Then
                     i += 1
                 End If
                 If i = 6 Then
@@ -869,57 +871,57 @@ Public Class Form1
         Return 0
     End Function
 
-    Public Function getDistance()
-        Dim distance As Integer
-        MessageBox.Show(defUnit)
-        distance = Math.Sqrt((unitList(selectedUnit).unitLocX - unitList(defUnit).unitLocX) ^ 2 + _
-        (unitList(selectedUnit).unitLocY - unitList(defUnit).unitLocY) ^ 2)
-        Return distance
-    End Function
-
-    Public Function checkUnitUsed()
+    Public Function checkUnitUsed(ByVal unit)
         Dim i As Integer
-        selectedUnit = selectedUnit - 1
+        unit = unit - 1
         If i > usedUnitList.Count Or i < 0 Then
             Return 0
         End If
+        If unit < 0 Then
+            Return 5 'Error Code 14: unknown error
+        End If
         While i < usedUnitList.Count
-            If unitList(selectedUnit).unitID = usedUnitList(i).unitID Then
+            If unitList(unit).unitID = usedUnitList(i).unitID Then
                 MessageBox.Show("ERROR: UNIT ALREADY USED!", "ERROR: USED UNIT")
                 Return 5 'Error Code: Unit Used
             End If
             i += 1
         End While
-        selectedUnit = selectedUnit + 1
+        unit = unit + 1
         Return 0
     End Function
 
     Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
         Dim file As System.IO.StreamWriter
         Dim i As Integer = 0
+        Dim x As Integer = 0
         file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "../../../saves/CoronTorak-Save.txt", False)
-        MessageBox.Show(chrPlayerTurn)
         If chrPlayerTurn = "P" Then
             file.WriteLine("Turn1")
-            MessageBox.Show("TEST")
         ElseIf chrPlayerTurn = "C" Then
             file.WriteLine("Turn2")
-            MessageBox.Show("NORSE!")
         End If
-        'file.WriteLine(chrPlayerTurn)
         While i < unitList.Count
+            Dim isUsed As Boolean = False
+            While x < usedUnitList.Count
+                If usedUnitList(x).unitID = unitList(i).unitID Then
+                    MessageBox.Show("T")
+                    isUsed = True
+                    Exit While
+                End If
+                x += 1
+            End While
+            x = 0
             file.WriteLine(unitList(i).unitID & " " & unitList(i).unitTeam & " " & unitList(i).unitAssignedPicBox _
-            & " " & unitList(i).unitLocX & " " & unitList(i).unitLocY & " " & unitList(i).unitHealth)
+            & " " & unitList(i).unitLocX & " " & unitList(i).unitLocY & " " & unitList(i).unitHealth & " " & isUsed)
             i += 1
         End While
         file.Close()
-
     End Sub
     Public Sub loadSave()
         Dim t As Integer = 0
         Dim i As Integer = 0
         Dim TX As Integer = 0
-        MessageBox.Show("ET")
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited
             MyReader.SetDelimiters(" ")
@@ -939,7 +941,7 @@ Public Class Form1
                             unitStuff.Add(currentField)
                             x += 1
                         End If
-                        If x = 6 Then
+                        If x = 7 Then
                             unitList(i).unitID = unitStuff(0)
                             unitList(i).unitAssignedPicBox = unitStuff(2)
                             unitList(i).unitLocX = unitStuff(3)
@@ -958,6 +960,10 @@ Public Class Form1
                                 End If
                                 t += 1
                             End While
+
+                            If unitStuff(6) = True Then
+                                useUnit(i)
+                            End If
                             unitStuff.Clear()
                             i += 1
                         End If
@@ -971,8 +977,10 @@ Public Class Form1
     Public Sub isOver()
         If mage1Player.unitHealth = 0 And mage2Player.unitHealth = 0 And warrior1Player.unitHealth = 0 And warrior2Player.unitHealth = 0 And archer1Player.unitHealth = 0 And archer2Player.unitHealth = 0 Then
             MessageBox.Show("Game over")
+            End
         ElseIf mage1Computer.unitHealth = 0 And mage2Computer.unitHealth = 0 And warrior1Computer.unitHealth = 0 And warrior2Computer.unitHealth = 0 And archer1Computer.unitHealth = 0 And archer2Computer.unitHealth = 0 Then
             MessageBox.Show("You Win!")
+            End
         End If
     End Sub
 End Class
