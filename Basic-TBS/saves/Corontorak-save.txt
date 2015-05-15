@@ -1,10 +1,10 @@
 ﻿Turn1
-1 Player unitP4 332 295 5 True
-2 Player unitP6 596 360 5 False
-3 Player unitP5 464 295 10 True
-4 Player unitP2 464 360 10 True
-5 Player unitP1 398 360 7 True
-6 Player unitP3 530 360 7 True
+1 Player unitP4 332 360 5 False
+2 Player unitP6 662 360 5 False
+3 Player unitP5 464 360 10 False
+4 Player unitP2 464 425 10 False
+5 Player unitP1 398 425 7 False
+6 Player unitP3 530 425 7 False
 7 Computer unitE4 332 101 5 False
 8 Computer unitE6 599 101 5 False
 9 Computer unitE5 464 101 10 False

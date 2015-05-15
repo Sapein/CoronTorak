@@ -8,6 +8,10 @@ Public Class clsUnit
     Public unitAssignedPicBox As String
     Public unitID As Integer
 
+    'Function: checkDefendingUnitType()
+    'Summary: Checks the unit type
+    'Parameters: defUnit, unitList
+    'Returns: String - warrior, archer, mage
     Public Function checkDefendingUnitType(ByVal defUnit, ByRef unitList)
         Dim defendingUnit = defUnit
         If unitList(defendingUnit).ToString = "Basic_TBS.clsUnitWarrior" Then
@@ -19,11 +23,14 @@ Public Class clsUnit
         End If
     End Function
 
+    'Function: unitAttack()
+    'Summary: Gets the unit distance
+    'Parameters: unit1 Object, unit2 Object
+    'Returns: Integer - 0, 9, 0r 10
     Public Function unitAttack(ByVal unit1 As Object, ByVal unit2 As Object)
         Dim Distance As Integer
         Distance = Math.Sqrt((unit1.unitLocX - unit2.unitLocX) ^ 2 + _
         (unit1.unitLocY - unit2.unitLocY) ^ 2)
-        MessageBox.Show(unit2.unitID)
         If Distance > unitRange Then
             MessageBox.Show("UNIT OUT OF RANGE!")
             Return 9 'Error Code - 9: Unit out of Range

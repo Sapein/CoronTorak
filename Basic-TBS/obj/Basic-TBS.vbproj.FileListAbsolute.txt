@@ -9,3 +9,4 @@
 \\RHS-APP\Students\cwise1795\Desktop\chandler.programmingI\Recreational\Basic-TBS\Basic-TBS\obj\Debug\Basic-TBS.pdb
 \\RHS-APP\Students\cwise1795\Desktop\chandler.programmingI\Recreational\Basic-TBS\Basic-TBS\obj\Debug\Basic_TBS.Form1.resources
 \\RHS-APP\Students\cwise1795\Desktop\chandler.programmingI\Recreational\Basic-TBS\Basic-TBS\obj\Debug\Basic_TBS.MenuS.resources
+\\RHS-APP\Students\cwise1795\Desktop\chandler.programmingI\Recreational\Basic-TBS\Basic-TBS\obj\Debug\Basic_TBS.About.resources

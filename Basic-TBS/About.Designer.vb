@@ -23,23 +23,27 @@ Partial Class About
         Me.lblName = New System.Windows.Forms.Label
         Me.lblLicenses = New System.Windows.Forms.Label
         Me.lblGithub = New System.Windows.Forms.Label
+        Me.txtCodeLicense = New System.Windows.Forms.TextBox
         Me.SuspendLayout()
         '
         'lblTeam
         '
         Me.lblTeam.AutoSize = True
-        Me.lblTeam.Location = New System.Drawing.Point(167, 22)
+        Me.lblTeam.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTeam.Location = New System.Drawing.Point(164, 25)
         Me.lblTeam.Name = "lblTeam"
-        Me.lblTeam.Size = New System.Drawing.Size(105, 39)
+        Me.lblTeam.Size = New System.Drawing.Size(136, 48)
         Me.lblTeam.TabIndex = 1
         Me.lblTeam.Text = "Eylos" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Sapein - Programmer" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Dazzey - Artist"
+        Me.lblTeam.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblName
         '
         Me.lblName.AutoSize = True
-        Me.lblName.Location = New System.Drawing.Point(190, 9)
+        Me.lblName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblName.Location = New System.Drawing.Point(195, 9)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(59, 13)
+        Me.lblName.Size = New System.Drawing.Size(74, 16)
         Me.lblName.TabIndex = 2
         Me.lblName.Text = "Corontorak"
         Me.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -47,27 +51,41 @@ Partial Class About
         'lblLicenses
         '
         Me.lblLicenses.AutoSize = True
-        Me.lblLicenses.Location = New System.Drawing.Point(194, 71)
+        Me.lblLicenses.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLicenses.Location = New System.Drawing.Point(199, 89)
         Me.lblLicenses.Name = "lblLicenses"
-        Me.lblLicenses.Size = New System.Drawing.Size(51, 13)
+        Me.lblLicenses.Size = New System.Drawing.Size(66, 16)
         Me.lblLicenses.TabIndex = 3
         Me.lblLicenses.Text = "[licenses]"
+        Me.lblLicenses.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblGithub
         '
         Me.lblGithub.AutoSize = True
-        Me.lblGithub.Location = New System.Drawing.Point(186, 91)
+        Me.lblGithub.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblGithub.Location = New System.Drawing.Point(105, 73)
         Me.lblGithub.Name = "lblGithub"
-        Me.lblGithub.Size = New System.Drawing.Size(66, 13)
+        Me.lblGithub.Size = New System.Drawing.Size(255, 16)
         Me.lblGithub.TabIndex = 4
-        Me.lblGithub.Text = "Github: [link]"
+        Me.lblGithub.Text = "Github: http://github.com/eylos/finalproject"
+        Me.lblGithub.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'txtCodeLicense
+        '
+        Me.txtCodeLicense.Location = New System.Drawing.Point(12, 132)
+        Me.txtCodeLicense.Multiline = True
+        Me.txtCodeLicense.Name = "txtCodeLicense"
+        Me.txtCodeLicense.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtCodeLicense.Size = New System.Drawing.Size(441, 276)
+        Me.txtCodeLicense.TabIndex = 5
         '
         'About
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DodgerBlue
-        Me.ClientSize = New System.Drawing.Size(465, 340)
+        Me.ClientSize = New System.Drawing.Size(465, 420)
+        Me.Controls.Add(Me.txtCodeLicense)
         Me.Controls.Add(Me.lblGithub)
         Me.Controls.Add(Me.lblLicenses)
         Me.Controls.Add(Me.lblName)
@@ -82,4 +100,5 @@ Partial Class About
     Friend WithEvents lblName As System.Windows.Forms.Label
     Friend WithEvents lblLicenses As System.Windows.Forms.Label
     Friend WithEvents lblGithub As System.Windows.Forms.Label
+    Friend WithEvents txtCodeLicense As System.Windows.Forms.TextBox
 End Class

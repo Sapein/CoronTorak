@@ -1,37 +1,50 @@
 Public Class Form1
-    Private selectedUnit As Integer 'Uses the UnitID for the unit As Defined upon initialization.
-    Private defUnit As Integer 'Uses the Initialization-Definied Unit ID
-    Private chrPlayerTurn As Char = "P" 'Character is either P for player 1, and C for player 2
-    Dim boolAttacking As Boolean
-    Public loadGame As Char = "N" 'Character is either N for No-Load and L for Load
-    Private FN = 1
+    'This project was made by Sapein (AKA Chandler), for his Programming I class. For information see the TDD
+
+    Public loadGame As Char = "N" 'This determines if a game should be loaded or not
+    Private chrPlayerTurn As Char = "P" 'This allows us to know what turn it is. P is for Player, C is for Player2
+    Private selectedUnit As Integer 'This is what allows us to tell what unit is selected. It uses the Unit ID number
+    Private defUnit As Integer 'This allows us to know if a unit is defending and what unit it is. Uses the UID Number
+    Private boolAttacking As Boolean 'This allows us to know if attacking mode is activated.
+
+    'These next variables are the units themselves. There are a total of four for each unit, and two of each unit
+    'Per team. Also Computer is Player 2.
 
     'Player Units
-    Public mage1Player = New clsUnitMage
-    Dim mage2Player = New clsUnitMage
-    Dim warrior1Player = New clsUnitWarrior
-    Dim warrior2Player = New clsUnitWarrior
-    Dim archer1Player = New clsUnitArcher
-    Dim archer2Player = New clsUnitArcher
+    Private mage1Player = New clsUnitMage
+    Private mage2Player = New clsUnitMage
+    Private warrior1Player = New clsUnitWarrior
+    Private warrior2Player = New clsUnitWarrior
+    Private archer1Player = New clsUnitArcher
+    Private archer2Player = New clsUnitArcher
 
     'Computer Units
-    Dim mage1Computer = New clsUnitMage
-    Dim mage2Computer = New clsUnitMage
-    Dim warrior1Computer = New clsUnitWarrior
-    Dim warrior2Computer = New clsUnitWarrior
-    Dim archer1Computer = New clsUnitArcher
-    Dim archer2Computer = New clsUnitArcher
+    Private mage1Computer = New clsUnitMage
+    Private mage2Computer = New clsUnitMage
+    Private warrior1Computer = New clsUnitWarrior
+    Private warrior2Computer = New clsUnitWarrior
+    Private archer1Computer = New clsUnitArcher
+    Private archer2Computer = New clsUnitArcher
 
+    'These variables simply hold the Units. The Ones right below this commented section are the main ones used, 
+    'Which make a list of clsUnit(which, since clsUnitMage/Warrior/Archer are apart of it, can hold the units
+    'The Backups are simply in case they are needed. 
+    Private unitList As List(Of clsUnit) = New List(Of clsUnit)
+    Private usedUnitList As List(Of clsUnit) = New List(Of clsUnit)
 
-    Public unitList As List(Of clsUnit) = New List(Of clsUnit)
-    Dim usedUnitList As List(Of clsUnit) = New List(Of clsUnit)
-
-    Dim usedUnitListBackup As List(Of Object) = New List(Of Object)
+    Private usedUnitListBackup As List(Of Object) = New List(Of Object)
     Private unitListBackup As List(Of Object) = New List(Of Object)
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'This is what occurs when this form is loaded. 
+
+        'Variables which depend upon selection are listed here and made to be -1, since the value should not be
+        'Negative 1 for any unit
         selectedUnit = -1
         defUnit = -1
+
+        'The next two sections initizalize and create the units, setting everything that is needed about them.
+        'Initializes Player Units
         mage1Player.unitInitialize(1, "Player", "unitP4", unitP4.Location.X, unitP4.Location.Y)
         mage2Player.unitInitialize(2, "Player", "unitP6", unitP6.Location.X, unitP6.Location.Y)
         warrior1Player.unitInitialize(3, "Player", "unitP5", unitP5.Location.X, unitP5.Location.Y)
@@ -39,7 +52,7 @@ Public Class Form1
         archer1Player.unitInitialize(5, "Player", "unitP1", unitP1.Location.X, unitP1.Location.Y)
         archer2Player.unitInitialize(6, "Player", "unitP3", unitP3.Location.X, unitP3.Location.Y)
 
-
+        'Initalizes Computer Units
         mage1Computer.unitInitialize(7, "Computer", "unitE4", unitE4.Location.X, unitE4.Location.Y)
         mage2Computer.unitInitialize(8, "Computer", "unitE6", unitE6.Location.X, unitE6.Location.Y)
         warrior1Computer.unitInitialize(9, "Computer", "unitE5", unitE5.Location.X, unitE5.Location.Y)
@@ -47,6 +60,8 @@ Public Class Form1
         archer1Computer.unitInitialize(11, "Computer", "unitE1", unitE1.Location.X, unitE1.Location.Y)
         archer2Computer.unitInitialize(12, "Computer", "unitE3", unitE3.Location.X, unitE3.Location.Y)
 
+        'This simply adds them to the unitList list so this way we can find them quickly without having to code 
+        'each unit's reaction. 
         unitList.Add(mage1Player)
         unitList.Add(mage2Player)
         unitList.Add(warrior1Player)
@@ -60,62 +75,74 @@ Public Class Form1
         unitList.Add(archer1Computer)
         unitList.Add(archer2Computer)
 
-
+        'This adds them to the unitListBackup list 
         For Each listItem As Object In unitList
             unitListBackup.Add(listItem)
         Next listItem
 
+        'This also checks to see if we need to load a save-game or not.
         If loadGame = "L" Then
             loadSave()
         End If
 
+        'This displays the unit stats.
         DisplayUnitStats()
     End Sub
 
     Private Sub btnMove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMove.Click
+        'Error Codes are something borrowed from C and derived languages. It is how I can tell what happened.
+        'Error Codes may also be different from an actual error. 
         Dim errorCodeCheck As Integer
-        CheckTurn()
+        CheckTurn() 'This merely checks the turn.
 
-        errorCodeCheck = checkUnitUsed(selectedUnit)
+        errorCodeCheck = checkUnitUsed(selectedUnit) 'This checks to see if the unit has been used
         If errorCodeCheck = 5 Then
-            Exit Sub
+            Exit Sub 'This part only executes when the error code is 5
         End If
 
-        errorCodeCheck = moveUnit(selectedUnit)
+        errorCodeCheck = moveUnit(selectedUnit) 'Checks to see if the unit can Move, and if it can, moves it.
+        If errorCodeCheck = 0 Then
+
+        ElseIf errorCodeCheck = 11 Or errorCodeCheck = 12 Or errorCodeCheck = 13 Then
+            Exit Sub 'If it can't move, then it exits here
+        End If
+
+        errorCodeCheck = opponentUnitMove(selectedUnit) 'Does the same thing, but for the opponent's units
         If errorCodeCheck = 0 Then
 
         ElseIf errorCodeCheck = 11 Or errorCodeCheck = 12 Or errorCodeCheck = 13 Then
             Exit Sub
         End If
 
-        errorCodeCheck = opponentUnitMove(selectedUnit)
-        If errorCodeCheck = 0 Then
-
-        ElseIf errorCodeCheck = 11 Or errorCodeCheck = 12 Or errorCodeCheck = 13 Then
-            Exit Sub
-        End If
-
+        'This is done to allow us to use a list....
         selectedUnit = selectedUnit - 1
-        errorCodeCheck = useUnit(selectedUnit)
+        errorCodeCheck = useUnit(selectedUnit) 'The unit is checked and then used
         If errorCodeCheck = 0 Then
-            selectedUnit = selectedUnit + 1
+            selectedUnit = selectedUnit + 1 'If a unit has not been used it restores the Unit ID
         ElseIf errorCodeCheck = 4 Or 5 Then
-            selectedUnit = selectedUnit + 1
-            Exit Sub
+            selectedUnit = selectedUnit + 1 'Otherwise it restores the Unit ID
+            Exit Sub 'And exits the sub
         End If
 
-        checkTurnEnd()
+        checkTurnEnd() 'It then checks to see if the turn is over.
     End Sub
 
-    Public Function moveUnit(ByVal unitID)
+    'Function: moveUnit()
+    'Parameters: unitID - The ID of the Unit to move from either defUnit or selectUnit
+    'Summary: Moves the unit for the player (Player 1)
+    'Returns: Integer-0,11,12,13 (Error Codes)
+    Private Function moveUnit(ByVal unitID)
         Dim moveDirection As String
         Dim errorCodeCheck As Integer
         Dim unitFirstX As Integer
         Dim unitFirstY As Integer
-        isOver()
+
+        isOver() 'Checks to see if the turn is over
+
         If chrPlayerTurn = "C" Then
-            Return 0
+            Return 0 'Just makes sure it is the player's turn.
         End If
+
         If unitID = mage1Player.unitID Then
             unitFirstY = Me.unitP4.Top
             unitFirstX = Me.unitP4.Left
@@ -288,7 +315,11 @@ Public Class Form1
         Return 12 'Error Code: Unknown Error/Generic Error
     End Function
 
-    Public Function opponentUnitMove(ByVal unitID)
+    'Function: oppnentUnitMove()
+    'Parameters: unitID - The ID of the Unit to move from either defUnit or selectUnit
+    'Summary: Moves the unit for the opponent/computer (Player 2)
+    'Returns: Integer-0,11,12,13 (Error Codes)
+    Private Function opponentUnitMove(ByVal unitID)
         Dim moveDirection As String
         Dim errorCodeCheck As Integer
         Dim unitFirstX As Integer
@@ -469,6 +500,7 @@ Public Class Form1
         Return 12
     End Function
 
+    'Simply used for movement/clicking
     Private Sub unitP4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles unitP4.Click
         If boolAttacking = False Then
             selectedUnit = mage1Player.unitID
@@ -577,7 +609,6 @@ Public Class Form1
             CheckTurn()
         End If
     End Sub
-
     Private Sub btnAttack_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttack.Click
         Dim errorCodeCheck As Integer
         MessageBox.Show(selectedUnit) 'RM
@@ -597,16 +628,23 @@ Public Class Form1
         MessageBox.Show("Please click the unit you wish to Attack")
     End Sub
 
+    'Function: Attacking
+    'Summary: When a unit wants to attack it uses this method.
+    'Parameters: Optional: Boolean - boolDryRun 
+    'Returns 0,6, or the output of checkUnitUsed.
+    'Note: boolDryRun is depricated. Do not use it. Call checkUnitUsed instead.
     Private Function Attacking(Optional ByVal boolDryRun As Boolean = False)
         Dim attackStat As Integer
         Dim healthOfDefending As Integer
         Dim rangeOfAttacking As Integer
         Dim errorCodeCheck As Integer
         Dim unitBuff As Integer
+
         If boolDryRun = True Then
             Return checkUnitUsed(selectedUnit)
         End If
-        
+
+        'This is to check to see if the unit can actually attack or not.
         If (defUnit = -1 And selectedUnit = -1) Or (defUnit = -1 Or selectedUnit = -1) Then
             MessageBox.Show("ERROR: NO ATTACKING OR DEFNDING UNIT!", "ERROR: INVALID TARGET(S)")
             Return 6 'Error Code: Invalid Target(s)
@@ -630,6 +668,8 @@ Public Class Form1
         If selectedUnit = -1 Then
             Return 0
         End If
+
+        'This is the actual attacking code.
         attackStat = unitList(selectedUnit).unitStrength
         healthOfDefending = unitList(defUnit).unitHealth
         rangeOfAttacking = unitList(selectedUnit).unitRange
@@ -649,7 +689,7 @@ Public Class Form1
         Return 0
     End Function
 
-    Public Sub DisplayUnitStats()
+    Private Sub DisplayUnitStats()
         Const AttackDisplay As String = " - Atk: "
 
         unit1.Text = "Mage 1 - HP: " & mage1Player.unitHealth & " - Atk: " & mage1Player.unitStrength
@@ -665,6 +705,8 @@ Public Class Form1
         eUnit4.Text = "Warrior 2 - HP: " & warrior2Computer.unitHealth & AttackDisplay & warrior2Computer.unitStrength
         eUnit5.Text = "Archer 1 - HP: " & archer1Computer.unitHealth & AttackDisplay & archer1Computer.unitStrength
         eUnit6.Text = "Archer 2 - HP: " & archer2Computer.unitHealth & AttackDisplay & archer2Computer.unitStrength
+
+        'Used for the display of dead units
         If mage1Player.unitHealth <= 0 Then
             unit1.Text = "Mage 1 - DEAD"
             Me.Controls.Remove(unitP4)
@@ -717,11 +759,15 @@ Public Class Form1
         isOver()
     End Sub
 
+    'Function: CheckTurn()
+    'Summary: Checks the current turn and also checks to see if attacking is possible
+    'Returns: Integer - 0, 1, 2, or 3
     Private Function CheckTurn()
         isOver()
         'NOTE: This returns an "ERROR LEVEL". I took the concept from C. Because there are 3 "errors" possible
         'There are 4 error Codes: 0 - Success: No Error encountered; 1 - INVALID UNIT: Attacking unit on wrong team; 
         '2 - INVALID UNIT: No Unit selected; 3 - Attacking Teamed Unit: Defending Unit on wrong team.
+
         selectedUnit = selectedUnit - 1
         If chrPlayerTurn = "P" Then
             If selectedUnit > -1 Then
@@ -735,6 +781,7 @@ Public Class Form1
                 MessageBox.Show("ERROR: PLEASE SELECT A UNIT!", "ERROR: INVALID UNIT")
                 Return 2
             End If
+
             If boolAttacking = True Then
                 If unitList(defUnit).unitTeam = "Computer" Then
                     Attacking()
@@ -746,6 +793,7 @@ Public Class Form1
                     Return 3
                 End If
             End If
+
         ElseIf chrPlayerTurn = "C" Then
             If selectedUnit > -1 Then
                 If unitList(selectedUnit).unitTeam = "Player" Then
@@ -758,6 +806,7 @@ Public Class Form1
                 MessageBox.Show("ERROR: PLEASE SELECT A UNIT!", "ERROR: INVALID UNIT")
                 Return 2
             End If
+
             If boolAttacking = True Then
                 If unitList(defUnit).unitTeam = "Player" Then
                     Attacking()
@@ -769,15 +818,22 @@ Public Class Form1
                 End If
             End If
         End If
+
         selectedUnit = selectedUnit + 1
         Return 0
     End Function
 
+    'Function: useUnit()
+    'Summary: adds the unit to the used unit list
+    'Parameters: Integer - Unit (As in the Unit ID)
+    'Returns: Integer - 0, 4, or 5
     Private Function useUnit(ByVal unit As Integer)
         Dim i As Integer = 0
+
         If unit <= -1 Then
             Return 4 'Error Code 4: unit value is negative
         End If
+
         While i < usedUnitList.Count
             If unitList(unit).unitID = usedUnitList(i).unitID Then
                 MessageBox.Show("ERROR: UNIT ALREADY USED!", "ERROR: USED UNIT")
@@ -786,15 +842,20 @@ Public Class Form1
             End If
             i += 1
         End While
+
         usedUnitList.Add(unitList(unit))
         unit = unit + 1
         Return 0 'Error Code 0: Successful Run
     End Function
 
-    Private Sub checkTurnEnd()
-        Dim i = 0
-        Dim x = 0
+
+    Private Sub checkTurnEnd() 'Checks the turn's end
+        'These are used to iterate through the while loops
+        Dim i As Integer = 0
+        Dim x As Integer = 0
+
         selectedUnit = selectedUnit - 1
+
         While i < usedUnitList.Count
             If chrPlayerTurn = "P" Then
                 If usedUnitList(i).unitID = 1 Or usedUnitList(i).unitID = 2 Or usedUnitList(i).unitID = 3 Or usedUnitList(i).unitID = 4 Or usedUnitList(i).unitID = 5 Or usedUnitList(i).unitID = 6 Then
@@ -807,6 +868,7 @@ Public Class Form1
                     Exit Sub
                 End If
             End If
+
             If chrPlayerTurn = "C" Then
                 If usedUnitList(i).unitID = 7 Or usedUnitList(i).unitID = 8 Or usedUnitList(i).unitID = 9 Or usedUnitList(i).unitID = 10 Or usedUnitList(i).unitID = 11 Or usedUnitList(i).unitID = 12 Then
                     i += 1
@@ -819,35 +881,14 @@ Public Class Form1
                 End If
             End If
         End While
+
         selectedUnit = -1
     End Sub
 
-    Public Function checkUnitDistanceX()
-        Dim OutputX As Integer
-        Dim attackingUnitLocation_X As Integer = unitList(selectedUnit).unitLocX
-        Dim defendingUnitLocation_X As Integer = unitList(defUnit).unitLocX
-
-        OutputX = attackingUnitLocation_X - defendingUnitLocation_X
-
-        If OutputX < 0 Then
-            OutputX = -1 * (OutputX)
-        End If
-        Return OutputX
-    End Function
-
-    Public Function checkUnitDistanceY()
-        Dim OutputY As Integer
-        Dim attackingUnitLocation_Y As Integer = unitList(selectedUnit).unitLocY
-        Dim defendingUnitLocation_Y As Integer = unitList(defUnit).unitLocY
-
-        OutputY = attackingUnitLocation_Y - defendingUnitLocation_Y
-        If OutputY < 0 Then
-            OutputY = -1 * (OutputY)
-        End If
-        Return OutputY
-    End Function
-
-
+    'Function: checkUnitLocation()
+    'Summary: Checks to see if the unitLocation (taken by unit X) is sot
+    'Parameters: unitA
+    'Returns: Integer - 0, 7, or 8
     Private Function checkUnitLocation(ByVal unitA As Integer)
         Dim i As Integer
         unitA = unitA - 1
@@ -861,7 +902,8 @@ Public Class Form1
             End If
             i += 1
         End While
-        If unitList(unitA).unitLocX <= 208 Then ' Or unitList(unitA).unitLocX <= 723 Then
+
+        If unitList(unitA).unitLocX <= 208 Or unitList(unitA).unitLocX >= 723 Then
             Return 8 'Error Code 8: Unit Passed Map Bounds
         End If
 
@@ -871,8 +913,12 @@ Public Class Form1
         Return 0
     End Function
 
-    Public Function checkUnitUsed(ByVal unit)
+    'Function: checkUnitUsed()
+    'Summary: Checks to see if the unit has already been used
+    'Parameters: unit [Integer] - Unit ID
+    Private Function checkUnitUsed(ByVal unit As Integer)
         Dim i As Integer
+
         unit = unit - 1
         If i > usedUnitList.Count Or i < 0 Then
             Return 0
@@ -880,6 +926,7 @@ Public Class Form1
         If unit < 0 Then
             Return 5 'Error Code 14: unknown error
         End If
+
         While i < usedUnitList.Count
             If unitList(unit).unitID = usedUnitList(i).unitID Then
                 MessageBox.Show("ERROR: UNIT ALREADY USED!", "ERROR: USED UNIT")
@@ -887,6 +934,7 @@ Public Class Form1
             End If
             i += 1
         End While
+
         unit = unit + 1
         Return 0
     End Function
@@ -896,11 +944,13 @@ Public Class Form1
         Dim i As Integer = 0
         Dim x As Integer = 0
         file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "../../../saves/CoronTorak-Save.txt", False)
+
         If chrPlayerTurn = "P" Then
             file.WriteLine("Turn1")
         ElseIf chrPlayerTurn = "C" Then
             file.WriteLine("Turn2")
         End If
+
         While i < unitList.Count
             Dim isUsed As Boolean = False
             While x < usedUnitList.Count
@@ -917,11 +967,15 @@ Public Class Form1
             i += 1
         End While
         file.Close()
+
     End Sub
-    Public Sub loadSave()
+
+    Public Sub loadSave() 'loads the saves
+        'Iteration Variables
         Dim t As Integer = 0
         Dim i As Integer = 0
         Dim TX As Integer = 0
+
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited
             MyReader.SetDelimiters(" ")
@@ -932,7 +986,9 @@ Public Class Form1
                     Dim currentField As String
                     Dim x As Integer = 0
                     Dim unitStuff As List(Of Object) = New List(Of Object)
+
                     For Each currentField In currentRow
+                        'Checks to see if the line is the 'Turn Line'
                         If currentField = "Turn1" Then
                             chrPlayerTurn = "P"
                         ElseIf currentField = "Turn2" Then
@@ -941,7 +997,8 @@ Public Class Form1
                             unitStuff.Add(currentField)
                             x += 1
                         End If
-                        If x = 7 Then
+
+                        If x = 7 Then 'This actually loads up the location of the units, and sets their variables.
                             unitList(i).unitID = unitStuff(0)
                             unitList(i).unitAssignedPicBox = unitStuff(2)
                             unitList(i).unitLocX = unitStuff(3)
@@ -974,7 +1031,7 @@ Public Class Form1
         End Using
     End Sub
 
-    Public Sub isOver()
+    Public Sub isOver() 'Checks to see if the game is over
         If mage1Player.unitHealth = 0 And mage2Player.unitHealth = 0 And warrior1Player.unitHealth = 0 And warrior2Player.unitHealth = 0 And archer1Player.unitHealth = 0 And archer2Player.unitHealth = 0 Then
             MessageBox.Show("Game over")
             End
