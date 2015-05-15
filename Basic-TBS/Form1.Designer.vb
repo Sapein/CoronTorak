@@ -19,6 +19,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.tile1 = New System.Windows.Forms.PictureBox
         Me.tile2 = New System.Windows.Forms.PictureBox
         Me.tile4 = New System.Windows.Forms.PictureBox
@@ -756,7 +757,8 @@ Partial Class Form1
         '
         'unitP4
         '
-        Me.unitP4.BackColor = System.Drawing.Color.Blue
+        Me.unitP4.BackColor = System.Drawing.Color.Lime
+        Me.unitP4.Image = CType(resources.GetObject("unitP4.Image"), System.Drawing.Image)
         Me.unitP4.Location = New System.Drawing.Point(332, 360)
         Me.unitP4.Name = "unitP4"
         Me.unitP4.Size = New System.Drawing.Size(51, 48)
@@ -765,6 +767,8 @@ Partial Class Form1
         '
         'unitP1
         '
+        Me.unitP1.BackColor = System.Drawing.Color.Lime
+        Me.unitP1.Image = CType(resources.GetObject("unitP1.Image"), System.Drawing.Image)
         Me.unitP1.Location = New System.Drawing.Point(398, 425)
         Me.unitP1.Name = "unitP1"
         Me.unitP1.Size = New System.Drawing.Size(51, 48)
@@ -773,6 +777,8 @@ Partial Class Form1
         '
         'unitP2
         '
+        Me.unitP2.BackColor = System.Drawing.Color.Lime
+        Me.unitP2.BackgroundImage = CType(resources.GetObject("unitP2.BackgroundImage"), System.Drawing.Image)
         Me.unitP2.Location = New System.Drawing.Point(464, 425)
         Me.unitP2.Name = "unitP2"
         Me.unitP2.Size = New System.Drawing.Size(51, 48)
@@ -781,6 +787,8 @@ Partial Class Form1
         '
         'unitP3
         '
+        Me.unitP3.BackColor = System.Drawing.Color.Lime
+        Me.unitP3.Image = CType(resources.GetObject("unitP3.Image"), System.Drawing.Image)
         Me.unitP3.Location = New System.Drawing.Point(530, 425)
         Me.unitP3.Name = "unitP3"
         Me.unitP3.Size = New System.Drawing.Size(51, 48)
@@ -789,6 +797,8 @@ Partial Class Form1
         '
         'unitP5
         '
+        Me.unitP5.BackColor = System.Drawing.Color.Lime
+        Me.unitP5.Image = CType(resources.GetObject("unitP5.Image"), System.Drawing.Image)
         Me.unitP5.Location = New System.Drawing.Point(464, 360)
         Me.unitP5.Name = "unitP5"
         Me.unitP5.Size = New System.Drawing.Size(51, 48)
@@ -797,7 +807,8 @@ Partial Class Form1
         '
         'unitP6
         '
-        Me.unitP6.BackColor = System.Drawing.Color.Blue
+        Me.unitP6.BackColor = System.Drawing.Color.Lime
+        Me.unitP6.Image = CType(resources.GetObject("unitP6.Image"), System.Drawing.Image)
         Me.unitP6.Location = New System.Drawing.Point(596, 360)
         Me.unitP6.Name = "unitP6"
         Me.unitP6.Size = New System.Drawing.Size(51, 48)
@@ -806,7 +817,8 @@ Partial Class Form1
         '
         'unitE4
         '
-        Me.unitE4.BackColor = System.Drawing.Color.Blue
+        Me.unitE4.BackColor = System.Drawing.Color.Lime
+        Me.unitE4.Image = CType(resources.GetObject("unitE4.Image"), System.Drawing.Image)
         Me.unitE4.Location = New System.Drawing.Point(332, 101)
         Me.unitE4.Name = "unitE4"
         Me.unitE4.Size = New System.Drawing.Size(51, 48)
@@ -815,6 +827,8 @@ Partial Class Form1
         '
         'unitE5
         '
+        Me.unitE5.BackColor = System.Drawing.Color.Lime
+        Me.unitE5.Image = CType(resources.GetObject("unitE5.Image"), System.Drawing.Image)
         Me.unitE5.Location = New System.Drawing.Point(464, 101)
         Me.unitE5.Name = "unitE5"
         Me.unitE5.Size = New System.Drawing.Size(51, 48)
@@ -823,7 +837,8 @@ Partial Class Form1
         '
         'unitE6
         '
-        Me.unitE6.BackColor = System.Drawing.Color.Blue
+        Me.unitE6.BackColor = System.Drawing.Color.Lime
+        Me.unitE6.Image = CType(resources.GetObject("unitE6.Image"), System.Drawing.Image)
         Me.unitE6.Location = New System.Drawing.Point(599, 101)
         Me.unitE6.Name = "unitE6"
         Me.unitE6.Size = New System.Drawing.Size(51, 48)
@@ -832,6 +847,8 @@ Partial Class Form1
         '
         'unitE1
         '
+        Me.unitE1.BackColor = System.Drawing.Color.Lime
+        Me.unitE1.Image = CType(resources.GetObject("unitE1.Image"), System.Drawing.Image)
         Me.unitE1.Location = New System.Drawing.Point(398, 36)
         Me.unitE1.Name = "unitE1"
         Me.unitE1.Size = New System.Drawing.Size(51, 48)
@@ -840,6 +857,8 @@ Partial Class Form1
         '
         'unitE2
         '
+        Me.unitE2.BackColor = System.Drawing.Color.Lime
+        Me.unitE2.Image = CType(resources.GetObject("unitE2.Image"), System.Drawing.Image)
         Me.unitE2.Location = New System.Drawing.Point(464, 36)
         Me.unitE2.Name = "unitE2"
         Me.unitE2.Size = New System.Drawing.Size(51, 48)
@@ -848,6 +867,8 @@ Partial Class Form1
         '
         'unitE3
         '
+        Me.unitE3.BackColor = System.Drawing.Color.Lime
+        Me.unitE3.Image = CType(resources.GetObject("unitE3.Image"), System.Drawing.Image)
         Me.unitE3.Location = New System.Drawing.Point(531, 36)
         Me.unitE3.Name = "unitE3"
         Me.unitE3.Size = New System.Drawing.Size(51, 48)
