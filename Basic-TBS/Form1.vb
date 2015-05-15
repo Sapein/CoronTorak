@@ -312,7 +312,7 @@ Public Class Form1
             End If
             Return 0
         End If
-        Return 12 'Error Code: Unknown Error/Generic Error
+        Return 12 'Error Code 12: Unknown Error/Generic Error
     End Function
 
     'Function: oppnentUnitMove()
@@ -647,7 +647,7 @@ Public Class Form1
         'This is to check to see if the unit can actually attack or not.
         If (defUnit = -1 And selectedUnit = -1) Or (defUnit = -1 Or selectedUnit = -1) Then
             MessageBox.Show("ERROR: NO ATTACKING OR DEFNDING UNIT!", "ERROR: INVALID TARGET(S)")
-            Return 6 'Error Code: Invalid Target(s)
+            Return 6 'Error Code 6: Invalid Target(s)
         End If
         defUnit = defUnit - 1
         MessageBox.Show(unitList(defUnit).unitID)
@@ -930,7 +930,7 @@ Public Class Form1
         While i < usedUnitList.Count
             If unitList(unit).unitID = usedUnitList(i).unitID Then
                 MessageBox.Show("ERROR: UNIT ALREADY USED!", "ERROR: USED UNIT")
-                Return 5 'Error Code: Unit Used
+                Return 5 'Error Code 5: Unit Used
             End If
             i += 1
         End While
