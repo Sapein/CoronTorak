@@ -19,6 +19,7 @@ Partial Class About
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(About))
         Me.lblTeam = New System.Windows.Forms.Label
         Me.lblName = New System.Windows.Forms.Label
         Me.lblLicenses = New System.Windows.Forms.Label
@@ -72,12 +73,16 @@ Partial Class About
         '
         'txtCodeLicense
         '
+        Me.txtCodeLicense.BackColor = System.Drawing.Color.DodgerBlue
         Me.txtCodeLicense.Location = New System.Drawing.Point(12, 132)
         Me.txtCodeLicense.Multiline = True
         Me.txtCodeLicense.Name = "txtCodeLicense"
+        Me.txtCodeLicense.ReadOnly = True
         Me.txtCodeLicense.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtCodeLicense.Size = New System.Drawing.Size(441, 276)
         Me.txtCodeLicense.TabIndex = 5
+        Me.txtCodeLicense.Text = resources.GetString("txtCodeLicense.Text")
+        Me.txtCodeLicense.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'About
         '

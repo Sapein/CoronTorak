@@ -959,7 +959,7 @@ Partial Class Form1
         Me.Controls.Add(Me.tile2)
         Me.Controls.Add(Me.tile1)
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Text = "CoronTorak"
         CType(Me.tile1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tile2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tile4, System.ComponentModel.ISupportInitialize).EndInit()
