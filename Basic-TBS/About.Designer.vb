@@ -31,7 +31,7 @@ Partial Class About
         '
         Me.lblTeam.AutoSize = True
         Me.lblTeam.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTeam.Location = New System.Drawing.Point(164, 25)
+        Me.lblTeam.Location = New System.Drawing.Point(164, 27)
         Me.lblTeam.Name = "lblTeam"
         Me.lblTeam.Size = New System.Drawing.Size(136, 48)
         Me.lblTeam.TabIndex = 1
@@ -53,18 +53,19 @@ Partial Class About
         '
         Me.lblLicenses.AutoSize = True
         Me.lblLicenses.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblLicenses.Location = New System.Drawing.Point(199, 89)
+        Me.lblLicenses.Location = New System.Drawing.Point(70, 95)
         Me.lblLicenses.Name = "lblLicenses"
-        Me.lblLicenses.Size = New System.Drawing.Size(66, 16)
+        Me.lblLicenses.Size = New System.Drawing.Size(324, 32)
         Me.lblLicenses.TabIndex = 3
-        Me.lblLicenses.Text = "[licenses]"
+        Me.lblLicenses.Text = "Art License: CC Attribution-ShareAlike 3.0 International" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Code License: MIT Licen" & _
+            "se"
         Me.lblLicenses.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblGithub
         '
         Me.lblGithub.AutoSize = True
         Me.lblGithub.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblGithub.Location = New System.Drawing.Point(105, 73)
+        Me.lblGithub.Location = New System.Drawing.Point(105, 77)
         Me.lblGithub.Name = "lblGithub"
         Me.lblGithub.Size = New System.Drawing.Size(255, 16)
         Me.lblGithub.TabIndex = 4
@@ -74,7 +75,7 @@ Partial Class About
         'txtCodeLicense
         '
         Me.txtCodeLicense.BackColor = System.Drawing.Color.DodgerBlue
-        Me.txtCodeLicense.Location = New System.Drawing.Point(12, 132)
+        Me.txtCodeLicense.Location = New System.Drawing.Point(12, 129)
         Me.txtCodeLicense.Multiline = True
         Me.txtCodeLicense.Name = "txtCodeLicense"
         Me.txtCodeLicense.ReadOnly = True
