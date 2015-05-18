@@ -21,4 +21,8 @@ Public Class MenuS
         Dim newAbout = New About
         newAbout.Show()
     End Sub
+
+    Private Sub MenuS_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        picLogo.BackgroundImage = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\CoronTorak Image.png")
+    End Sub
 End Class

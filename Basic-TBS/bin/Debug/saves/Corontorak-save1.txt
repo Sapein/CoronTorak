@@ -1,0 +1,13 @@
+﻿P
+ID: 1 Team: Player PicBox: unitP4 Location(X): 332 Location(Y): 360
+ID: 2 Team: Player PicBox: unitP6 Location(X): 596 Location(Y): 360
+ID: 3 Team: Player PicBox: unitP5 Location(X): 464 Location(Y): 360
+ID: 4 Team: Player PicBox: unitP2 Location(X): 464 Location(Y): 425
+ID: 5 Team: Player PicBox: unitP1 Location(X): 398 Location(Y): 425
+ID: 6 Team: Player PicBox: unitP3 Location(X): 530 Location(Y): 425
+ID: 7 Team: Computer PicBox: unitE4 Location(X): 332 Location(Y): 101
+ID: 8 Team: Computer PicBox: unitE6 Location(X): 599 Location(Y): 101
+ID: 9 Team: Computer PicBox: unitE5 Location(X): 464 Location(Y): 101
+ID: 10 Team: Computer PicBox: unitE2 Location(X): 464 Location(Y): 36
+ID: 11 Team: Computer PicBox: unitE1 Location(X): 398 Location(Y): 36
+ID: 12 Team: Computer PicBox: unitE3 Location(X): 531 Location(Y): 36

@@ -24,8 +24,8 @@ Partial Class MenuS
         Me.btnLoad = New System.Windows.Forms.Button
         Me.btnExit = New System.Windows.Forms.Button
         Me.btnAbout = New System.Windows.Forms.Button
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.picLogo = New System.Windows.Forms.PictureBox
+        CType(Me.picLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnNew
@@ -64,30 +64,30 @@ Partial Class MenuS
         Me.btnAbout.Text = "About Us"
         Me.btnAbout.UseVisualStyleBackColor = True
         '
-        'PictureBox1
+        'picLogo
         '
-        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.PictureBox1.Location = New System.Drawing.Point(101, 12)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(284, 93)
-        Me.PictureBox1.TabIndex = 5
-        Me.PictureBox1.TabStop = False
+        Me.picLogo.BackColor = System.Drawing.Color.Transparent
+        Me.picLogo.BackgroundImage = CType(resources.GetObject("picLogo.BackgroundImage"), System.Drawing.Image)
+        Me.picLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.picLogo.Location = New System.Drawing.Point(101, 12)
+        Me.picLogo.Name = "picLogo"
+        Me.picLogo.Size = New System.Drawing.Size(284, 93)
+        Me.picLogo.TabIndex = 5
+        Me.picLogo.TabStop = False
         '
         'MenuS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(486, 160)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.picLogo)
         Me.Controls.Add(Me.btnAbout)
         Me.Controls.Add(Me.btnExit)
         Me.Controls.Add(Me.btnLoad)
         Me.Controls.Add(Me.btnNew)
         Me.Name = "MenuS"
         Me.Text = "Menu"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -95,5 +95,5 @@ Partial Class MenuS
     Friend WithEvents btnLoad As System.Windows.Forms.Button
     Friend WithEvents btnExit As System.Windows.Forms.Button
     Friend WithEvents btnAbout As System.Windows.Forms.Button
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents picLogo As System.Windows.Forms.PictureBox
 End Class
