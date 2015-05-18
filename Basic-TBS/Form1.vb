@@ -31,6 +31,7 @@ Public Class Form1
     'The Backups are simply in case they are needed. 
     Private unitList As List(Of clsUnit) = New List(Of clsUnit)
     Private usedUnitList As List(Of clsUnit) = New List(Of clsUnit)
+    Private deadUnitList As List(Of clsUnit) = New List(Of clsUnit)
 
     Private usedUnitListBackup As List(Of Object) = New List(Of Object)
     Private unitListBackup As List(Of Object) = New List(Of Object)
@@ -726,51 +727,63 @@ Public Class Form1
         If mage1Player.unitHealth <= 0 Then
             unit1.Text = "Mage 1 - DEAD"
             Me.Controls.Remove(unitP4)
+            deadUnitList.Add(mage1Player)
         End If
         If mage2Player.unitHealth <= 0 Then
             unit2.Text = "Mage 2 - DEAD"
             Me.Controls.Remove(unitP6)
+            deadUnitList.Add(mage2Player)
         End If
         If warrior1Player.unitHealth <= 0 Then
             unit3.Text = "Warrior 1 - DEAD"
             Me.Controls.Remove(unitP5)
+            deadUnitList.Add(warrior1Player)
         End If
         If warrior2Player.unitHealth <= 0 Then
             unit4.Text = "Warrior 2 - DEAD"
             Me.Controls.Remove(unitP2)
+            deadUnitList.Add(warrior2Player)
         End If
         If archer1Player.unitHealth <= 0 Then
             unit5.Text = "Archer 1 - DEAD"
             Me.Controls.Remove(unitP1)
+            deadUnitList.Add(archer1Player)
         End If
         If archer2Player.unitHealth <= 0 Then
             unit6.Text = "Archer 2 - DEAD"
             Me.Controls.Remove(unitP3)
+            deadUnitList.Add(archer2Player)
         End If
 
         If mage1Computer.unitHealth <= 0 Then
             eUnit1.Text = "Mage 1 - DEAD"
             Me.Controls.Remove(unitE4)
+            deadUnitList.Add(mage1Computer)
         End If
         If mage2Computer.unitHealth <= 0 Then
             eUnit2.Text = "Mage 2 - DEAD"
             Me.Controls.Remove(unitE6)
+            deadUnitList.Add(mage2Computer)
         End If
         If warrior1Computer.unitHealth <= 0 Then
             eUnit3.Text = "Warrior 1 - DEAD"
             Me.Controls.Remove(unitE5)
+            deadUnitList.Add(warrior1Computer)
         End If
         If warrior2Computer.unitHealth <= 0 Then
             eUnit4.Text = "Warrior 2 - DEAD"
             Me.Controls.Remove(unitE2)
+            deadUnitList.Add(warrior2Computer)
         End If
         If archer1Computer.unitHealth <= 0 Then
             eUnit5.Text = "Archer 1 - DEAD"
             Me.Controls.Remove(unitE1)
+            deadUnitList.Add(archer1Computer)
         End If
         If archer2Computer.unitHealth <= 0 Then
             eUnit6.Text = "Archer 2 - DEAD"
             Me.Controls.Remove(unitE3)
+            deadUnitList.Add(archer2Computer)
         End If
         isOver()
     End Sub
@@ -876,6 +889,8 @@ Public Class Form1
             If chrPlayerTurn = "P" Then
                 If usedUnitList(i).unitID = 1 Or usedUnitList(i).unitID = 2 Or usedUnitList(i).unitID = 3 Or usedUnitList(i).unitID = 4 Or usedUnitList(i).unitID = 5 Or usedUnitList(i).unitID = 6 Then
                     i += 1
+                ElseIf deadUnitList(i).unitID = 1 Or deadUnitList(i).unitID = 2 Or deadUnitList(i).unitID = 3 Or deadUnitList(i).unitID = 4 Or deadUnitList(i).unitID = 5 Or deadUnitList(i).unitID = 6 Then
+                    i += 1
                 End If
                 If i = 6 Then
                     MessageBox.Show("The turn of Player 1 is over, begin Player 2.", "Turn Over")
@@ -887,6 +902,8 @@ Public Class Form1
 
             If chrPlayerTurn = "C" Then
                 If usedUnitList(i).unitID = 7 Or usedUnitList(i).unitID = 8 Or usedUnitList(i).unitID = 9 Or usedUnitList(i).unitID = 10 Or usedUnitList(i).unitID = 11 Or usedUnitList(i).unitID = 12 Then
+                    i += 1
+                ElseIf deadUnitList(i).unitID = 7 Or deadUnitList(i).unitID = 8 Or deadUnitList(i).unitID = 9 Or deadUnitList(i).unitID = 10 Or deadUnitList(i).unitID = 11 Or deadUnitList(i).unitID = 12 Then
                     i += 1
                 End If
                 If i = 6 Then
