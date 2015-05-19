@@ -110,7 +110,7 @@ Public Class Form1
         'Error Codes are something borrowed from C and derived languages. It is how I can tell what happened.
         'Error Codes may also be different from an actual error. 
         Dim errorCodeCheck As Integer
-        CheckTurn() 'This merely checks the turn.
+        CheckTurn(selectedUnit) 'This merely checks the turn.
 
         errorCodeCheck = checkUnitUsed(selectedUnit) 'This checks to see if the unit has been used
         If errorCodeCheck = 5 Then
@@ -132,16 +132,14 @@ Public Class Form1
         End If
 
         'This is done to allow us to use a list....
-        selectedUnit = selectedUnit - 1
         errorCodeCheck = useUnit(selectedUnit) 'The unit is checked and then used
         If errorCodeCheck = 0 Then
-            selectedUnit = selectedUnit + 1 'If a unit has not been used it restores the Unit ID
+
         ElseIf errorCodeCheck = 4 Or 5 Then
-            selectedUnit = selectedUnit + 1 'Otherwise it restores the Unit ID
-            Exit Sub 'And exits the sub
+            Exit Sub
         End If
 
-        checkTurnEnd() 'It then checks to see if the turn is over.
+        checkTurnEnd(selectedUnit) 'It then checks to see if the turn is over.
     End Sub
 
     'Function: moveUnit()
@@ -179,7 +177,8 @@ Public Class Form1
             End If
             mage1Player.unitLocX = unitP4.Location.X
             mage1Player.unitLocY = unitP4.Location.Y
-            errorCodeCheck = checkUnitLocation(selectedUnit)
+            unitID = unitID - 1
+            errorCodeCheck = checkUnitLocation(unitID)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP4.Left = unitFirstX
                 Me.unitP4.Top = unitFirstY
@@ -207,7 +206,8 @@ Public Class Form1
             End If
             mage2Player.unitLocX = unitP6.Location.X
             mage2Player.unitLocY = unitP6.Location.Y
-            errorCodeCheck = checkUnitLocation(selectedUnit)
+            unitID = unitID - 1
+            errorCodeCheck = checkUnitLocation(unitID)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP6.Left = unitFirstX
                 Me.unitP6.Top = unitFirstY
@@ -235,7 +235,8 @@ Public Class Form1
             End If
             warrior1Player.unitLocX = unitP5.Location.X
             warrior1Player.unitLocY = unitP5.Location.Y
-            errorCodeCheck = checkUnitLocation(selectedUnit)
+            unitID = unitID - 1
+            errorCodeCheck = checkUnitLocation(unitID)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP5.Left = unitFirstX
                 Me.unitP5.Top = unitFirstY
@@ -263,7 +264,8 @@ Public Class Form1
             End If
             warrior2Player.unitLocX = unitP2.Location.X
             warrior2Player.unitLocY = unitP2.Location.Y
-            errorCodeCheck = checkUnitLocation(selectedUnit)
+            unitID = unitID - 1
+            errorCodeCheck = checkUnitLocation(unitID)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP2.Left = unitFirstX
                 Me.unitP2.Top = unitFirstY
@@ -291,7 +293,8 @@ Public Class Form1
             End If
             archer1Player.unitLocX = unitP1.Location.X
             archer1Player.unitLocY = unitP1.Location.Y
-            errorCodeCheck = checkUnitLocation(selectedUnit)
+            unitID = unitID - 1
+            errorCodeCheck = checkUnitLocation(unitID)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP1.Left = unitFirstX
                 Me.unitP1.Top = unitFirstY
@@ -319,7 +322,8 @@ Public Class Form1
             End If
             archer2Player.unitLocX = unitP3.Location.X
             archer2Player.unitLocY = unitP3.Location.Y
-            errorCodeCheck = checkUnitLocation(selectedUnit)
+            unitID = unitID - 1
+            errorCodeCheck = checkUnitLocation(unitID)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP3.Left = unitFirstX
                 Me.unitP3.Top = unitFirstY
@@ -364,7 +368,8 @@ Public Class Form1
             End If
             mage1Computer.unitLocX = unitE4.Location.X
             mage1Computer.unitLocY = unitE4.Location.Y
-            errorCodeCheck = checkUnitLocation(selectedUnit)
+            unitID = unitID - 1
+            errorCodeCheck = checkUnitLocation(unitID)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE4.Left = unitFirstX
                 Me.unitE4.Top = unitFirstY
@@ -392,7 +397,8 @@ Public Class Form1
             End If
             mage2Computer.unitLocX = unitE6.Location.X
             mage2Computer.unitLocY = unitE6.Location.Y
-            errorCodeCheck = checkUnitLocation(selectedUnit)
+            unitID = unitID - 1
+            errorCodeCheck = checkUnitLocation(unitID)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE6.Left = unitFirstX
                 Me.unitE6.Top = unitFirstY
@@ -420,7 +426,8 @@ Public Class Form1
             End If
             warrior1Computer.unitLocX = unitE5.Location.X
             warrior1Computer.unitLocY = unitE5.Location.Y
-            errorCodeCheck = checkUnitLocation(selectedUnit)
+            unitID = unitID - 1
+            errorCodeCheck = checkUnitLocation(unitID)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE5.Left = unitFirstX
                 Me.unitE5.Top = unitFirstY
@@ -448,7 +455,8 @@ Public Class Form1
             End If
             warrior2Computer.unitLocX = unitE2.Location.X
             warrior2Computer.unitLocY = unitE2.Location.Y
-            errorCodeCheck = checkUnitLocation(selectedUnit)
+            unitID = unitID - 1
+            errorCodeCheck = checkUnitLocation(unitID)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE2.Left = unitFirstX
                 Me.unitE2.Top = unitFirstY
@@ -476,7 +484,8 @@ Public Class Form1
             End If
             archer1Computer.unitLocX = unitE1.Location.X
             archer1Computer.unitLocY = unitE1.Location.Y
-            errorCodeCheck = checkUnitLocation(selectedUnit)
+            unitID = unitID - 1
+            errorCodeCheck = checkUnitLocation(unitID)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE1.Left = unitFirstX
                 Me.unitE1.Top = unitFirstY
@@ -504,7 +513,8 @@ Public Class Form1
             End If
             archer2Computer.unitLocX = unitE3.Location.X
             archer2Computer.unitLocY = unitE3.Location.Y
-            errorCodeCheck = checkUnitLocation(selectedUnit)
+            unitID = unitID - 1
+            errorCodeCheck = checkUnitLocation(unitID)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE3.Left = unitFirstX
                 Me.unitE3.Top = unitFirstY
@@ -523,9 +533,8 @@ Public Class Form1
             selectedUnit = mage1Player.unitID
         ElseIf boolAttacking = True Then
             defUnit = mage1Player.unitID
-            CheckTurn()
+            CheckTurn(selectedUnit)
         End If
-
     End Sub
 
     Private Sub unitP5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles unitP5.Click
@@ -533,7 +542,7 @@ Public Class Form1
             selectedUnit = warrior1Player.unitID
         ElseIf boolAttacking = True Then
             defUnit = warrior1Player.unitID
-            CheckTurn()
+            CheckTurn(selectedUnit)
         End If
     End Sub
 
@@ -542,7 +551,7 @@ Public Class Form1
             selectedUnit = mage2Player.unitID
         ElseIf boolAttacking = True Then
             defUnit = mage2Player.unitID
-            CheckTurn()
+            CheckTurn(selectedUnit)
         End If
     End Sub
 
@@ -551,7 +560,7 @@ Public Class Form1
             selectedUnit = archer1Player.unitID
         ElseIf boolAttacking = True Then
             defUnit = archer1Player.unitID
-            CheckTurn()
+            CheckTurn(selectedUnit)
         End If
     End Sub
 
@@ -560,7 +569,7 @@ Public Class Form1
             selectedUnit = warrior2Player.unitID
         ElseIf boolAttacking = True Then
             defUnit = warrior2Player.unitID
-            CheckTurn()
+            CheckTurn(selectedUnit)
         End If
     End Sub
 
@@ -569,7 +578,7 @@ Public Class Form1
             selectedUnit = archer2Player.unitID
         ElseIf boolAttacking = True Then
             defUnit = archer2Player.unitID
-            CheckTurn()
+            CheckTurn(selectedUnit)
         End If
     End Sub
 
@@ -578,7 +587,7 @@ Public Class Form1
             selectedUnit = mage1Computer.unitID
         ElseIf boolAttacking = True Then
             defUnit = mage1Computer.unitID
-            CheckTurn()
+            CheckTurn(selectedUnit)
         End If
     End Sub
 
@@ -587,7 +596,7 @@ Public Class Form1
             selectedUnit = mage2Computer.unitID
         ElseIf boolAttacking = True Then
             defUnit = mage2Computer.unitID
-            CheckTurn()
+            CheckTurn(selectedUnit)
         End If
     End Sub
 
@@ -596,7 +605,7 @@ Public Class Form1
             selectedUnit = warrior1Computer.unitID
         ElseIf boolAttacking = True Then
             defUnit = warrior1Computer.unitID
-            CheckTurn()
+            CheckTurn(selectedUnit)
         End If
     End Sub
 
@@ -605,7 +614,7 @@ Public Class Form1
             selectedUnit = warrior2Computer.unitID
         ElseIf boolAttacking = True Then
             defUnit = warrior2Computer.unitID
-            CheckTurn()
+            CheckTurn(selectedUnit)
         End If
     End Sub
 
@@ -614,7 +623,7 @@ Public Class Form1
             selectedUnit = archer1Computer.unitID
         ElseIf boolAttacking = True Then
             defUnit = archer1Computer.unitID
-            CheckTurn()
+            CheckTurn(selectedUnit)
         End If
     End Sub
 
@@ -623,24 +632,26 @@ Public Class Form1
             selectedUnit = archer2Computer.unitID
         ElseIf boolAttacking = True Then
             defUnit = archer2Computer.unitID
-            CheckTurn()
+            CheckTurn(selectedUnit)
         End If
     End Sub
     Private Sub btnAttack_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttack.Click
         Dim errorCodeCheck As Integer
-        MessageBox.Show(selectedUnit) 'RM
-        errorCodeCheck = CheckTurn()
+
+        errorCodeCheck = CheckTurn(selectedUnit)
         If errorCodeCheck = 0 Then
             errorCodeCheck = 0
         ElseIf errorCodeCheck = 1 Or 2 Or 3 Then
             Exit Sub
         End If
-        errorCodeCheck = Attacking(True)
+
+        errorCodeCheck = checkUnitUsed(selectedUnit)
         If errorCodeCheck = 0 Then
             errorCodeCheck = 0
         ElseIf errorCodeCheck = 5 Then
             Exit Sub
         End If
+
         boolAttacking = True 'Note use the Movement Values for The check to see if it's valid. 
         MessageBox.Show("Please click the unit you wish to Attack")
     End Sub
@@ -650,59 +661,58 @@ Public Class Form1
     'Parameters: Optional: Boolean - boolDryRun 
     'Returns 0,6, or the output of checkUnitUsed.
     'Note: boolDryRun is depricated. Do not use it. Call checkUnitUsed instead.
-    Private Function Attacking(Optional ByVal boolDryRun As Boolean = False)
+    Private Function Attacking(ByVal defeUnit As Integer, ByVal atkUnit As Integer)
         Dim attackStat As Integer
         Dim healthOfDefending As Integer
         Dim rangeOfAttacking As Integer
         Dim errorCodeCheck As Integer
         Dim unitBuff As Integer
 
-        If boolDryRun = True Then
-            Return checkUnitUsed(selectedUnit)
-        End If
-
         'This is to check to see if the unit can actually attack or not.
-        If (defUnit = -1 And selectedUnit = -1) Or (defUnit = -1 Or selectedUnit = -1) Then
+        If (defeUnit = -1 And atkUnit = -1) Or (defeUnit = -1 Or atkUnit = -1) Then
             MessageBox.Show("ERROR: NO ATTACKING OR DEFNDING UNIT!", "ERROR: INVALID TARGET(S)")
             Return 6 'Error Code 6: Invalid Target(s)
         End If
-        defUnit = defUnit - 1
-        MessageBox.Show(unitList(defUnit).unitID)
-        errorCodeCheck = unitList(selectedUnit).unitAttack(unitList(selectedUnit), unitList(defUnit))
+
+        defeUnit = defeUnit - 1
+        atkUnit = atkUnit - 1
+
+        errorCodeCheck = unitList(atkUnit).unitAttack(unitList(atkUnit), unitList(defeUnit))
         If errorCodeCheck = 0 Then
 
         ElseIf errorCodeCheck = 9 Or errorCodeCheck = 10 Then
             boolAttacking = False
             Return 0
         End If
-        unitBuff = unitListBackup(selectedUnit).unitGetBuffs(selectedUnit, defUnit, unitList)
-        errorCodeCheck = useUnit(selectedUnit)
+
+        unitBuff = unitListBackup(atkUnit).unitGetBuffs(atkUnit, defeUnit, unitList)
+        errorCodeCheck = useUnit(atkUnit)
         If errorCodeCheck = 0 Then
         ElseIf errorCodeCheck = 4 Or 5 Then
             Return 0
         End If
 
-        If selectedUnit = -1 Then
+        If atkUnit = -1 Then
             Return 0
         End If
 
         'This is the actual attacking code.
-        attackStat = unitList(selectedUnit).unitStrength
-        healthOfDefending = unitList(defUnit).unitHealth
-        rangeOfAttacking = unitList(selectedUnit).unitRange
+        attackStat = unitList(atkUnit).unitStrength
+        healthOfDefending = unitList(defeUnit).unitHealth
+        rangeOfAttacking = unitList(atkUnit).unitRange
         healthOfDefending = (healthOfDefending - attackStat) - unitBuff
 
-        unitList(defUnit).unitHealth = healthOfDefending
+        unitList(defeUnit).unitHealth = healthOfDefending
 
-        MessageBox.Show("Unit " & unitList(selectedUnit).unitID & " - " & unitList(selectedUnit).unitTeam _
-        & " attacked " & unitList(defUnit).unitID & " - " & unitList(defUnit).unitTeam & "! The defending unit's health" _
-        & " is " & unitList(defUnit).unitHealth)
-        selectedUnit = selectedUnit + 1
+        MessageBox.Show("Unit " & unitList(atkUnit).unitID & " - " & unitList(atkUnit).unitTeam _
+        & " attacked " & unitList(defeUnit).unitID & " - " & unitList(defeUnit).unitTeam & "! The defending unit's health" _
+        & " is " & unitList(defeUnit).unitHealth)
 
         DisplayUnitStats()
         boolAttacking = False
-        checkTurnEnd()
+        checkTurnEnd(selectedUnit)
         isOver()
+
         Return 0
     End Function
 
@@ -791,64 +801,61 @@ Public Class Form1
     'Function: CheckTurn()
     'Summary: Checks the current turn and also checks to see if attacking is possible
     'Returns: Integer - 0, 1, 2, or 3
-    Private Function CheckTurn()
+    Private Function CheckTurn(ByVal unitID)
         isOver()
         'NOTE: This returns an "ERROR LEVEL". I took the concept from C. Because there are 3 "errors" possible
         'There are 4 error Codes: 0 - Success: No Error encountered; 1 - INVALID UNIT: Attacking unit on wrong team; 
         '2 - INVALID UNIT: No Unit selected; 3 - Attacking Teamed Unit: Defending Unit on wrong team.
 
-        selectedUnit = selectedUnit - 1
+        unitID = unitID - 1
         If chrPlayerTurn = "P" Then
-            If selectedUnit > -1 Then
-                If unitList(selectedUnit).unitTeam = "Computer" Then
-                    selectedUnit = -1
+            If unitID > -1 Then
+                If unitList(unitID).unitTeam = "Computer" Then
+                    unitID = -1
                     MessageBox.Show("ERROR: PLEASE SELECT A UNIT ON YOUR TEAM!", "ERROR: INVALID UNIT")
                     Return 1
                 End If
             End If
-            If selectedUnit = -1 Then
+            If unitID = -1 Then
                 MessageBox.Show("ERROR: PLEASE SELECT A UNIT!", "ERROR: INVALID UNIT")
                 Return 2
             End If
 
             If boolAttacking = True Then
                 If unitList(defUnit).unitTeam = "Computer" Then
-                    Attacking()
+                    Attacking(defUnit, selectedUnit)
                     defUnit = defUnit + 1
                 Else
                     defUnit = -1
                     MessageBox.Show("ERROR! PLEASE CHOOSE A NON-TEAMED UNIT!", "ERROR: ATTACKING TEAM-MATE")
-                    selectedUnit = selectedUnit + 1
                     Return 3
                 End If
             End If
 
         ElseIf chrPlayerTurn = "C" Then
-            If selectedUnit > -1 Then
-                If unitList(selectedUnit).unitTeam = "Player" Then
-                    selectedUnit = -1
+            If unitID > -1 Then
+                If unitList(unitID).unitTeam = "Player" Then
+                    unitID = -1
                     MessageBox.Show("ERROR: PLEASE SELECT A UNIT ON YOUR TEAM!", "ERROR: INVALID UNIT")
                     Return 1
                 End If
             End If
-            If selectedUnit = -1 Then
+            If unitID = -1 Then
                 MessageBox.Show("ERROR: PLEASE SELECT A UNIT!", "ERROR: INVALID UNIT")
                 Return 2
             End If
 
             If boolAttacking = True Then
                 If unitList(defUnit).unitTeam = "Player" Then
-                    Attacking()
+                    Attacking(defUnit, selectedUnit)
                 Else
                     defUnit = -1
                     MessageBox.Show("ERROR! PLEASE CHOOSE A NON-TEAMED UNIT!", "ERROR: ATTACKING TEAM-MATE")
-                    selectedUnit = selectedUnit + 1
                     Return 3
                 End If
             End If
         End If
 
-        selectedUnit = selectedUnit + 1
         Return 0
     End Function
 
@@ -873,17 +880,16 @@ Public Class Form1
         End While
 
         usedUnitList.Add(unitList(unit))
-        unit = unit + 1
         Return 0 'Error Code 0: Successful Run
     End Function
 
 
-    Private Sub checkTurnEnd() 'Checks the turn's end
+    Private Sub checkTurnEnd(ByVal unitID As Integer) 'Checks the turn's end
         'These are used to iterate through the while loops
         Dim i As Integer = 0
         Dim x As Integer = 0
 
-        selectedUnit = selectedUnit - 1
+        unitID = unitID - 1
 
         While i < usedUnitList.Count
             If chrPlayerTurn = "P" Then
@@ -968,7 +974,6 @@ Public Class Form1
             i += 1
         End While
 
-        unit = unit + 1
         Return 0
     End Function
 
@@ -976,7 +981,11 @@ Public Class Form1
         Dim file As System.IO.StreamWriter
         Dim i As Integer = 0
         Dim x As Integer = 0
+<<<<<<< HEAD
         file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "/saves/CoronTorak-Save.txt", False)
+=======
+        file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt", False)
+>>>>>>> 60fd0bdb2c8332fcc89acc83d16d1404c4503b92
 
         If chrPlayerTurn = "P" Then
             file.WriteLine("Turn1")
@@ -988,7 +997,6 @@ Public Class Form1
             Dim isUsed As Boolean = False
             While x < usedUnitList.Count
                 If usedUnitList(x).unitID = unitList(i).unitID Then
-                    MessageBox.Show("T")
                     isUsed = True
                     Exit While
                 End If
