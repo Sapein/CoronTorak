@@ -879,7 +879,7 @@ Public Class Form1
 
         While i < usedUnitList.Count
             If chrPlayerTurn = "P" Then
-                If usedUnitList(i).unitID = 1 Or usedUnitList(i).unitID = 2 Or usedUnitList(i).unitID = 3 Or usedUnitList(i).unitID = 4 Or usedUnitList(i).unitID = 5 Or usedUnitList(i).unitID = 6 Then
+                If usedUnitList(i).unitID = 0 Or usedUnitList(i).unitID = 1 Or usedUnitList(i).unitID = 2 Or usedUnitList(i).unitID = 3 Or usedUnitList(i).unitID = 4 Or usedUnitList(i).unitID = 5 Then
                     i += 1
                 End If
                 If i = 6 Then
@@ -891,7 +891,7 @@ Public Class Form1
             End If
 
             If chrPlayerTurn = "C" Then
-                If usedUnitList(i).unitID = 7 Or usedUnitList(i).unitID = 8 Or usedUnitList(i).unitID = 9 Or usedUnitList(i).unitID = 10 Or usedUnitList(i).unitID = 11 Or usedUnitList(i).unitID = 12 Then
+                If usedUnitList(i).unitID = 6 Or usedUnitList(i).unitID = 7 Or usedUnitList(i).unitID = 8 Or usedUnitList(i).unitID = 9 Or usedUnitList(i).unitID = 10 Or usedUnitList(i).unitID = 11 Then
                     i += 1
                 End If
                 If i = 6 Then
