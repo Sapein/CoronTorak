@@ -64,7 +64,7 @@ Public Class Form1
         'Initializes Player Units
         mage1Player.unitInitialize(0, "Player", "unitP4", unitP4.Location.X, unitP4.Location.Y)
         mage2Player.unitInitialize(1, "Player", "unitP6", unitP6.Location.X, unitP6.Location.Y)
-        warrior1Player.unitInitialize(1, "Player", "unitP5", unitP5.Location.X, unitP5.Location.Y)
+        warrior1Player.unitInitialize(2, "Player", "unitP5", unitP5.Location.X, unitP5.Location.Y)
         warrior2Player.unitInitialize(3, "Player", "unitP2", unitP2.Location.X, unitP2.Location.Y)
         archer1Player.unitInitialize(4, "Player", "unitP1", unitP1.Location.X, unitP1.Location.Y)
         archer2Player.unitInitialize(5, "Player", "unitP3", unitP3.Location.X, unitP3.Location.Y)
@@ -139,7 +139,7 @@ Public Class Form1
             Exit Sub
         End If
 
-        checkTurnEnd(selectedUnit) 'It then checks to see if the turn is over.
+        checkTurnEnd() 'It then checks to see if the turn is over.
     End Sub
 
     'Function: moveUnit()
@@ -695,7 +695,7 @@ Public Class Form1
 
         DisplayUnitStats()
         boolAttacking = False
-        checkTurnEnd(selectedUnit)
+        checkTurnEnd()
         isOver()
 
         Return 0
@@ -770,7 +770,7 @@ Public Class Form1
             eUnit4.Text = "Warrior 2 - DEAD"
             Me.Controls.Remove(unitE2)
             deadUnitList.Add(warrior2Computer)
-            addUnitToDead(0)
+            addUnitToDead(9)
         End If
         If archer1Computer.unitHealth <= 0 Then
             eUnit5.Text = "Archer 1 - DEAD"
@@ -865,19 +865,19 @@ Public Class Form1
             End If
             i += 1
         End While
-
         usedUnitList.Add(unitList(unit))
         Return 0 'Error Code 0: Successful Run
     End Function
 
 
-    Private Sub checkTurnEnd(Optional ByVal unitIC As Integer = -1) 'Checks the turn's end
+    Private Sub checkTurnEnd() 'Checks the turn's end
         'These are used to iterate through the while loops
         Dim i As Integer = 0
         Dim x As Integer = 0
         Dim d As Integer = 0
 
         While i < usedUnitList.Count
+            MsgBox(usedUnitList(i).unitID)
             If chrPlayerTurn = "P" Then
                 If usedUnitList(i).unitID = 0 Or usedUnitList(i).unitID = 1 Or usedUnitList(i).unitID = 2 Or usedUnitList(i).unitID = 3 Or usedUnitList(i).unitID = 4 Or usedUnitList(i).unitID = 5 Then
                     i += 1
@@ -907,7 +907,6 @@ Public Class Form1
             If chrPlayerTurn = "P" Then
                 If deadUnitList(d).unitID = 0 Or deadUnitList(d).unitID = 1 Or deadUnitList(d).unitID = 2 Or deadUnitList(d).unitID = 3 Or deadUnitList(d).unitID = 4 Or deadUnitList(d).unitID = 5 Then
                     i += 1
-                    d += 1
                 End If
                 If i = 6 Then
                     MessageBox.Show("The turn of Player 1 is over, begin Player 2.", "Turn Over")
@@ -920,7 +919,6 @@ Public Class Form1
             If chrPlayerTurn = "C" Then
                 If deadUnitList(d).unitID = 6 Or deadUnitList(d).unitID = 7 Or deadUnitList(d).unitID = 8 Or deadUnitList(d).unitID = 9 Or deadUnitList(d).unitID = 10 Or deadUnitList(d).unitID = 11 Then
                     i += 1
-                    d += 1
                 End If
                 If i = 6 Then
                     MessageBox.Show("The turn of Player 2 is over, begin Player 1.", "Turn Over")
@@ -929,6 +927,7 @@ Public Class Form1
                     Exit Sub
                 End If
             End If
+            d += 1
         End While
 
         selectedUnit = -1
@@ -992,7 +991,7 @@ Public Class Form1
 
         file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "/saves/CoronTorak-Save.txt", False)
 
-        file.WriteLine("Save File Formaat Version: 2.0")
+        file.WriteLine("2.0")
         If chrPlayerTurn = "P" Then
             file.WriteLine("Turn1")
         ElseIf chrPlayerTurn = "C" Then
@@ -1036,9 +1035,11 @@ Public Class Form1
 
                     For Each currentField In currentRow
                         'Checks to see if the line is the 'Turn Line'
-                        If currentField = "Save File Formaat Version: 2.0" Then
-
-                        ElseIf currentField = "Turn1" Then
+                        If currentField = "2.0" Then
+                            loadNewFormat()
+                            Exit Sub
+                        End If
+                        If currentField = "Turn1" Then
                             chrPlayerTurn = "P"
                         ElseIf currentField = "Turn2" Then
                             chrPlayerTurn = "C"
@@ -1099,7 +1100,7 @@ Public Class Form1
 
         While i < deadUnitList.Count
             If unitList(unitNum).unitID = deadUnitList(i).unitID Then
-                Exit Sub
+                Exit While
             End If
             i += 1
         End While
