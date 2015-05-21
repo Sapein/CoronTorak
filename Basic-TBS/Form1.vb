@@ -889,7 +889,7 @@ Public Class Form1
 
         While d < deadUnitList.Count
             If chrPlayerTurn = "P" Then
-                If deadUnitList(d).unitID = 1 Or deadUnitList(d).unitID = 2 Or deadUnitList(d).unitID = 3 Or deadUnitList(d).unitID = 4 Or deadUnitList(d).unitID = 5 Or deadUnitList(d).unitID = 6 Then
+                If deadUnitList(d).unitID = 0 Or deadUnitList(d).unitID = 1 Or deadUnitList(d).unitID = 2 Or deadUnitList(d).unitID = 3 Or deadUnitList(d).unitID = 4 Or deadUnitList(d).unitID = 5 Then
                     i += 1
                     d += 1
                 End If
@@ -902,7 +902,7 @@ Public Class Form1
             End If
 
             If chrPlayerTurn = "C" Then
-                If deadUnitList(d).unitID = 7 Or deadUnitList(d).unitID = 8 Or deadUnitList(d).unitID = 9 Or deadUnitList(d).unitID = 10 Or deadUnitList(d).unitID = 11 Or deadUnitList(d).unitID = 12 Then
+                If deadUnitList(d).unitID = 6 Or deadUnitList(d).unitID = 7 Or deadUnitList(d).unitID = 8 Or deadUnitList(d).unitID = 9 Or deadUnitList(d).unitID = 10 Or deadUnitList(d).unitID = 11 Then
                     i += 1
                     d += 1
                 End If
