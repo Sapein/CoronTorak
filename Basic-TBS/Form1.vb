@@ -46,20 +46,20 @@ Public Class Form1
 
         'The next two sections initizalize and create the units, setting everything that is needed about them.
         'Initializes Player Units
-        mage1Player.unitInitialize(1, "Player", "unitP4", unitP4.Location.X, unitP4.Location.Y)
-        mage2Player.unitInitialize(2, "Player", "unitP6", unitP6.Location.X, unitP6.Location.Y)
-        warrior1Player.unitInitialize(3, "Player", "unitP5", unitP5.Location.X, unitP5.Location.Y)
-        warrior2Player.unitInitialize(4, "Player", "unitP2", unitP2.Location.X, unitP2.Location.Y)
-        archer1Player.unitInitialize(5, "Player", "unitP1", unitP1.Location.X, unitP1.Location.Y)
-        archer2Player.unitInitialize(6, "Player", "unitP3", unitP3.Location.X, unitP3.Location.Y)
+        mage1Player.unitInitialize(0, "Player", "unitP4", unitP4.Location.X, unitP4.Location.Y)
+        mage2Player.unitInitialize(1, "Player", "unitP6", unitP6.Location.X, unitP6.Location.Y)
+        warrior1Player.unitInitialize(1, "Player", "unitP5", unitP5.Location.X, unitP5.Location.Y)
+        warrior2Player.unitInitialize(3, "Player", "unitP2", unitP2.Location.X, unitP2.Location.Y)
+        archer1Player.unitInitialize(4, "Player", "unitP1", unitP1.Location.X, unitP1.Location.Y)
+        archer2Player.unitInitialize(5, "Player", "unitP3", unitP3.Location.X, unitP3.Location.Y)
 
         'Initalizes Computer Units
-        mage1Computer.unitInitialize(7, "Computer", "unitE4", unitE4.Location.X, unitE4.Location.Y)
-        mage2Computer.unitInitialize(8, "Computer", "unitE6", unitE6.Location.X, unitE6.Location.Y)
-        warrior1Computer.unitInitialize(9, "Computer", "unitE5", unitE5.Location.X, unitE5.Location.Y)
-        warrior2Computer.unitInitialize(10, "Computer", "unitE2", unitE2.Location.X, unitE2.Location.Y)
-        archer1Computer.unitInitialize(11, "Computer", "unitE1", unitE1.Location.X, unitE1.Location.Y)
-        archer2Computer.unitInitialize(12, "Computer", "unitE3", unitE3.Location.X, unitE3.Location.Y)
+        mage1Computer.unitInitialize(6, "Computer", "unitE4", unitE4.Location.X, unitE4.Location.Y)
+        mage2Computer.unitInitialize(7, "Computer", "unitE6", unitE6.Location.X, unitE6.Location.Y)
+        warrior1Computer.unitInitialize(8, "Computer", "unitE5", unitE5.Location.X, unitE5.Location.Y)
+        warrior2Computer.unitInitialize(9, "Computer", "unitE2", unitE2.Location.X, unitE2.Location.Y)
+        archer1Computer.unitInitialize(10, "Computer", "unitE1", unitE1.Location.X, unitE1.Location.Y)
+        archer2Computer.unitInitialize(11, "Computer", "unitE3", unitE3.Location.X, unitE3.Location.Y)
 
         'This simply adds them to the unitList list so this way we can find them quickly without having to code 
         'each unit's reaction. 
@@ -130,7 +130,7 @@ Public Class Form1
     'Parameters: unitID - The ID of the Unit to move from either defUnit or selectUnit
     'Summary: Moves the unit for the player (Player 1)
     'Returns: Integer-0,11,12,13 (Error Codes)
-    Private Function moveUnit(ByVal unitID)
+    Private Function moveUnit(ByVal unitNum)
         Dim moveDirection As String
         Dim errorCodeCheck As Integer
         Dim unitFirstX As Integer
@@ -142,7 +142,7 @@ Public Class Form1
             Return 0 'Just makes sure it is the player's turn.
         End If
 
-        If unitID = mage1Player.unitID Then
+        If unitNum = mage1Player.unitID Then
             unitFirstY = Me.unitP4.Top
             unitFirstX = Me.unitP4.Left
             moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
@@ -161,8 +161,7 @@ Public Class Form1
             End If
             mage1Player.unitLocX = unitP4.Location.X
             mage1Player.unitLocY = unitP4.Location.Y
-            unitID = unitID - 1
-            errorCodeCheck = checkUnitLocation(unitID)
+            errorCodeCheck = checkUnitLocation(selectedUnit)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP4.Left = unitFirstX
                 Me.unitP4.Top = unitFirstY
@@ -171,7 +170,7 @@ Public Class Form1
                 Return 11 'Error Code 11: Unable to Move (General Error Code)
             End If
             Return 0
-        ElseIf unitID = mage2Player.unitID Then
+        ElseIf unitNum = mage2Player.unitID Then
             unitFirstY = Me.unitP6.Top
             unitFirstX = Me.unitP6.Left
             moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
@@ -190,8 +189,7 @@ Public Class Form1
             End If
             mage2Player.unitLocX = unitP6.Location.X
             mage2Player.unitLocY = unitP6.Location.Y
-            unitID = unitID - 1
-            errorCodeCheck = checkUnitLocation(unitID)
+            errorCodeCheck = checkUnitLocation(selectedUnit)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP6.Left = unitFirstX
                 Me.unitP6.Top = unitFirstY
@@ -200,7 +198,7 @@ Public Class Form1
                 Return 11
             End If
             Return 0
-        ElseIf unitID = warrior1Player.unitID Then
+        ElseIf unitNum = warrior1Player.unitID Then
             unitFirstY = Me.unitP5.Top
             unitFirstX = Me.unitP5.Left
             moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
@@ -219,8 +217,7 @@ Public Class Form1
             End If
             warrior1Player.unitLocX = unitP5.Location.X
             warrior1Player.unitLocY = unitP5.Location.Y
-            unitID = unitID - 1
-            errorCodeCheck = checkUnitLocation(unitID)
+            errorCodeCheck = checkUnitLocation(selectedUnit)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP5.Left = unitFirstX
                 Me.unitP5.Top = unitFirstY
@@ -229,7 +226,7 @@ Public Class Form1
                 Return 11
             End If
             Return 0
-        ElseIf unitID = warrior2Player.unitID Then
+        ElseIf unitNum = warrior2Player.unitID Then
             unitFirstY = Me.unitP2.Top
             unitFirstX = Me.unitP2.Left
             moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
@@ -248,8 +245,7 @@ Public Class Form1
             End If
             warrior2Player.unitLocX = unitP2.Location.X
             warrior2Player.unitLocY = unitP2.Location.Y
-            unitID = unitID - 1
-            errorCodeCheck = checkUnitLocation(unitID)
+            errorCodeCheck = checkUnitLocation(selectedUnit)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP2.Left = unitFirstX
                 Me.unitP2.Top = unitFirstY
@@ -258,7 +254,7 @@ Public Class Form1
                 Return 11
             End If
             Return 0
-        ElseIf unitID = archer1Player.unitID Then
+        ElseIf unitNum = archer1Player.unitID Then
             unitFirstY = Me.unitP1.Top
             unitFirstX = Me.unitP1.Left
             moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
@@ -277,8 +273,7 @@ Public Class Form1
             End If
             archer1Player.unitLocX = unitP1.Location.X
             archer1Player.unitLocY = unitP1.Location.Y
-            unitID = unitID - 1
-            errorCodeCheck = checkUnitLocation(unitID)
+            errorCodeCheck = checkUnitLocation(selectedUnit)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP1.Left = unitFirstX
                 Me.unitP1.Top = unitFirstY
@@ -287,7 +282,7 @@ Public Class Form1
                 Return 11
             End If
             Return 0
-        ElseIf unitID = archer2Player.unitID Then
+        ElseIf unitNum = archer2Player.unitID Then
             unitFirstY = Me.unitP3.Top
             unitFirstX = Me.unitP3.Left
             moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
@@ -306,8 +301,7 @@ Public Class Form1
             End If
             archer2Player.unitLocX = unitP3.Location.X
             archer2Player.unitLocY = unitP3.Location.Y
-            unitID = unitID - 1
-            errorCodeCheck = checkUnitLocation(unitID)
+            errorCodeCheck = checkUnitLocation(selectedUnit)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitP3.Left = unitFirstX
                 Me.unitP3.Top = unitFirstY
@@ -324,7 +318,7 @@ Public Class Form1
     'Parameters: unitID - The ID of the Unit to move from either defUnit or selectUnit
     'Summary: Moves the unit for the opponent/computer (Player 2)
     'Returns: Integer-0,11,12,13 (Error Codes)
-    Private Function opponentUnitMove(ByVal unitID)
+    Private Function opponentUnitMove(ByVal unitNum)
         Dim moveDirection As String
         Dim errorCodeCheck As Integer
         Dim unitFirstX As Integer
@@ -333,7 +327,7 @@ Public Class Form1
         If chrPlayerTurn = "P" Then
             Return 0
         End If
-        If unitID = mage1Computer.unitID Then
+        If unitNum = mage1Computer.unitID Then
             unitFirstY = Me.unitE4.Top
             unitFirstX = Me.unitE4.Left
             moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
@@ -352,8 +346,7 @@ Public Class Form1
             End If
             mage1Computer.unitLocX = unitE4.Location.X
             mage1Computer.unitLocY = unitE4.Location.Y
-            unitID = unitID - 1
-            errorCodeCheck = checkUnitLocation(unitID)
+            errorCodeCheck = checkUnitLocation(selectedUnit)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE4.Left = unitFirstX
                 Me.unitE4.Top = unitFirstY
@@ -362,7 +355,7 @@ Public Class Form1
                 Return 11
             End If
             Return 0
-        ElseIf unitID = mage2Computer.unitID Then
+        ElseIf unitNum = mage2Computer.unitID Then
             unitFirstY = Me.unitE6.Top
             unitFirstX = Me.unitE6.Left
             moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
@@ -381,8 +374,7 @@ Public Class Form1
             End If
             mage2Computer.unitLocX = unitE6.Location.X
             mage2Computer.unitLocY = unitE6.Location.Y
-            unitID = unitID - 1
-            errorCodeCheck = checkUnitLocation(unitID)
+            errorCodeCheck = checkUnitLocation(selectedUnit)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE6.Left = unitFirstX
                 Me.unitE6.Top = unitFirstY
@@ -391,7 +383,7 @@ Public Class Form1
                 Return 11
             End If
             Return 0
-        ElseIf unitID = warrior1Computer.unitID Then
+        ElseIf unitNum = warrior1Computer.unitID Then
             unitFirstY = Me.unitE5.Top
             unitFirstX = Me.unitE5.Left
             moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
@@ -410,8 +402,7 @@ Public Class Form1
             End If
             warrior1Computer.unitLocX = unitE5.Location.X
             warrior1Computer.unitLocY = unitE5.Location.Y
-            unitID = unitID - 1
-            errorCodeCheck = checkUnitLocation(unitID)
+            errorCodeCheck = checkUnitLocation(selectedUnit)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE5.Left = unitFirstX
                 Me.unitE5.Top = unitFirstY
@@ -420,7 +411,7 @@ Public Class Form1
                 Return 11
             End If
             Return 0
-        ElseIf unitID = warrior2Computer.unitID Then
+        ElseIf unitNum = warrior2Computer.unitID Then
             unitFirstY = Me.unitE2.Top
             unitFirstX = Me.unitE2.Left
             moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
@@ -439,8 +430,7 @@ Public Class Form1
             End If
             warrior2Computer.unitLocX = unitE2.Location.X
             warrior2Computer.unitLocY = unitE2.Location.Y
-            unitID = unitID - 1
-            errorCodeCheck = checkUnitLocation(unitID)
+            errorCodeCheck = checkUnitLocation(selectedUnit)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE2.Left = unitFirstX
                 Me.unitE2.Top = unitFirstY
@@ -449,7 +439,7 @@ Public Class Form1
                 Return 11
             End If
             Return 0
-        ElseIf unitID = archer1Computer.unitID Then
+        ElseIf unitNum = archer1Computer.unitID Then
             unitFirstY = Me.unitE1.Top
             unitFirstX = Me.unitE1.Left
             moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
@@ -468,8 +458,7 @@ Public Class Form1
             End If
             archer1Computer.unitLocX = unitE1.Location.X
             archer1Computer.unitLocY = unitE1.Location.Y
-            unitID = unitID - 1
-            errorCodeCheck = checkUnitLocation(unitID)
+            errorCodeCheck = checkUnitLocation(selectedUnit)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE1.Left = unitFirstX
                 Me.unitE1.Top = unitFirstY
@@ -478,7 +467,7 @@ Public Class Form1
                 Return 11
             End If
             Return 0
-        ElseIf unitID = archer2Computer.unitID Then
+        ElseIf unitNum = archer2Computer.unitID Then
             unitFirstY = Me.unitE3.Top
             unitFirstX = Me.unitE3.Left
             moveDirection = InputBox("Please enter a direction: Up, Down, Left, Right, or Pass", "Basic-TBS: Movement")
@@ -497,8 +486,7 @@ Public Class Form1
             End If
             archer2Computer.unitLocX = unitE3.Location.X
             archer2Computer.unitLocY = unitE3.Location.Y
-            unitID = unitID - 1
-            errorCodeCheck = checkUnitLocation(unitID)
+            errorCodeCheck = checkUnitLocation(selectedUnit)
             If errorCodeCheck = 7 Or errorCodeCheck = 8 Then
                 Me.unitE3.Left = unitFirstX
                 Me.unitE3.Top = unitFirstY
@@ -658,9 +646,6 @@ Public Class Form1
             Return 6 'Error Code 6: Invalid Target(s)
         End If
 
-        defeUnit = defeUnit - 1
-        atkUnit = atkUnit - 1
-
         errorCodeCheck = unitList(atkUnit).unitAttack(unitList(atkUnit), unitList(defeUnit))
         If errorCodeCheck = 0 Then
 
@@ -721,63 +706,66 @@ Public Class Form1
         If mage1Player.unitHealth <= 0 Then
             unit1.Text = "Mage 1 - DEAD"
             Me.Controls.Remove(unitP4)
-            deadUnitList.Add(mage1Player)
+            addUnitToDead(0)
         End If
         If mage2Player.unitHealth <= 0 Then
             unit2.Text = "Mage 2 - DEAD"
             Me.Controls.Remove(unitP6)
-            deadUnitList.Add(mage2Player)
+            addUnitToDead(1)
         End If
         If warrior1Player.unitHealth <= 0 Then
             unit3.Text = "Warrior 1 - DEAD"
             Me.Controls.Remove(unitP5)
-            deadUnitList.Add(warrior1Player)
+            addUnitToDead(2)
         End If
         If warrior2Player.unitHealth <= 0 Then
             unit4.Text = "Warrior 2 - DEAD"
             Me.Controls.Remove(unitP2)
-            deadUnitList.Add(warrior2Player)
+            addUnitToDead(3)
         End If
         If archer1Player.unitHealth <= 0 Then
             unit5.Text = "Archer 1 - DEAD"
             Me.Controls.Remove(unitP1)
-            deadUnitList.Add(archer1Player)
+            addUnitToDead(4)
         End If
         If archer2Player.unitHealth <= 0 Then
             unit6.Text = "Archer 2 - DEAD"
             Me.Controls.Remove(unitP3)
-            deadUnitList.Add(archer2Player)
+            addUnitToDead(5)
         End If
 
         If mage1Computer.unitHealth <= 0 Then
             eUnit1.Text = "Mage 1 - DEAD"
             Me.Controls.Remove(unitE4)
-            deadUnitList.Add(mage1Computer)
+            addUnitToDead(6)
         End If
         If mage2Computer.unitHealth <= 0 Then
             eUnit2.Text = "Mage 2 - DEAD"
             Me.Controls.Remove(unitE6)
             deadUnitList.Add(mage2Computer)
+            addUnitToDead(7)
         End If
         If warrior1Computer.unitHealth <= 0 Then
             eUnit3.Text = "Warrior 1 - DEAD"
             Me.Controls.Remove(unitE5)
-            deadUnitList.Add(warrior1Computer)
+            addUnitToDead(8)
         End If
         If warrior2Computer.unitHealth <= 0 Then
             eUnit4.Text = "Warrior 2 - DEAD"
             Me.Controls.Remove(unitE2)
             deadUnitList.Add(warrior2Computer)
+            addUnitToDead(0)
         End If
         If archer1Computer.unitHealth <= 0 Then
             eUnit5.Text = "Archer 1 - DEAD"
             Me.Controls.Remove(unitE1)
             deadUnitList.Add(archer1Computer)
+            addUnitToDead(10)
         End If
         If archer2Computer.unitHealth <= 0 Then
             eUnit6.Text = "Archer 2 - DEAD"
             Me.Controls.Remove(unitE3)
-            deadUnitList.Add(archer2Computer)
+            addUnitToDead(11)
         End If
         isOver()
     End Sub
@@ -785,22 +773,21 @@ Public Class Form1
     'Function: CheckTurn()
     'Summary: Checks the current turn and also checks to see if attacking is possible
     'Returns: Integer - 0, 1, 2, or 3
-    Private Function CheckTurn(ByVal unitID)
+    Private Function CheckTurn(ByVal unitNum)
         isOver()
         'NOTE: This returns an "ERROR LEVEL". I took the concept from C. Because there are 3 "errors" possible
         'There are 4 error Codes: 0 - Success: No Error encountered; 1 - INVALID UNIT: Attacking unit on wrong team; 
         '2 - INVALID UNIT: No Unit selected; 3 - Attacking Teamed Unit: Defending Unit on wrong team.
 
-        unitID = unitID - 1
         If chrPlayerTurn = "P" Then
-            If unitID > -1 Then
-                If unitList(unitID).unitTeam = "Computer" Then
-                    unitID = -1
+            If unitNum > -1 Then
+                If unitList(unitNum).unitTeam = "Computer" Then
+                    selectedUnit = -1
                     MessageBox.Show("ERROR: PLEASE SELECT A UNIT ON YOUR TEAM!", "ERROR: INVALID UNIT")
                     Return 1
                 End If
             End If
-            If unitID = -1 Then
+            If selectedUnit = -1 Then
                 MessageBox.Show("ERROR: PLEASE SELECT A UNIT!", "ERROR: INVALID UNIT")
                 Return 2
             End If
@@ -817,14 +804,14 @@ Public Class Form1
             End If
 
         ElseIf chrPlayerTurn = "C" Then
-            If unitID > -1 Then
-                If unitList(unitID).unitTeam = "Player" Then
-                    unitID = -1
+            If unitNum > -1 Then
+                If unitList(unitNum).unitTeam = "Player" Then
+                    selectedUnit = -1
                     MessageBox.Show("ERROR: PLEASE SELECT A UNIT ON YOUR TEAM!", "ERROR: INVALID UNIT")
                     Return 1
                 End If
             End If
-            If unitID = -1 Then
+            If selectedUnit = -1 Then
                 MessageBox.Show("ERROR: PLEASE SELECT A UNIT!", "ERROR: INVALID UNIT")
                 Return 2
             End If
@@ -868,18 +855,15 @@ Public Class Form1
     End Function
 
 
-    Private Sub checkTurnEnd(ByVal unitID As Integer) 'Checks the turn's end
+    Private Sub checkTurnEnd(Optional ByVal unitIC As Integer = -1) 'Checks the turn's end
         'These are used to iterate through the while loops
         Dim i As Integer = 0
         Dim x As Integer = 0
-
-        unitID = unitID - 1
+        Dim d As Integer = 0
 
         While i < usedUnitList.Count
             If chrPlayerTurn = "P" Then
                 If usedUnitList(i).unitID = 1 Or usedUnitList(i).unitID = 2 Or usedUnitList(i).unitID = 3 Or usedUnitList(i).unitID = 4 Or usedUnitList(i).unitID = 5 Or usedUnitList(i).unitID = 6 Then
-                    i += 1
-                ElseIf deadUnitList(i).unitID = 1 Or deadUnitList(i).unitID = 2 Or deadUnitList(i).unitID = 3 Or deadUnitList(i).unitID = 4 Or deadUnitList(i).unitID = 5 Or deadUnitList(i).unitID = 6 Then
                     i += 1
                 End If
                 If i = 6 Then
@@ -893,8 +877,34 @@ Public Class Form1
             If chrPlayerTurn = "C" Then
                 If usedUnitList(i).unitID = 7 Or usedUnitList(i).unitID = 8 Or usedUnitList(i).unitID = 9 Or usedUnitList(i).unitID = 10 Or usedUnitList(i).unitID = 11 Or usedUnitList(i).unitID = 12 Then
                     i += 1
-                ElseIf deadUnitList(i).unitID = 7 Or deadUnitList(i).unitID = 8 Or deadUnitList(i).unitID = 9 Or deadUnitList(i).unitID = 10 Or deadUnitList(i).unitID = 11 Or deadUnitList(i).unitID = 12 Then
+                End If
+                If i = 6 Then
+                    MessageBox.Show("The turn of Player 2 is over, begin Player 1.", "Turn Over")
+                    usedUnitList.Clear()
+                    chrPlayerTurn = "P"
+                    Exit Sub
+                End If
+            End If
+        End While
+
+        While d < deadUnitList.Count
+            If chrPlayerTurn = "P" Then
+                If deadUnitList(d).unitID = 1 Or deadUnitList(d).unitID = 2 Or deadUnitList(d).unitID = 3 Or deadUnitList(d).unitID = 4 Or deadUnitList(d).unitID = 5 Or deadUnitList(d).unitID = 6 Then
                     i += 1
+                    d += 1
+                End If
+                If i = 6 Then
+                    MessageBox.Show("The turn of Player 1 is over, begin Player 2.", "Turn Over")
+                    usedUnitList.Clear()
+                    chrPlayerTurn = "C"
+                    Exit Sub
+                End If
+            End If
+
+            If chrPlayerTurn = "C" Then
+                If deadUnitList(d).unitID = 7 Or deadUnitList(d).unitID = 8 Or deadUnitList(d).unitID = 9 Or deadUnitList(d).unitID = 10 Or deadUnitList(d).unitID = 11 Or deadUnitList(d).unitID = 12 Then
+                    i += 1
+                    d += 1
                 End If
                 If i = 6 Then
                     MessageBox.Show("The turn of Player 2 is over, begin Player 1.", "Turn Over")
@@ -914,7 +924,6 @@ Public Class Form1
     'Returns: Integer - 0, 7, or 8
     Private Function checkUnitLocation(ByVal unitA As Integer)
         Dim i As Integer
-        unitA = unitA - 1
         While i < unitList.Count
             If unitList(unitA).unitLocX = unitList(i).unitLocX And unitList(unitA).unitLocY = unitList(i).unitLocY Then
                 If unitList(unitA).unitID = unitList(i).unitID Then
@@ -942,7 +951,6 @@ Public Class Form1
     Private Function checkUnitUsed(ByVal unit As Integer)
         Dim i As Integer
 
-        unit = unit - 1
         If i > usedUnitList.Count Or i < 0 Then
             Return 0
         End If
@@ -967,6 +975,7 @@ Public Class Form1
         Dim x As Integer = 0
         file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt", False)
 
+        file.WriteLine("Save File Formaat Version: 2.0")
         If chrPlayerTurn = "P" Then
             file.WriteLine("Turn1")
         ElseIf chrPlayerTurn = "C" Then
@@ -993,6 +1002,95 @@ Public Class Form1
 
     Public Sub loadSave() 'loads the saves
         'Iteration Variables
+        Dim t As Integer = 0
+        Dim i As Integer = 0
+        Dim TX As Integer = 0
+
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt")
+            MyReader.TextFieldType = FileIO.FieldType.Delimited
+            MyReader.SetDelimiters(" ")
+            Dim currentRow As String()
+            While Not MyReader.EndOfData
+                Try
+                    currentRow = MyReader.ReadFields()
+                    Dim currentField As String
+                    Dim x As Integer = 0
+                    Dim unitStuff As List(Of Object) = New List(Of Object)
+
+                    For Each currentField In currentRow
+                        'Checks to see if the line is the 'Turn Line'
+                        If currentField = "Save File Formaat Version: 2.0" Then
+
+                        ElseIf currentField = "Turn1" Then
+                            chrPlayerTurn = "P"
+                        ElseIf currentField = "Turn2" Then
+                            chrPlayerTurn = "C"
+                        Else
+                            unitStuff.Add(currentField)
+                            x += 1
+                        End If
+
+                        If x = 7 Then 'This actually loads up the location of the units, and sets their variables.
+                            unitList(i).unitID = unitStuff(0) - 1
+                            unitList(i).unitAssignedPicBox = unitStuff(2)
+                            unitList(i).unitLocX = unitStuff(3)
+                            unitList(i).unitLocY = unitStuff(4)
+                            unitList(i).unitHealth = unitStuff(5)
+                            t = 0
+                            While t < Me.Controls.Count
+                                TX = 0
+                                If Me.Controls(t).Name.Contains("unitE") Or Me.Controls(t).Name.Contains("unitP") Then
+                                    While TX < unitList.Count
+                                        If Me.Controls(t).Name.Equals(unitList(TX).unitAssignedPicBox) Then
+                                            Me.Controls(t).Location = New Point(unitList(TX).unitLocX, unitList(TX).unitLocY)
+                                        End If
+                                        TX += 1
+                                    End While
+                                End If
+                                t += 1
+                            End While
+
+                            If unitStuff(6) = True Then
+                                useUnit(i)
+                            End If
+                            unitStuff.Clear()
+                            i += 1
+                        End If
+                    Next
+                Catch ex As Microsoft.VisualBasic.FileIO.MalformedLineException
+                End Try
+            End While
+        End Using
+    End Sub
+
+    Public Sub isOver() 'Checks to see if the game is over
+        If mage1Player.unitHealth = 0 And mage2Player.unitHealth = 0 And warrior1Player.unitHealth = 0 And warrior2Player.unitHealth = 0 And archer1Player.unitHealth = 0 And archer2Player.unitHealth = 0 Then
+            MessageBox.Show("Game over")
+            End
+        ElseIf mage1Computer.unitHealth = 0 And mage2Computer.unitHealth = 0 And warrior1Computer.unitHealth = 0 And warrior2Computer.unitHealth = 0 And archer1Computer.unitHealth = 0 And archer2Computer.unitHealth = 0 Then
+            MessageBox.Show("You Win!")
+            End
+        End If
+    End Sub
+
+    Private Sub addUnitToDead(ByVal unitNum)
+        Dim i As Integer = 0
+
+        If unitNum <= -1 Then
+            Exit Sub
+        End If
+
+        While i < deadUnitList.Count
+            If unitList(unitNum).unitID = deadUnitList(i).unitID Then
+                Exit Sub
+            End If
+            i += 1
+        End While
+
+        deadUnitList.Add(unitList(unitNum))
+    End Sub
+
+    Private Sub loadNewFormat()
         Dim t As Integer = 0
         Dim i As Integer = 0
         Dim TX As Integer = 0
@@ -1050,15 +1148,5 @@ Public Class Form1
                 End Try
             End While
         End Using
-    End Sub
-
-    Public Sub isOver() 'Checks to see if the game is over
-        If mage1Player.unitHealth = 0 And mage2Player.unitHealth = 0 And warrior1Player.unitHealth = 0 And warrior2Player.unitHealth = 0 And archer1Player.unitHealth = 0 And archer2Player.unitHealth = 0 Then
-            MessageBox.Show("Game over")
-            End
-        ElseIf mage1Computer.unitHealth = 0 And mage2Computer.unitHealth = 0 And warrior1Computer.unitHealth = 0 And warrior2Computer.unitHealth = 0 And archer1Computer.unitHealth = 0 And archer2Computer.unitHealth = 0 Then
-            MessageBox.Show("You Win!")
-            End
-        End If
     End Sub
 End Class
