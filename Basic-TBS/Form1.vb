@@ -44,22 +44,6 @@ Public Class Form1
         selectedUnit = -1
         defUnit = -1
 
-        'Sets the icons for the player units
-        unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Mage Up Facing Blue.png")
-        unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Mage Up Facing Blue.png")
-        unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Warrior Up Facing Blue.png")
-        unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Warrior Up Facing Blue.png")
-        unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Archer Up Facing Blue.png")
-        unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Archer Up Facing Blue.png")
-
-
-        unitE4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Mage Down Facing Orange.png")
-        unitE6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Mage Down Facing Orange.png")
-        unitE5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Warrior Down Facing Orange.png")
-        unitE2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Warrior Down Facing Orange.png")
-        unitE1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Archer Down Facing Orange.png")
-        unitE3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Archer Down Facing Orange.png")
-
         'The next two sections initizalize and create the units, setting everything that is needed about them.
         'Initializes Player Units
         mage1Player.unitInitialize(0, "Player", "unitP4", unitP4.Location.X, unitP4.Location.Y)
@@ -905,7 +889,7 @@ Public Class Form1
 
         While d < deadUnitList.Count
             If chrPlayerTurn = "P" Then
-                If deadUnitList(d).unitID = 1 Or deadUnitList(d).unitID = 2 Or deadUnitList(d).unitID = 3 Or deadUnitList(d).unitID = 4 Or deadUnitList(d).unitID = 5 Or deadUnitList(d).unitID = 6 Then
+                If deadUnitList(d).unitID = 0 Or deadUnitList(d).unitID = 1 Or deadUnitList(d).unitID = 2 Or deadUnitList(d).unitID = 3 Or deadUnitList(d).unitID = 4 Or deadUnitList(d).unitID = 5 Then
                     i += 1
                     d += 1
                 End If
@@ -918,7 +902,7 @@ Public Class Form1
             End If
 
             If chrPlayerTurn = "C" Then
-                If deadUnitList(d).unitID = 7 Or deadUnitList(d).unitID = 8 Or deadUnitList(d).unitID = 9 Or deadUnitList(d).unitID = 10 Or deadUnitList(d).unitID = 11 Or deadUnitList(d).unitID = 12 Then
+                If deadUnitList(d).unitID = 6 Or deadUnitList(d).unitID = 7 Or deadUnitList(d).unitID = 8 Or deadUnitList(d).unitID = 9 Or deadUnitList(d).unitID = 10 Or deadUnitList(d).unitID = 11 Then
                     i += 1
                     d += 1
                 End If
