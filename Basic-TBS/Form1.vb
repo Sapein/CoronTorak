@@ -795,7 +795,6 @@ Public Class Form1
             If boolAttacking = True Then
                 If unitList(defUnit).unitTeam = "Computer" Then
                     Attacking(defUnit, selectedUnit)
-                    defUnit = defUnit + 1
                 Else
                     defUnit = -1
                     MessageBox.Show("ERROR! PLEASE CHOOSE A NON-TEAMED UNIT!", "ERROR: ATTACKING TEAM-MATE")
@@ -861,7 +860,7 @@ Public Class Form1
         Dim d As Integer = 0
 
         While i < usedUnitList.Count
-            MsgBox(usedUnitList(i).unitID)
+            'MsgBox(usedUnitList(i).unitID)
             If chrPlayerTurn = "P" Then
                 If usedUnitList(i).unitID = 0 Or usedUnitList(i).unitID = 1 Or usedUnitList(i).unitID = 2 Or usedUnitList(i).unitID = 3 Or usedUnitList(i).unitID = 4 Or usedUnitList(i).unitID = 5 Then
                     i += 1
@@ -1084,7 +1083,7 @@ Public Class Form1
 
         While i < deadUnitList.Count
             If unitList(unitNum).unitID = deadUnitList(i).unitID Then
-                Exit While
+                Exit Sub
             End If
             i += 1
         End While
