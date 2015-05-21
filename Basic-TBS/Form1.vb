@@ -44,6 +44,22 @@ Public Class Form1
         selectedUnit = -1
         defUnit = -1
 
+        'Sets the icons for the player units
+        unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Mage Up Facing Blue.png")
+        unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Mage Up Facing Blue.png")
+        unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Warrior Up Facing Blue.png")
+        unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Warrior Up Facing Blue.png")
+        unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Archer Up Facing Blue.png")
+        unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Archer Up Facing Blue.png")
+
+
+        unitE4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Mage Down Facing Orange.png")
+        unitE6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Mage Down Facing Orange.png")
+        unitE5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Warrior Down Facing Orange.png")
+        unitE2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Warrior Down Facing Orange.png")
+        unitE1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Archer Down Facing Orange.png")
+        unitE3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Archer Down Facing Orange.png")
+
         'The next two sections initizalize and create the units, setting everything that is needed about them.
         'Initializes Player Units
         mage1Player.unitInitialize(0, "Player", "unitP4", unitP4.Location.X, unitP4.Location.Y)
@@ -1096,7 +1112,7 @@ Public Class Form1
         Dim i As Integer = 0
         Dim TX As Integer = 0
 
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt")
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "/saves/Corontorak-Save.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited
             MyReader.SetDelimiters(" ")
             Dim currentRow As String()
