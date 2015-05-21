@@ -44,22 +44,6 @@ Public Class Form1
         selectedUnit = -1
         defUnit = -1
 
-        'Sets the icons for the player units
-        unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Mage Up Facing Blue.png")
-        unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Mage Up Facing Blue.png")
-        unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Warrior Up Facing Blue.png")
-        unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Warrior Up Facing Blue.png")
-        unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Archer Up Facing Blue.png")
-        unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Archer Up Facing Blue.png")
-
-
-        unitE4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Mage Down Facing Orange.png")
-        unitE6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Mage Down Facing Orange.png")
-        unitE5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Warrior Down Facing Orange.png")
-        unitE2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Warrior Down Facing Orange.png")
-        unitE1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Archer Down Facing Orange.png")
-        unitE3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "\Sprites\Archer Down Facing Orange.png")
-
         'The next two sections initizalize and create the units, setting everything that is needed about them.
         'Initializes Player Units
         mage1Player.unitInitialize(0, "Player", "unitP4", unitP4.Location.X, unitP4.Location.Y)
@@ -879,7 +863,7 @@ Public Class Form1
 
         While i < usedUnitList.Count
             If chrPlayerTurn = "P" Then
-                If usedUnitList(i).unitID = 1 Or usedUnitList(i).unitID = 2 Or usedUnitList(i).unitID = 3 Or usedUnitList(i).unitID = 4 Or usedUnitList(i).unitID = 5 Or usedUnitList(i).unitID = 6 Then
+                If usedUnitList(i).unitID = 0 Or usedUnitList(i).unitID = 1 Or usedUnitList(i).unitID = 2 Or usedUnitList(i).unitID = 3 Or usedUnitList(i).unitID = 4 Or usedUnitList(i).unitID = 5 Then
                     i += 1
                 End If
                 If i = 6 Then
@@ -891,7 +875,7 @@ Public Class Form1
             End If
 
             If chrPlayerTurn = "C" Then
-                If usedUnitList(i).unitID = 7 Or usedUnitList(i).unitID = 8 Or usedUnitList(i).unitID = 9 Or usedUnitList(i).unitID = 10 Or usedUnitList(i).unitID = 11 Or usedUnitList(i).unitID = 12 Then
+                If usedUnitList(i).unitID = 6 Or usedUnitList(i).unitID = 7 Or usedUnitList(i).unitID = 8 Or usedUnitList(i).unitID = 9 Or usedUnitList(i).unitID = 10 Or usedUnitList(i).unitID = 11 Then
                     i += 1
                 End If
                 If i = 6 Then
@@ -989,11 +973,8 @@ Public Class Form1
         Dim file As System.IO.StreamWriter
         Dim i As Integer = 0
         Dim x As Integer = 0
-<<<<<<< HEAD
-        file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "/saves/CoronTorak-Save.txt", False)
-=======
         file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt", False)
->>>>>>> 60fd0bdb2c8332fcc89acc83d16d1404c4503b92
+
 
         file.WriteLine("Save File Formaat Version: 2.0")
         If chrPlayerTurn = "P" Then
