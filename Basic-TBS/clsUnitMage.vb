@@ -5,7 +5,7 @@ Public Class clsUnitMage
     'Summary: Checks the unit type to get the buffs
     'Parameters: attackingUnit (integer), defUnit(integer), unitList(list)
     'Returns: Integer: -1, 0, or 2
-    Public Function unitGetBuffs(ByVal attackingUnit, ByVal defUnit, ByRef unitList)
+    Public Function unitGetBuffs(ByVal attackingUnit As Integer, ByVal defUnit As Integer, ByRef unitList As Object) As Integer
         Dim defUnitType As String
         defUnitType = checkDefendingUnitType(defUnit, unitList)
 

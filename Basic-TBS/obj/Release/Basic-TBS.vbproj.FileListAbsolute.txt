@@ -1,0 +1,12 @@
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\bin\Release\Basic-TBS.exe
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\bin\Release\Basic-TBS.pdb
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\bin\Release\Basic-TBS.xml
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\obj\Release\Basic_TBS.About.resources
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\obj\Release\Basic_TBS.Form1.resources
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\obj\Release\Basic_TBS.MenuS.resources
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\obj\Release\Basic_TBS.Resources.resources
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\obj\Release\Basic-TBS.vbproj.GenerateResource.Cache
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\obj\Release\Basic-TBS.exe
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\obj\Release\Basic-TBS.xml
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\obj\Release\Basic-TBS.pdb
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\bin\Release\Basic-TBS.exe.config

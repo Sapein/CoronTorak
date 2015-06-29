@@ -12,8 +12,8 @@ Public Class clsUnit
     'Summary: Checks the unit type
     'Parameters: defUnit, unitList
     'Returns: String - warrior, archer, mage
-    Public Function checkDefendingUnitType(ByVal defUnit, ByRef unitList)
-        Dim defendingUnit = defUnit
+    Public Function checkDefendingUnitType(ByVal defUnit As Integer, ByRef unitList As Object) As String
+        Dim defendingUnit As Integer = defUnit
         If unitList(defendingUnit).ToString = "Basic_TBS.clsUnitWarrior" Then
             Return "warrior"
         ElseIf unitList(defendingUnit).ToString = "Basic_TBS.clsUnitArcher" Then
@@ -27,10 +27,10 @@ Public Class clsUnit
     'Summary: Gets the unit distance
     'Parameters: unit1 Object, unit2 Object
     'Returns: Integer - 0, 9, 0r 10
-    Public Function unitAttack(ByVal unit1 As Object, ByVal unit2 As Object)
+    Public Function unitAttack(ByVal unit1 As Object, ByVal unit2 As Object) As Integer
         Dim Distance As Integer
-        Distance = Math.Sqrt((unit1.unitLocX - unit2.unitLocX) ^ 2 + _
-        (unit1.unitLocY - unit2.unitLocY) ^ 2)
+        Distance = CInt(Math.Sqrt(CInt(CDbl((unit1.unitLocX - unit2.unitLocX) ^ 2 + _
+        (unit1.unitLocY - unit2.unitLocY) ^ 2))))
         If Distance > unitRange Then
             MessageBox.Show("UNIT OUT OF RANGE!")
             Return 9 'Error Code - 9: Unit out of Range
