@@ -1,4 +1,5 @@
 Public Class MenuS
+    Public Base_Engine As Object = New Engine()
     Private Sub btnExit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExit.Click
         End
     End Sub
@@ -12,7 +13,7 @@ Public Class MenuS
 
     Private Sub btnLoad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLoad.Click
         'Allows a game to load up
-        Form1.loadGame = "L"c
+        Base_Engine.setLoadGame("L"c)
         Form1.Show()
         Me.Close()
     End Sub

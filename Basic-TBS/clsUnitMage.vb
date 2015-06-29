@@ -19,7 +19,7 @@ Public Class clsUnitMage
     End Function
 
     'Initializes the unit
-    Public Sub unitInitialize(ByVal unitNumber As Integer, ByVal cUnitTeam As String, ByVal assignedArea As String, ByVal LocationX As Integer, ByVal LocationY As Integer, Optional ByVal unitHP As Integer = 5)
+    Public Sub unitInitialize(ByVal unitNumber As Integer, ByVal cUnitTeam As String, ByVal assignedArea As String, ByVal LocationX As Integer, ByVal LocationY As Integer, Optional ByVal unitHP As Integer = 7, Optional ByVal sUnitName As String = "Mage")
         unitSetTeam(cUnitTeam)
         unitAssignedPicBox = assignedArea
         unitID = unitNumber
@@ -28,6 +28,7 @@ Public Class clsUnitMage
         unitRange = 210
         unitLocX = LocationX
         unitLocY = LocationY
+        unitName = sUnitName = 
     End Sub
 
     'Sets the unit Team

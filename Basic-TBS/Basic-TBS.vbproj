@@ -90,6 +90,7 @@
     <Compile Include="clsUnitArcher.vb" />
     <Compile Include="clsUnitMage.vb" />
     <Compile Include="clsUnitWarrior.vb" />
+    <Compile Include="Engine.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +119,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Unit Selection.Designer.vb">
+      <DependentUpon>Unit Selection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Unit Selection.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="About.resx">
@@ -137,6 +144,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unit Selection.resx">
+      <DependentUpon>Unit Selection.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

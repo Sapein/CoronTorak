@@ -1,7 +1,5 @@
 Public Class Form1
     'This project was programmed by Sapein. 
-
-    Public loadGame As Char = "N"c 'This determines if a game should be loaded or not
     Private chrPlayerTurn As Char = "P"c 'This allows us to know what turn it is. P is for Player, C is for Player2
     Private selectedUnit As Integer 'This is what allows us to tell what unit is selected. It uses the Unit ID number
     Private defUnit As Integer 'This allows us to know if a unit is defending and what unit it is. Uses the UID Number
@@ -44,19 +42,43 @@ Public Class Form1
         unitE1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "..\..\..\Sprites\Archer Down Facing Orange.png")
         unitE3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & "..\..\..\Sprites\Archer Down Facing Orange.png")
 
-        unitListBackup.Add(New clsUnitMage)
-        unitListBackup.Add(New clsUnitMage)
-        unitListBackup.Add(New clsUnitWarrior)
-        unitListBackup.Add(New clsUnitWarrior)
-        unitListBackup.Add(New clsUnitArcher)
-        unitListBackup.Add(New clsUnitArcher)
+        For i As Integer = 0 To CInt(MenuS.Base_Engine.getMageAmountP1())
+            If CInt(MenuS.Base_Engine.getMageAmountP1()) = 0 Then
+                Exit For
+            End If
+            unitListBackup.Add(New clsUnitMage)
+        Next
+        For i As Integer = 0 To CInt(MenuS.Base_Engine.getWarriorAmountP1())
+            If CInt(MenuS.Base_Engine.getWarriorAmountP1()) = 0 Then
+                Exit For
+            End If
+            unitListBackup.Add(New clsUnitWarrior)
+        Next
+        For i As Integer = 0 To CInt(MenuS.Base_Engine.getArcherAmountP1())
+            If CInt(MenuS.Base_Engine.getArcherAmountP1()) = 0 Then
+                Exit For
+            End If
+            unitListBackup.Add(New clsUnitArcher)
+        Next
 
-        unitListBackup.Add(New clsUnitMage)
-        unitListBackup.Add(New clsUnitMage)
-        unitListBackup.Add(New clsUnitWarrior)
-        unitListBackup.Add(New clsUnitWarrior)
-        unitListBackup.Add(New clsUnitArcher)
-        unitListBackup.Add(New clsUnitArcher)
+        For i As Integer = 0 To CInt(MenuS.Base_Engine.getMageAmountP2())
+            If CInt(MenuS.Base_Engine.getMageAmountP2()) = 0 Then
+                Exit For
+            End If
+            unitListBackup.Add(New clsUnitMage)
+        Next
+        For i As Integer = 0 To CInt(MenuS.Base_Engine.getWarriorAmountP2())
+            If CInt(MenuS.Base_Engine.getWarriorAmountP2()) = 0 Then
+                Exit For
+            End If
+            unitListBackup.Add(New clsUnitWarrior)
+        Next
+        For i As Integer = 0 To CInt(MenuS.Base_Engine.getArcherAmountP2())
+            If CInt(MenuS.Base_Engine.getArcherAmountP2()) = 0 Then
+                Exit For
+            End If
+            unitListBackup.Add(New clsUnitArcher)
+        Next
 
         'The next two sections initizalize and create the units, setting everything that is needed about them.
         'Initializes Player Units
@@ -84,7 +106,7 @@ Public Class Form1
         Next listItem
 
         'This also checks to see if we need to load a save-game or not.
-        If loadGame = "L"c Then
+        If MenuS.Base_Engine.getLoadGame() = "L"c Then
             loadSave()
         End If
 

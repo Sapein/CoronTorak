@@ -7,6 +7,7 @@ Public Class clsUnit
     Public unitLocY As Integer
     Public unitAssignedPicBox As String
     Public unitID As Integer
+    Public unitName As String
 
     'Function: checkDefendingUnitType()
     'Summary: Checks the unit type

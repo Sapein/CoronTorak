@@ -10,3 +10,4 @@ C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\obj\Release\Bas
 C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\obj\Release\Basic-TBS.xml
 C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\obj\Release\Basic-TBS.pdb
 C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\bin\Release\Basic-TBS.exe.config
+C:\Users\Chandler\Desktop\Other\Programming\CoronTorak\Basic-TBS\obj\Release\Basic_TBS.Unit_Selection.resources
