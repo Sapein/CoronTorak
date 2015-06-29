@@ -19,7 +19,7 @@ Public Class clsUnitWarrior
     End Function
 
     'Initializes the unit
-    Public Sub unitInitialize(ByVal unitNumber As Integer, ByVal cUnitTeam As String, ByVal assignedArea As String, ByVal LocationX As Integer, ByVal LocationY As Integer, Optional ByVal unitHP As Integer = 10)
+    Public Sub unitInitialize(ByVal unitNumber As Integer, ByVal cUnitTeam As String, ByVal assignedArea As String, ByVal LocationX As Integer, ByVal LocationY As Integer, Optional ByVal unitHP As Integer = 7, Optional ByVal sUnitName As String = "Warrior")
         unitSetTeam(cUnitTeam)
         unitAssignedPicBox = assignedArea
         unitHealth = unitHP
@@ -28,6 +28,7 @@ Public Class clsUnitWarrior
         unitLocX = LocationX
         unitLocY = LocationY
         unitID = unitNumber
+        unitName = sUnitName
     End Sub
 
     Public Sub unitSetTeam(ByVal sUnitTeam As String)

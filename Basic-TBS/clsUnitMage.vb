@@ -28,7 +28,7 @@ Public Class clsUnitMage
         unitRange = 210
         unitLocX = LocationX
         unitLocY = LocationY
-        unitName = sUnitName = 
+        unitName = sUnitName
     End Sub
 
     'Sets the unit Team

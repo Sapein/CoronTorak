@@ -1,12 +1,23 @@
 ﻿Public Class Engine
     Private loadGame As Char = "N"c 'This determines if a game should be loaded or not
-    Private mageAmountP1 As Integer
-    Private mageAmountP2 As Integer
-    Private warriorAmountP1 As Integer
-    Private warriorAmountP2 As Integer
-    Private archerAmountP1 As Integer
-    Private archerAmountP2 As Integer
+    Private mageAmountP1 As Integer = 2
+    Private mageAmountP2 As Integer = 2
+    Private warriorAmountP1 As Integer = 2
+    Private warriorAmountP2 As Integer = 2
+    Private archerAmountP1 As Integer = 2
+    Private archerAmountP2 As Integer = 2
+    Public Const BLUE_MAGE As String = "..\..\..\Sprites\Mage Up Facing Blue.png"
+    Public Const BLUE_WARRIOR As String = "..\..\..\Sprites\Warrior Up Facing Blue.png"
+    Public Const BLUE_ARCHER As String = "..\..\..\Sprites\Archer Up Facing Blue.png"
+    Public Const ORANGE_MAGE As String = "..\..\..\Sprites\Mage Down Facing Orange.png"
+    Public Const ORANGE_WARRIOR As String = "..\..\..\Sprites\Warrior Down Facing Orange.png"
+    Public Const ORANGE_ARCHER As String = "..\..\..\Sprites\Archer Down Facing Orange.png"
 
+
+
+
+
+    'Getter and Setters Below
     Public Function getLoadGame() As Char
         Return loadGame
     End Function
