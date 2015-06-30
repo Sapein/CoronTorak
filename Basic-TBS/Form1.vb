@@ -267,6 +267,13 @@ Public Class Form1
                 unitListBackup.Add(New clsUnitArcher)
             End If
 
+            Dim tempStorage As Integer = unitListBackup.Count
+            For i As Integer = unitListBackup.Count To 12
+                If i < 12 Then
+                    unitListBackup.Add(New clsUnitArcher)
+                End If
+            Next
+
             'The next two sections initizalize and create the units, setting everything that is needed about them.
             'Initializes Player Units
             unitListBackup(0).unitInitialize(0, "Player", "unitP4", unitP4.Location.X, unitP4.Location.Y)
@@ -284,34 +291,40 @@ Public Class Form1
             unitListBackup(10).unitInitialize(10, "Computer", "unitE1", unitE1.Location.X, unitE1.Location.Y)
             unitListBackup(11).unitInitialize(11, "Computer", "unitE3", unitE3.Location.X, unitE3.Location.Y)
 
+            For i As Integer = tempStorage To 12
+                If i < 12 Then
+                    unitListBackup(i).unitInitialize(unitListBackup(i).unitID, unitListBackup(i).unitTeam, unitListBackup(i).unitAssignedPicBox, unitListBackup(i).unitLocX, unitListBackup(i).unitLocY, 0, "Non-Existant_Unit")
+                End If
+            Next
+
             If CInt(MenuS.Base_Engine.getMageAmountP1) + CInt(MenuS.Base_Engine.getWarriorAmountP1) + CInt(MenuS.Base_Engine.getArcherAmountP1()) < 6 Then
                 If CInt(MenuS.Base_Engine.getMageAmountP1) = 0 Then
-                    unitListBackup(0).unitHealth = 0
-                    unitListBackup(1).unitHealth = 0
+                    unitListBackup(0).unitInitialize(0, "Player", "unitP4", unitP4.Location.X, unitP4.Location.Y, 0, "Non-Existant_Mage")
+                    unitListBackup(1).unitInitialize(1, "Player", "unitP6", unitP6.Location.X, unitP6.Location.Y, 0, "Non-Existant_Mage")
                 End If
                 If CInt(MenuS.Base_Engine.getWarriorAmountP1()) = 0 Then
-                    unitListBackup(2).unitHealth = 0
-                    unitListBackup(3).unitHealth = 0
+                    unitListBackup(2).unitInitialize(2, "Player", "unitP5", unitP5.Location.X, unitP5.Location.Y, 0, "Non-Existant_Warrior")
+                    unitListBackup(3).unitInitialize(3, "Player", "unitP2", unitP2.Location.X, unitP2.Location.Y, 0, "Non-Existant_Warrior")
                 End If
                 If CInt(MenuS.Base_Engine.getArcherAmountP1()) = 0 Then
-                    unitListBackup(4).unitHealth = 0
-                    unitListBackup(5).unitHealth = 0
+                    unitListBackup(4).unitInitialize(4, "Player", "unitP1", unitP1.Location.X, unitP1.Location.Y, 0, "Non-Existant_Archer")
+                    unitListBackup(5).unitInitialize(5, "Player", "unitP3", unitP3.Location.X, unitP3.Location.Y, 0, "Non-Existant_Archer")
                 End If
             End If
 
 
             If CInt(MenuS.Base_Engine.getMageAmountP2) + CInt(MenuS.Base_Engine.getWarriorAmountP2) + CInt(MenuS.Base_Engine.getArcherAmountP2()) < 6 Then
                 If CInt(MenuS.Base_Engine.getMageAmountP2) = 0 Then
-                    unitListBackup(6).unitHealth = 0
-                    unitListBackup(7).unitHealth = 0
+                    unitListBackup(6).unitInitialize(6, "Computer", "unitE4", unitE4.Location.X, unitE4.Location.Y, 0, "Non-Existant_Mage")
+                    unitListBackup(7).unitInitialize(7, "Computer", "unitE6", unitE6.Location.X, unitE6.Location.Y, 0, "Non-Existant_Mage")
                 End If
                 If CInt(MenuS.Base_Engine.getWarriorAmountP2()) = 0 Then
-                    unitListBackup(8).unitHealth = 0
-                    unitListBackup(9).unitHealth = 0
+                    unitListBackup(8).unitInitialize(8, "Computer", "unitE5", unitE5.Location.X, unitE5.Location.Y, 0, "Non-Existant_Warrior")
+                    unitListBackup(9).unitInitialize(9, "Computer", "unitE2", unitE2.Location.X, unitE2.Location.Y, 0, "Non-Existant_Warrior")
                 End If
                 If CInt(MenuS.Base_Engine.getArcherAmountP2()) = 0 Then
-                    unitListBackup(10).unitHealth = 0
-                    unitListBackup(11).unitHealth = 0
+                    unitListBackup(10).unitInitialize(10, "Computer", "unitE1", unitE1.Location.X, unitE1.Location.Y, 0, "Non-Existant_Archer")
+                    unitListBackup(11).unitInitialize(11, "Computer", "unitE3", unitE3.Location.X, unitE3.Location.Y, 0, "Non-Existant_Archer")
                 End If
             End If
         End If
@@ -928,77 +941,77 @@ Public Class Form1
 
         unit1.Text = (unitList(0).unitName & " - HP: " & unitList(0).unitHealth & " - Atk: " & unitList(0).unitStrength).ToString
         unit2.Text = (unitList(1).unitName & " - HP: " & unitList(1).unitHealth & " - Atk: " & unitList(1).unitStrength).ToString
-        unit3.Text = ("Warrior 1 - HP: " & unitList(2).unitHealth & AttackDisplay & unitList(2).unitStrength).ToString
-        unit4.Text = ("Warrior 2 - HP: " & unitList(3).unitHealth & AttackDisplay & unitList(3).unitStrength).ToString
-        unit5.Text = ("Archer 1 - HP: " & unitList(4).unitHealth & AttackDisplay & unitList(4).unitStrength).ToString
-        unit6.Text = ("Archer 2 - HP: " & unitList(5).unitHealth & AttackDisplay & unitList(5).unitStrength).ToString
+        unit3.Text = (unitList(2).unitName & " - HP: " & unitList(2).unitHealth & AttackDisplay & unitList(2).unitStrength).ToString
+        unit4.Text = (unitList(3).unitName & " - HP: " & unitList(3).unitHealth & AttackDisplay & unitList(3).unitStrength).ToString
+        unit5.Text = (unitList(4).unitName & " - HP: " & unitList(4).unitHealth & AttackDisplay & unitList(4).unitStrength).ToString
+        unit6.Text = (unitList(5).unitName & " - HP: " & unitList(5).unitHealth & AttackDisplay & unitList(5).unitStrength).ToString
 
-        eUnit1.Text = ("Mage 1 - HP: " & unitList(6).unitHealth & " - Atk: " & unitList(6).unitStrength).ToString
-        eUnit2.Text = ("Mage 2 - HP: " & unitList(7).unitHealth & " - Atk: " & unitList(7).unitStrength).ToString
-        eUnit3.Text = ("Warrior 1 - HP: " & unitList(8).unitHealth & AttackDisplay & unitList(8).unitStrength).ToString
-        eUnit4.Text = ("Warrior 2 - HP: " & unitList(9).unitHealth & AttackDisplay & unitList(9).unitStrength).ToString
-        eUnit5.Text = ("Archer 1 - HP: " & unitList(10).unitHealth & AttackDisplay & unitList(10).unitStrength).ToString
-        eUnit6.Text = ("Archer 2 - HP: " & unitList(11).unitHealth & AttackDisplay & unitList(11).unitStrength).ToString
+        eUnit1.Text = (unitList(6).unitName & " - HP: " & unitList(6).unitHealth & " - Atk: " & unitList(6).unitStrength).ToString
+        eUnit2.Text = (unitList(7).unitName & " - HP: " & unitList(7).unitHealth & " - Atk: " & unitList(7).unitStrength).ToString
+        eUnit3.Text = (unitList(8).unitName & " - HP: " & unitList(8).unitHealth & AttackDisplay & unitList(8).unitStrength).ToString
+        eUnit4.Text = (unitList(9).unitName & " - HP: " & unitList(9).unitHealth & AttackDisplay & unitList(9).unitStrength).ToString
+        eUnit5.Text = (unitList(10).unitName & " - HP: " & unitList(10).unitHealth & AttackDisplay & unitList(10).unitStrength).ToString
+        eUnit6.Text = (unitList(11).unitName & " - HP: " & unitList(11).unitHealth & AttackDisplay & unitList(11).unitStrength).ToString
 
         'Used for the display of dead units
         If unitList(0).unitHealth <= 0 Then
-            unit1.Text = "Mage 1 - DEAD"
+            unit1.Text = unitList(0).unitName & " - DEAD"
             Me.Controls.Remove(unitP4)
             addUnitToDead(0)
         End If
         If unitList(1).unitHealth <= 0 Then
-            unit2.Text = "Mage 2 - DEAD"
+            unit2.Text = unitList(1).unitName & " - DEAD"
             Me.Controls.Remove(unitP6)
             addUnitToDead(1)
         End If
         If unitList(2).unitHealth <= 0 Then
-            unit3.Text = "Warrior 1 - DEAD"
+            unit3.Text = unitList(2).unitName & " - DEAD"
             Me.Controls.Remove(unitP5)
             addUnitToDead(2)
         End If
         If unitList(3).unitHealth <= 0 Then
-            unit4.Text = "Warrior 2 - DEAD"
+            unit4.Text = unitList(3).unitName & " - DEAD"
             Me.Controls.Remove(unitP2)
             addUnitToDead(3)
         End If
         If unitList(4).unitHealth <= 0 Then
-            unit5.Text = "Archer 1 - DEAD"
+            unit5.Text = unitList(4).unitName & " - DEAD"
             Me.Controls.Remove(unitP1)
             addUnitToDead(4)
         End If
         If unitList(5).unitHealth <= 0 Then
-            unit6.Text = "Archer 2 - DEAD"
+            unit6.Text = unitList(5).unitName & " - DEAD"
             Me.Controls.Remove(unitP3)
             addUnitToDead(5)
         End If
 
         If unitList(6).unitHealth <= 0 Then
-            eUnit1.Text = "Mage 1 - DEAD"
+            eUnit1.Text = unitList(6).unitName & " - DEAD"
             Me.Controls.Remove(unitE4)
             addUnitToDead(6)
         End If
         If unitList(7).unitHealth <= 0 Then
-            eUnit2.Text = "Mage 2 - DEAD"
+            eUnit2.Text = unitList(7).unitName & " - DEAD"
             Me.Controls.Remove(unitE6)
             addUnitToDead(7)
         End If
         If unitList(8).unitHealth <= 0 Then
-            eUnit3.Text = "Warrior 1 - DEAD"
+            eUnit3.Text = unitList(8).unitName & " - DEAD"
             Me.Controls.Remove(unitE5)
             addUnitToDead(8)
         End If
         If unitList(9).unitHealth <= 0 Then
-            eUnit4.Text = "Warrior 2 - DEAD"
+            eUnit4.Text = unitList(9).unitName & " - DEAD"
             Me.Controls.Remove(unitE2)
             addUnitToDead(9)
         End If
         If unitList(10).unitHealth <= 0 Then
-            eUnit5.Text = "Archer 1 - DEAD"
+            eUnit5.Text = unitList(10).unitName & " - DEAD"
             Me.Controls.Remove(unitE1)
             addUnitToDead(10)
         End If
         If unitList(11).unitHealth <= 0 Then
-            eUnit6.Text = "Archer 2 - DEAD"
+            eUnit6.Text = unitList(11).unitName & " - DEAD"
             Me.Controls.Remove(unitE3)
             addUnitToDead(11)
         End If
