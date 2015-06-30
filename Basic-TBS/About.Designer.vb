@@ -20,11 +20,12 @@ Partial Class About
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(About))
-        Me.lblTeam = New System.Windows.Forms.Label
-        Me.lblName = New System.Windows.Forms.Label
-        Me.lblLicenses = New System.Windows.Forms.Label
-        Me.lblGithub = New System.Windows.Forms.Label
-        Me.txtCodeLicense = New System.Windows.Forms.TextBox
+        Me.lblTeam = New System.Windows.Forms.Label()
+        Me.lblName = New System.Windows.Forms.Label()
+        Me.lblLicenses = New System.Windows.Forms.Label()
+        Me.lblGithub = New System.Windows.Forms.Label()
+        Me.txtCodeLicense = New System.Windows.Forms.TextBox()
+        Me.lblVersion = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'lblTeam
@@ -35,7 +36,7 @@ Partial Class About
         Me.lblTeam.Name = "lblTeam"
         Me.lblTeam.Size = New System.Drawing.Size(136, 48)
         Me.lblTeam.TabIndex = 1
-        Me.lblTeam.Text = "Eylos" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Sapein - Programmer" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Dazzey - Artist"
+        Me.lblTeam.Text = "Eylos/Sapein" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Sapein - Programmer" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Dazzey - Artist"
         Me.lblTeam.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblName
@@ -67,9 +68,9 @@ Partial Class About
         Me.lblGithub.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblGithub.Location = New System.Drawing.Point(105, 77)
         Me.lblGithub.Name = "lblGithub"
-        Me.lblGithub.Size = New System.Drawing.Size(255, 16)
+        Me.lblGithub.Size = New System.Drawing.Size(272, 16)
         Me.lblGithub.TabIndex = 4
-        Me.lblGithub.Text = "Github: http://github.com/eylos/finalproject"
+        Me.lblGithub.Text = "Github: http://github.com/Sapein/CoronTorak" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.lblGithub.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'txtCodeLicense
@@ -85,12 +86,23 @@ Partial Class About
         Me.txtCodeLicense.Text = resources.GetString("txtCodeLicense.Text")
         Me.txtCodeLicense.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'lblVersion
+        '
+        Me.lblVersion.AutoSize = True
+        Me.lblVersion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVersion.Location = New System.Drawing.Point(12, 9)
+        Me.lblVersion.Name = "lblVersion"
+        Me.lblVersion.Size = New System.Drawing.Size(102, 15)
+        Me.lblVersion.TabIndex = 6
+        Me.lblVersion.Text = "Version : 3.0-RC1"
+        '
         'About
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DodgerBlue
         Me.ClientSize = New System.Drawing.Size(465, 420)
+        Me.Controls.Add(Me.lblVersion)
         Me.Controls.Add(Me.txtCodeLicense)
         Me.Controls.Add(Me.lblGithub)
         Me.Controls.Add(Me.lblLicenses)
@@ -107,4 +119,5 @@ Partial Class About
     Friend WithEvents lblLicenses As System.Windows.Forms.Label
     Friend WithEvents lblGithub As System.Windows.Forms.Label
     Friend WithEvents txtCodeLicense As System.Windows.Forms.TextBox
+    Friend WithEvents lblVersion As System.Windows.Forms.Label
 End Class
