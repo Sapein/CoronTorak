@@ -1,14 +1,14 @@
-﻿2.0
+﻿3.0
 Turn1
-0 Player unitP4 332 295 5 True
-1 Player unitP6 596 295 5 False
-2 Player unitP5 464 165 10 True
-3 Player unitP2 464 295 10 True
-4 Player unitP1 398 295 7 True
-5 Player unitP3 530 295 7 True
-6 Computer unitE4 332 166 5 False
-7 Computer unitE6 599 166 5 False
-8 Computer unitE5 464 166 0 False
-9 Computer unitE2 464 36 10 False
-10 Computer unitE1 398 36 7 False
-11 Computer unitE3 531 36 7 False
+MageMage0 Player unitP4 332 360 7 False
+MageMage1 Player unitP6 596 360 7 False
+WarriorWarrior2 Player unitP5 464 360 7 False
+WarriorWarrior3 Player unitP2 464 425 7 False
+ArcherArcher4 Player unitP1 398 425 7 False
+ArcherArcher5 Player unitP3 530 425 7 False
+MageMage6 Computer unitE4 332 101 7 False
+MageMage7 Computer unitE6 599 101 7 False
+WarriorWarrior8 Computer unitE5 464 101 7 False
+WarriorWarrior9 Computer unitE2 464 36 7 False
+ArcherArcher10 Computer unitE1 398 36 7 False
+ArcherArcher11 Computer unitE3 531 36 7 False

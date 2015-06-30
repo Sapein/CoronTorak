@@ -6,8 +6,8 @@ Public Class MenuS
 
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
         'Loads up a New Game
-        Dim NewForm1 As Form = New Form1
-        NewForm1.Show()
+        Dim NewUnitSelect As Form = New Unit_Selection
+        NewUnitSelect.Show()
         Me.Close()
     End Sub
 

@@ -42,70 +42,104 @@ Public Class Form1
         unitE1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.ORANGE_ARCHER).ToString)
         unitE3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.ORANGE_ARCHER).ToString)
 
-        For i As Integer = 0 To CInt(MenuS.Base_Engine.getMageAmountP1())
-            If CInt(MenuS.Base_Engine.getMageAmountP1()) = 0 Then
-                Exit For
-            End If
-            unitListBackup.Add(New clsUnitMage)
-            unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
-            unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
-            unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
-            unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
-            unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
-            unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
-        Next
-        For i As Integer = 0 To CInt(MenuS.Base_Engine.getWarriorAmountP1())
-            If CInt(MenuS.Base_Engine.getWarriorAmountP1()) = 0 Then
-                Exit For
-            End If
-            unitListBackup.Add(New clsUnitWarrior)
-            unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
-            unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
-            If MenuS.Base_Engine.getWarriorAmountP1() = 3 Then
-                unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
-            ElseIf MenuS.Base_Engine.getWarriorAmountP1() > 3 Then
-                unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
-                unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
-                unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
-                unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
-                unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
-                unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
-            End If
-        Next
-        For i As Integer = 0 To CInt(MenuS.Base_Engine.getArcherAmountP1())
+        'This also checks to see if we need to load a save-game or not.
+        If MenuS.Base_Engine.getLoadGame() = "L"c Then
+            loadSave()
+
+        Else
+            For i As Integer = 1 To CInt(MenuS.Base_Engine.getMageAmountP1())
+                If CInt(MenuS.Base_Engine.getMageAmountP1()) = 0 Then
+                    Exit For
+                End If
+                unitListBackup.Add(New clsUnitMage)
+                unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
+                unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
+                unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
+                unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
+                unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
+                unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
+            Next
+            For i As Integer = 1 To CInt(MenuS.Base_Engine.getWarriorAmountP1())
+                If CInt(MenuS.Base_Engine.getWarriorAmountP1()) = 0 Then
+                    Exit For
+                End If
+                unitListBackup.Add(New clsUnitWarrior)
+                If CInt(MenuS.Base_Engine.getWarriorAmountP1()) = 2 Then
+                    unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                    unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                ElseIf CInt(MenuS.Base_Engine.getWarriorAmountP1()) = 3 Then
+                    If CInt(MenuS.Base_Engine.getMageAmountP1()) = 1 Then
+                        unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                        unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                        unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                    Else
+                        unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                        unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                        unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                    End If
+                ElseIf CInt(MenuS.Base_Engine.getWarriorAmountP1()) = 4 Then
+                    If CInt(MenuS.Base_Engine.getMageAmountP1()) = 1 Then
+                        unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                        unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                        unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                        unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                    Else
+                        unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                        unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                        unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                        unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                    End If
+                ElseIf CInt(MenuS.Base_Engine.getWarriorAmountP1()) > 4 Then
+                    unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                    unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                    unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                    unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                    unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                    unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
+                End If
+            Next
+        For i As Integer = 1 To CInt(MenuS.Base_Engine.getArcherAmountP1())
             If CInt(MenuS.Base_Engine.getArcherAmountP1()) = 0 Then
                 Exit For
             End If
             unitListBackup.Add(New clsUnitArcher)
-            If MenuS.Base_Engine.getArcherAmountP1() = 0 Then
-            ElseIf MenuS.Base_Engine.getArcherAmountP1() = 1 Then
-                unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
-            ElseIf MenuS.Base_Engine.getArcherAmountP1() = 2 Then
-                unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
-                unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
-            ElseIf MenuS.Base_Engine.getArcherAmountP1() = 3 Then
-                unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
-                unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
-                unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
-            ElseIf MenuS.Base_Engine.getArcherAmountP1() = 4 Then
-
-            End If
-
+            If CInt(MenuS.Base_Engine.getArcherAmountP1()) = 2 Then
+                unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                ElseIf CInt(MenuS.Base_Engine.getArcherAmountP1()) = 3 Then
+                    If CInt(MenuS.Base_Engine.getMageAmountP1()) = 1 Then
+                        unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                        unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                        unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                    End If
+                ElseIf CInt(MenuS.Base_Engine.getArcherAmountP1()) = 4 Then
+                    unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                    unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                    unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                    unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                ElseIf CInt(MenuS.Base_Engine.getArcherAmountP1()) = 5 Then
+                    unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                    unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                    unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                    unitP2.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                    unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                    unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
+                End If
         Next
 
-        For i As Integer = 0 To CInt(MenuS.Base_Engine.getMageAmountP2())
+        For i As Integer = 1 To CInt(MenuS.Base_Engine.getMageAmountP2())
             If CInt(MenuS.Base_Engine.getMageAmountP2()) = 0 Then
                 Exit For
             End If
             unitListBackup.Add(New clsUnitMage)
         Next
-        For i As Integer = 0 To CInt(MenuS.Base_Engine.getWarriorAmountP2())
+        For i As Integer = 1 To CInt(MenuS.Base_Engine.getWarriorAmountP2())
             If CInt(MenuS.Base_Engine.getWarriorAmountP2()) = 0 Then
                 Exit For
             End If
             unitListBackup.Add(New clsUnitWarrior)
         Next
-        For i As Integer = 0 To CInt(MenuS.Base_Engine.getArcherAmountP2())
+        For i As Integer = 1 To CInt(MenuS.Base_Engine.getArcherAmountP2())
             If CInt(MenuS.Base_Engine.getArcherAmountP2()) = 0 Then
                 Exit For
             End If
@@ -128,7 +162,7 @@ Public Class Form1
         unitListBackup(9).unitInitialize(9, "Computer", "unitE2", unitE2.Location.X, unitE2.Location.Y)
         unitListBackup(10).unitInitialize(10, "Computer", "unitE1", unitE1.Location.X, unitE1.Location.Y)
         unitListBackup(11).unitInitialize(11, "Computer", "unitE3", unitE3.Location.X, unitE3.Location.Y)
-
+        End If
         'This simply adds them to the unitList list so this way we can find them quickly without having to code 
         'each unit's reaction. 
 
@@ -136,11 +170,6 @@ Public Class Form1
         For Each listItem As Object In unitListBackup
             unitList.Add(CType(listItem, clsUnit))
         Next listItem
-
-        'This also checks to see if we need to load a save-game or not.
-        If MenuS.Base_Engine.getLoadGame() = "L"c Then
-            loadSave()
-        End If
 
         'This displays the unit stats.
         DisplayUnitStats()
@@ -1025,9 +1054,10 @@ Public Class Form1
         Dim i As Integer = 0
         Dim x As Integer = 0
 
-        file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "/saves/Corontorak-Save.txt", False)
 
-        file.WriteLine("2.0")
+        file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt", False)
+
+        file.WriteLine("3.0")
         If chrPlayerTurn = "P" Then
             file.WriteLine("Turn1")
         ElseIf chrPlayerTurn = "C" Then
@@ -1044,8 +1074,17 @@ Public Class Form1
                 x += 1
             End While
             x = 0
-            file.WriteLine(unitList(i).unitID & " " & unitList(i).unitTeam & " " & unitList(i).unitAssignedPicBox _
-            & " " & unitList(i).unitLocX & " " & unitList(i).unitLocY & " " & unitList(i).unitHealth & " " & isUsed)
+            MsgBox(unitList(i).unitID.ToString)
+            If unitList(i).ToString = "Basic_TBS.clsUnitWarrior" Then
+                file.WriteLine(unitList(i).unitName & " " & "Warrior" & unitList(i).unitID & " " & unitList(i).unitTeam & " " & unitList(i).unitAssignedPicBox _
+                & " " & unitList(i).unitLocX & " " & unitList(i).unitLocY & " " & unitList(i).unitHealth & " " & isUsed)
+            ElseIf unitList(i).ToString = "Basic_TBS.clsUnitMage" Then
+                file.WriteLine(unitList(i).unitName & " " & "Mage" & unitList(i).unitID & " " & unitList(i).unitTeam & " " & unitList(i).unitAssignedPicBox _
+                & " " & unitList(i).unitLocX & " " & unitList(i).unitLocY & " " & unitList(i).unitHealth & " " & isUsed)
+            ElseIf unitList(i).ToString = "Basic_TBS.clsUnitArcher" Then
+                file.WriteLine(unitList(i).unitName & " " & "Archer" & unitList(i).unitID & " " & unitList(i).unitTeam & " " & unitList(i).unitAssignedPicBox _
+                 & " " & unitList(i).unitLocX & " " & unitList(i).unitLocY & " " & unitList(i).unitHealth & " " & isUsed)
+            End If
             i += 1
         End While
         file.Close()
@@ -1058,7 +1097,7 @@ Public Class Form1
         Dim i As Integer = 0
         Dim TX As Integer = 0
 
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "/saves/Corontorak-Save.txt")
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited
             MyReader.SetDelimiters(" ")
             Dim currentRow As String()
@@ -1116,7 +1155,7 @@ Public Class Form1
         Dim i As Integer = 0
         Dim TX As Integer = 0
 
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "/saves/Corontorak-Save.txt")
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited
             MyReader.SetDelimiters(" ")
             Dim currentRow As String()
@@ -1137,13 +1176,15 @@ Public Class Form1
                             unitStuff.Add(currentField)
                             x += 1
                         End If
-
                         If x = 7 Then 'This actually loads up the location of the units, and sets their variables.
-                            unitList(i).unitID = CInt(unitStuff(0))
-                            unitList(i).unitAssignedPicBox = unitStuff(2).ToString
-                            unitList(i).unitLocX = CInt(unitStuff(3))
-                            unitList(i).unitLocY = CInt(unitStuff(4))
-                            unitList(i).unitHealth = CInt(unitStuff(5))
+                            If unitStuff(1) = "Mage" Then
+                                unitListBackup.Add(New clsUnitMage)
+                            ElseIf unitStuff(1) = "Warrior" Then
+                                unitListBackup.Add(New clsUnitWarrior)
+                            ElseIf unitStuff(1) = "Archer" Then
+                                unitListBackup.Add(New clsUnitArcher)
+                            End If
+                            unitListBackup(i).unitInitialize(unitStuff(2), unitStuff(3), unitStuff(4), unitStuff(5), unitStuff(6), unitStuff(0))
                             t = 0
                             While t < Me.Controls.Count
                                 TX = 0
@@ -1158,7 +1199,7 @@ Public Class Form1
                                 t += 1
                             End While
 
-                            If unitStuff(6) = True Then
+                            If unitStuff(7) = True Then
                                 useUnit(i)
                             End If
                             unitStuff.Clear()

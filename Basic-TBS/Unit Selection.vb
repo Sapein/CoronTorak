@@ -6,14 +6,15 @@
             Exit Sub
         End If
 
-        If CInt(txtMageAmount.Text + txtArcherAmount.Text + txtWarriorAmount.Text) > 6 Then
+        If CInt(txtMageAmount.Text) + CInt(txtWarriorAmount.Text) + CInt(txtArcherAmount.Text) > 6 Then
             MessageBox.Show("Player 1, your units are above the limit of 6!")
             Exit Sub
-        ElseIf CInt(txtMageAmount2.Text + txtArcherAmount2.Text + txtWarriorAmount2.Text) > 6 Then
+        ElseIf CInt(txtMageAmount2.Text) + CInt(txtWarriorAmount2.Text) + CInt(txtArcherAmount2.Text) > 6 Then
             MessageBox.Show("Player 2, your units are above the limit of 6!")
             Exit Sub
         End If
 
+        MessageBox.Show(txtMageAmount.Text)
         MenuS.Base_Engine.setMageAmountP1(CInt(txtMageAmount.Text))
         MenuS.Base_Engine.setWarriorAmountP1(CInt(txtWarriorAmount.Text))
         MenuS.Base_Engine.setArcherAmountP1(CInt(txtArcherAmount.Text))
@@ -21,5 +22,8 @@
         MenuS.Base_Engine.setMageAmountP2(CInt(txtMageAmount2.Text))
         MenuS.Base_Engine.setWarriorAmountP2(CInt(txtWarriorAmount2.Text))
         MenuS.Base_Engine.setArcherAmountP2(CInt(txtArcherAmount2.Text))
+        Dim NewForm1 As Form = New Form1
+        NewForm1.Show()
+        Me.Close()
     End Sub
 End Class
