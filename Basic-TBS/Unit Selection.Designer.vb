@@ -101,7 +101,7 @@ Partial Class Unit_Selection
         Me.btnConfirm.Location = New System.Drawing.Point(12, 343)
         Me.btnConfirm.Name = "btnConfirm"
         Me.btnConfirm.Size = New System.Drawing.Size(75, 23)
-        Me.btnConfirm.TabIndex = 9
+        Me.btnConfirm.TabIndex = 20
         Me.btnConfirm.Text = "Confirm"
         Me.btnConfirm.UseVisualStyleBackColor = True
         '

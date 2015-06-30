@@ -48,9 +48,6 @@ Public Class Form1
 
         Else
             For i As Integer = 1 To CInt(MenuS.Base_Engine.getMageAmountP1())
-                If CInt(MenuS.Base_Engine.getMageAmountP1()) = 0 Then
-                    Exit For
-                End If
                 unitListBackup.Add(New clsUnitMage)
                 unitP4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
                 unitP6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
@@ -60,9 +57,6 @@ Public Class Form1
                 unitP3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_MAGE).ToString)
             Next
             For i As Integer = 1 To CInt(MenuS.Base_Engine.getWarriorAmountP1())
-                If CInt(MenuS.Base_Engine.getWarriorAmountP1()) = 0 Then
-                    Exit For
-                End If
                 unitListBackup.Add(New clsUnitWarrior)
                 If CInt(MenuS.Base_Engine.getWarriorAmountP1()) = 2 Then
                     unitP5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_WARRIOR).ToString)
@@ -99,9 +93,6 @@ Public Class Form1
                 End If
             Next
             For i As Integer = 1 To CInt(MenuS.Base_Engine.getArcherAmountP1())
-                If CInt(MenuS.Base_Engine.getArcherAmountP1()) = 0 Then
-                    Exit For
-                End If
                 unitListBackup.Add(New clsUnitArcher)
                 If CInt(MenuS.Base_Engine.getArcherAmountP1()) = 2 Then
                     unitP1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.BLUE_ARCHER).ToString)
@@ -152,10 +143,9 @@ Public Class Form1
                 End If
             Next
 
+
+
             For i As Integer = 1 To CInt(MenuS.Base_Engine.getMageAmountP2())
-                If CInt(MenuS.Base_Engine.getMageAmountP2()) = 0 Then
-                    Exit For
-                End If
                 unitListBackup.Add(New clsUnitMage)
                 unitE4.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.ORANGE_MAGE).ToString)
                 unitE6.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.ORANGE_MAGE).ToString)
@@ -165,9 +155,6 @@ Public Class Form1
                 unitE3.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.ORANGE_MAGE).ToString)
             Next
             For i As Integer = 1 To CInt(MenuS.Base_Engine.getWarriorAmountP2())
-                If CInt(MenuS.Base_Engine.getWarriorAmountP2()) = 0 Then
-                    Exit For
-                End If
                 unitListBackup.Add(New clsUnitWarrior)
                 If CInt(MenuS.Base_Engine.getWarriorAmountP2()) = 2 Then
                     unitE5.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.ORANGE_WARRIOR).ToString)
@@ -204,9 +191,6 @@ Public Class Form1
                 End If
             Next
             For i As Integer = 1 To CInt(MenuS.Base_Engine.getArcherAmountP2())
-                If CInt(MenuS.Base_Engine.getArcherAmountP2()) = 0 Then
-                    Exit For
-                End If
                 unitListBackup.Add(New clsUnitArcher)
                 If CInt(MenuS.Base_Engine.getArcherAmountP2()) = 2 Then
                     unitE1.Image = System.Drawing.Bitmap.FromFile(My.Application.Info.DirectoryPath & (MenuS.Base_Engine.ORANGE_ARCHER).ToString)
@@ -257,8 +241,6 @@ Public Class Form1
                 End If
             Next
 
-
-
             'The next two sections initizalize and create the units, setting everything that is needed about them.
             'Initializes Player Units
             unitListBackup(0).unitInitialize(0, "Player", "unitP4", unitP4.Location.X, unitP4.Location.Y)
@@ -275,6 +257,37 @@ Public Class Form1
             unitListBackup(9).unitInitialize(9, "Computer", "unitE2", unitE2.Location.X, unitE2.Location.Y)
             unitListBackup(10).unitInitialize(10, "Computer", "unitE1", unitE1.Location.X, unitE1.Location.Y)
             unitListBackup(11).unitInitialize(11, "Computer", "unitE3", unitE3.Location.X, unitE3.Location.Y)
+
+            If CInt(MenuS.Base_Engine.getMageAmountP1) + CInt(MenuS.Base_Engine.getWarriorAmountP1) + CInt(MenuS.Base_Engine.getArcherAmountP1()) < 6 Then
+                If CInt(MenuS.Base_Engine.getMageAmountP1) = 0 Then
+                    unitListBackup(0).unitHealth(0)
+                    unitListBackup(1).unitHealth(0)
+                End If
+                If CInt(MenuS.Base_Engine.getWarriorAmountP1()) = 0 Then
+                    unitListBackup(2).unitHealth(0)
+                    unitListBackup(3).unitHealth(0)
+                End If
+                If CInt(MenuS.Base_Engine.getArcherAmountP1()) = 0 Then
+                    unitListBackup(4).unitHealth(0)
+                    unitListBackup(5).unitHealth(0)
+                End If
+            End If
+
+
+            If CInt(MenuS.Base_Engine.getMageAmountP2) + CInt(MenuS.Base_Engine.getWarriorAmountP2) + CInt(MenuS.Base_Engine.getArcherAmountP2()) < 6 Then
+                If CInt(MenuS.Base_Engine.getMageAmountP2) = 0 Then
+                    unitListBackup(6).unitHealth(0)
+                    unitListBackup(7).unitHealth(0)
+                End If
+                If CInt(MenuS.Base_Engine.getWarriorAmountP2()) = 0 Then
+                    unitListBackup(8).unitHealth(0)
+                    unitListBackup(9).unitHealth(0)
+                End If
+                If CInt(MenuS.Base_Engine.getArcherAmountP2()) = 0 Then
+                    unitListBackup(10).unitHealth(0)
+                    unitListBackup(11).unitHealth(0)
+                End If
+            End If
         End If
         'This simply adds them to the unitList list so this way we can find them quickly without having to code 
         'each unit's reaction. 
@@ -285,6 +298,7 @@ Public Class Form1
         Next listItem
 
         'This displays the unit stats.
+
         DisplayUnitStats()
     End Sub
 
@@ -886,8 +900,8 @@ Public Class Form1
     Private Sub DisplayUnitStats()
         Const AttackDisplay As String = " - Atk: "
 
-        unit1.Text = ("Mage 1 - HP: " & unitList(0).unitHealth & " - Atk: " & unitList(0).unitStrength).ToString
-        unit2.Text = ("Mage 2 - HP: " & unitList(1).unitHealth & " - Atk: " & unitList(1).unitStrength).ToString
+        unit1.Text = (unitList(0).unitName & " - HP: " & unitList(0).unitHealth & " - Atk: " & unitList(0).unitStrength).ToString
+        unit2.Text = (unitList(1).unitName & " - HP: " & unitList(1).unitHealth & " - Atk: " & unitList(1).unitStrength).ToString
         unit3.Text = ("Warrior 1 - HP: " & unitList(2).unitHealth & AttackDisplay & unitList(2).unitStrength).ToString
         unit4.Text = ("Warrior 2 - HP: " & unitList(3).unitHealth & AttackDisplay & unitList(3).unitStrength).ToString
         unit5.Text = ("Archer 1 - HP: " & unitList(4).unitHealth & AttackDisplay & unitList(4).unitStrength).ToString
