@@ -241,6 +241,32 @@ Public Class Form1
                 End If
             Next
 
+            If CInt(MenuS.Base_Engine.getMageAmountP1()) = 0 Then
+                unitListBackup.Add(New clsUnitMage)
+                unitListBackup.Add(New clsUnitMage)
+            End If
+            If CInt(MenuS.Base_Engine.getWarriorAmountP1()) = 0 Then
+                unitListBackup.Add(New clsUnitWarrior)
+                unitListBackup.Add(New clsUnitWarrior)
+            End If
+            If CInt(MenuS.Base_Engine.getArcherAmountP1()) = 0 Then
+                unitListBackup.Add(New clsUnitArcher)
+                unitListBackup.Add(New clsUnitArcher)
+            End If
+
+            If CInt(MenuS.Base_Engine.getMageAmountP2()) = 0 Then
+                unitListBackup.Add(New clsUnitMage)
+                unitListBackup.Add(New clsUnitMage)
+            End If
+            If CInt(MenuS.Base_Engine.getWarriorAmountP2()) = 0 Then
+                unitListBackup.Add(New clsUnitWarrior)
+                unitListBackup.Add(New clsUnitWarrior)
+            End If
+            If CInt(MenuS.Base_Engine.getArcherAmountP2()) = 0 Then
+                unitListBackup.Add(New clsUnitArcher)
+                unitListBackup.Add(New clsUnitArcher)
+            End If
+
             'The next two sections initizalize and create the units, setting everything that is needed about them.
             'Initializes Player Units
             unitListBackup(0).unitInitialize(0, "Player", "unitP4", unitP4.Location.X, unitP4.Location.Y)
@@ -260,32 +286,32 @@ Public Class Form1
 
             If CInt(MenuS.Base_Engine.getMageAmountP1) + CInt(MenuS.Base_Engine.getWarriorAmountP1) + CInt(MenuS.Base_Engine.getArcherAmountP1()) < 6 Then
                 If CInt(MenuS.Base_Engine.getMageAmountP1) = 0 Then
-                    unitListBackup(0).unitHealth(0)
-                    unitListBackup(1).unitHealth(0)
+                    unitListBackup(0).unitHealth = 0
+                    unitListBackup(1).unitHealth = 0
                 End If
                 If CInt(MenuS.Base_Engine.getWarriorAmountP1()) = 0 Then
-                    unitListBackup(2).unitHealth(0)
-                    unitListBackup(3).unitHealth(0)
+                    unitListBackup(2).unitHealth = 0
+                    unitListBackup(3).unitHealth = 0
                 End If
                 If CInt(MenuS.Base_Engine.getArcherAmountP1()) = 0 Then
-                    unitListBackup(4).unitHealth(0)
-                    unitListBackup(5).unitHealth(0)
+                    unitListBackup(4).unitHealth = 0
+                    unitListBackup(5).unitHealth = 0
                 End If
             End If
 
 
             If CInt(MenuS.Base_Engine.getMageAmountP2) + CInt(MenuS.Base_Engine.getWarriorAmountP2) + CInt(MenuS.Base_Engine.getArcherAmountP2()) < 6 Then
                 If CInt(MenuS.Base_Engine.getMageAmountP2) = 0 Then
-                    unitListBackup(6).unitHealth(0)
-                    unitListBackup(7).unitHealth(0)
+                    unitListBackup(6).unitHealth = 0
+                    unitListBackup(7).unitHealth = 0
                 End If
                 If CInt(MenuS.Base_Engine.getWarriorAmountP2()) = 0 Then
-                    unitListBackup(8).unitHealth(0)
-                    unitListBackup(9).unitHealth(0)
+                    unitListBackup(8).unitHealth = 0
+                    unitListBackup(9).unitHealth = 0
                 End If
                 If CInt(MenuS.Base_Engine.getArcherAmountP2()) = 0 Then
-                    unitListBackup(10).unitHealth(0)
-                    unitListBackup(11).unitHealth(0)
+                    unitListBackup(10).unitHealth = 0
+                    unitListBackup(11).unitHealth = 0
                 End If
             End If
         End If
