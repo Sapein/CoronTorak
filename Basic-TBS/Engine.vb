@@ -6,12 +6,12 @@
     Private warriorAmountP2 As Integer = 2
     Private archerAmountP1 As Integer = 2
     Private archerAmountP2 As Integer = 2
-    Public Const BLUE_MAGE As String = "..\..\..\Sprites\Mage Up Facing Blue.png"
-    Public Const BLUE_WARRIOR As String = "..\..\..\Sprites\Warrior Up Facing Blue.png"
-    Public Const BLUE_ARCHER As String = "..\..\..\Sprites\Archer Up Facing Blue.png"
-    Public Const ORANGE_MAGE As String = "..\..\..\Sprites\Mage Down Facing Orange.png"
-    Public Const ORANGE_WARRIOR As String = "..\..\..\Sprites\Warrior Down Facing Orange.png"
-    Public Const ORANGE_ARCHER As String = "..\..\..\Sprites\Archer Down Facing Orange.png"
+    Public Const BLUE_MAGE As String = "Sprites\Mage Up Facing Blue.png"
+    Public Const BLUE_WARRIOR As String = "Sprites\Warrior Up Facing Blue.png"
+    Public Const BLUE_ARCHER As String = "Sprites\Archer Up Facing Blue.png"
+    Public Const ORANGE_MAGE As String = "Sprites\Mage Down Facing Orange.png"
+    Public Const ORANGE_WARRIOR As String = "Sprites\Warrior Down Facing Orange.png"
+    Public Const ORANGE_ARCHER As String = "Sprites\Archer Down Facing Orange.png"
 
 
 

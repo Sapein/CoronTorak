@@ -1221,7 +1221,7 @@ Public Class Form1
         Dim x As Integer = 0
 
 
-        file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt", False)
+        file = My.Computer.FileSystem.OpenTextFileWriter(My.Application.Info.DirectoryPath & "saves\Corontorak-Save.txt", False)
 
         file.WriteLine("3.0")
         If chrPlayerTurn = "P" Then
@@ -1263,7 +1263,7 @@ Public Class Form1
         Dim i As Integer = 0
         Dim TX As Integer = 0
 
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt")
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "saves\Corontorak-Save.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited
             MyReader.SetDelimiters(" ")
             Dim currentRow As String()
@@ -1321,7 +1321,7 @@ Public Class Form1
         Dim i As Integer = 0
         Dim TX As Integer = 0
 
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "../../../saves/Corontorak-Save.txt")
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(My.Application.Info.DirectoryPath & "saves\Corontorak-Save.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited
             MyReader.SetDelimiters(" ")
             Dim currentRow As String()

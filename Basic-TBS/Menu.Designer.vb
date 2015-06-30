@@ -20,11 +20,11 @@ Partial Class MenuS
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MenuS))
-        Me.btnNew = New System.Windows.Forms.Button
-        Me.btnLoad = New System.Windows.Forms.Button
-        Me.btnExit = New System.Windows.Forms.Button
-        Me.btnAbout = New System.Windows.Forms.Button
-        Me.picLogo = New System.Windows.Forms.PictureBox
+        Me.btnNew = New System.Windows.Forms.Button()
+        Me.btnLoad = New System.Windows.Forms.Button()
+        Me.btnExit = New System.Windows.Forms.Button()
+        Me.btnAbout = New System.Windows.Forms.Button()
+        Me.picLogo = New System.Windows.Forms.PictureBox()
         CType(Me.picLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
